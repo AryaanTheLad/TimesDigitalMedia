@@ -1,6 +1,6 @@
 "use client";
 
-import { ShieldCheck, BarChart, HardDrive } from "lucide-react";
+import { ShieldCheck, BarChart, HardDrive, MapPin } from "lucide-react";
 
 export default function About() {
   const values = [
@@ -35,7 +35,7 @@ export default function About() {
                 Who We Are
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-900 leading-tight tracking-tight">
-                We Showcase Your ADS to a Vast and Influential Global + Local Audience.
+                We Showcase Your ADs to a Vast and Influential Global + Local Audience.
               </h2>
               <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-bold">
                 Times Digital Media is a digtial marketing agency. We present a powerful and lucrative advertising platform for brands, corporations, institutes and businesses seeking high-impact digital visibility and meaningful audience engagement.
@@ -43,6 +43,24 @@ export default function About() {
               <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-bold">
                 We have a strong reputation for credibility, relevance, and timely reporting, we enable advertisers to effectively showcase products to a vast viewership across Pakistan's key commercial hubs, Islamabad, Rawalpindi, Karachi, Lahore, Quetta, Peshawar and key international markets, offering brands both local depth and global exposure.
               </p>
+
+              {/* Headquarters Address Block */}
+              <div className="mt-4 p-5 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-start gap-4 shadow-sm relative overflow-hidden group">
+                {/* Red Left Accent Border */}
+                <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
+                <div className="p-2 rounded-xl bg-red-50 text-[#E8000E] border border-red-200/60 shrink-0">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="block text-[10px] font-black text-[#E8000E] uppercase tracking-widest leading-none mb-2">
+                    Headquarters Address
+                  </span>
+                  <p className="text-xs sm:text-sm text-zinc-800 font-extrabold leading-normal">
+                    House no. 183, Street 5, Sector-V, <br className="hidden sm:inline" />
+                    DHA Phase 8, Lahore, Pakistan
+                  </p>
+                </div>
+              </div>
             </div>
  
             {/* Right Block: Capabilities Values List */}

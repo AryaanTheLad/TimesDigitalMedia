@@ -21,7 +21,7 @@ export default function Sidebars() {
     { id: "showcase", label: "Spotlight" },
     { id: "clients", label: "Clients" },
     { id: "proof", label: "Proof" },
-    { id: "about", label: "About" },
+    { id: "packages", label: "Packages" },
   ];
 
   useEffect(() => {
@@ -65,35 +65,12 @@ export default function Sidebars() {
     const el = document.getElementById(id);
     if (!el) return;
 
-    const html = document.documentElement;
-    const originalScrollBehavior = html.style.scrollBehavior;
-    html.style.scrollBehavior = "auto";
-
-    const targetPosition = el.getBoundingClientRect().top + window.scrollY;
-    const startPosition = window.scrollY;
-    const distance = targetPosition - startPosition;
-    const duration = 1000; // 1.0s: relaxed, elegant, premium motion
-    let start: number | null = null;
-
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const animation = (currentTime: number) => {
-      if (start === null) start = currentTime;
-      const timeElapsed = currentTime - start;
-      const progress = Math.min(timeElapsed / duration, 1);
-      const ease = easeInOutCubic(progress);
-
-      window.scrollTo(0, startPosition + distance * ease);
-
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      } else {
-        html.style.scrollBehavior = originalScrollBehavior;
-      }
-    };
-
-    requestAnimationFrame(animation);
+    const offset = id === "hero" ? 0 : 80;
+    const targetPosition = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
   };
 
   return (

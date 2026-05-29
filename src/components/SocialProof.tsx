@@ -37,7 +37,7 @@ export default function SocialProof() {
 
   const demographics: DemographicItem[] = [
     {
-      title: "Global Market Reach",
+      title: "Audience Depth",
       badge: "Demographics",
       badgeClass: "bg-blue-50 border-blue-200 text-blue-700",
       description:

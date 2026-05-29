@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Mail, Phone } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,72 +12,25 @@ export default function Footer() {
     if (!target) return;
     e.preventDefault();
 
-    const html = document.documentElement;
-    const originalScrollBehavior = html.style.scrollBehavior;
-    html.style.scrollBehavior = "auto";
-
-    const targetPosition = target.getBoundingClientRect().top + window.scrollY;
-    const startPosition = window.scrollY;
-    const distance = targetPosition - startPosition;
-    const duration = 1000; // 1.0s: relaxed, elegant, premium motion
-    let start: number | null = null;
-
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const animation = (currentTime: number) => {
-      if (start === null) start = currentTime;
-      const timeElapsed = currentTime - start;
-      const progress = Math.min(timeElapsed / duration, 1);
-      const ease = easeInOutCubic(progress);
-
-      window.scrollTo(0, startPosition + distance * ease);
-
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      } else {
-        html.style.scrollBehavior = originalScrollBehavior;
-      }
-    };
-
-    requestAnimationFrame(animation);
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
   };
 
   const handleScrollTop = () => {
-    const html = document.documentElement;
-    const originalScrollBehavior = html.style.scrollBehavior;
-    html.style.scrollBehavior = "auto";
-
-    const startPosition = window.scrollY;
-    const distance = -startPosition;
-    const duration = 1000; // 1.0s: relaxed, elegant, premium motion
-    let start: number | null = null;
-
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const animation = (currentTime: number) => {
-      if (start === null) start = currentTime;
-      const timeElapsed = currentTime - start;
-      const progress = Math.min(timeElapsed / duration, 1);
-      const ease = easeInOutCubic(progress);
-
-      window.scrollTo(0, startPosition + distance * ease);
-
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      } else {
-        html.style.scrollBehavior = originalScrollBehavior;
-      }
-    };
-
-    requestAnimationFrame(animation);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const footerLinks = {
     agency: [
-      { label: "Who We Are", href: "/#about", targetId: "about" },
+      { label: "Who We Are", href: "/about", targetId: "" },
       { label: "Reach & Demographics", href: "/#proof", targetId: "proof" },
+      { label: "Growth Packages", href: "/#packages", targetId: "packages" },
       { label: "News Portal", href: "https://www.timesofislamabad.com", targetId: "https://www.timesofislamabad.com" },
     ],
     legal: [
@@ -102,7 +55,7 @@ export default function Footer() {
               TIMES <span style={{ color: "#E8000E" }} className="font-extrabold">DIGITAL MEDIA</span>
             </a>
             <p className="text-xs sm:text-sm text-zinc-700 max-w-md font-bold leading-relaxed">
-              Pakistan’s premier online English news agency presents a powerful and lucrative advertising platform for brands, corporations, and businesses seeking high-impact digital visibility and meaningful audience engagement.
+              Pakistan’s premier digital media agency presents a powerful and lucrative advertising platform for brands, corporations, institutes and businesses seeking high impact digital visibility and meaningful audience engagement.
             </p>
             
             {/* Social Links */}
@@ -165,6 +118,25 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+
+            {/* Contact Details - Centered & Symmetrical */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2 mt-8 text-xs text-zinc-700 font-bold border-t border-zinc-200/60 pt-6 w-full max-w-lg">
+              <a 
+                href="mailto:thetimesdigitalmedia@gmail.com" 
+                className="flex items-center gap-2 hover:text-[#E8000E] transition-colors duration-300 group"
+              >
+                <Mail className="w-4 h-4 text-[#E8000E] shrink-0" />
+                <span>thetimesdigitalmedia@gmail.com</span>
+              </a>
+              <span className="hidden sm:inline text-zinc-300 font-normal">|</span>
+              <a 
+                href="tel:+923164461707" 
+                className="flex items-center gap-2 hover:text-[#E8000E] transition-colors duration-300 group"
+              >
+                <Phone className="w-4 h-4 text-[#E8000E] shrink-0" />
+                <span>+92 316 4461707</span>
+              </a>
+            </div>
           </div>
 
         </div>

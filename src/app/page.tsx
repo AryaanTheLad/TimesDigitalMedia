@@ -5,7 +5,7 @@ import ShowcaseBanner from "@/components/ShowcaseBanner";
 import Services from "@/components/Services";
 import Clients from "@/components/Clients";
 import SocialProof from "@/components/SocialProof";
-import About from "@/components/About";
+import Packages from "@/components/Packages";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -40,8 +40,8 @@ export default function Home() {
         <SocialProof />
         <div className="w-full border-t border-zinc-200" />
 
-        {/* Core Value Strategy Segment */}
-        <About />
+        {/* Pricing Retainers & Growth Packages */}
+        <Packages />
       </main>
 
       {/* Premium Light Sitemap Footer */}

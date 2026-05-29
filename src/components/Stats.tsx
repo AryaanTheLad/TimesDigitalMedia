@@ -88,12 +88,12 @@ function StatCard({ value, suffix, label, description, isStatic }: StatItemProps
       <div className="relative z-10 flex flex-col h-full justify-between gap-6">
         <div>
           {/* 1. Large, Bold Highlighted Title at the Top */}
-          <h3 className="text-xl sm:text-2xl font-black text-zinc-950 leading-tight tracking-tight mb-4 group-hover:text-[#E8000E] transition-colors duration-300">
+          <h3 className="text-xl sm:text-2xl font-black text-[#E8000E] leading-tight tracking-tight mb-4 transition-colors duration-300">
             {label}
           </h3>
           
           {/* 2. Massive animated counter in the center */}
-          <div className="text-5xl sm:text-6xl font-black tracking-tight text-zinc-900 font-mono">
+          <div className="text-5xl sm:text-6xl font-black tracking-tight text-zinc-900 font-mono group-hover:text-[#E8000E] transition-colors duration-300">
             {isStatic ? (
               <span>
                 {value}

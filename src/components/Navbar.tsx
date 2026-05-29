@@ -5,9 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { label: "About", href: "/#about", targetId: "about" },
+  { label: "About", href: "/about", targetId: "" },
   { label: "Services", href: "/#services", targetId: "services" },
   { label: "Metrics", href: "/#proof", targetId: "proof" },
+  { label: "Packages", href: "/#packages", targetId: "packages" },
 ];
 
 export default function Navbar() {
@@ -31,35 +32,11 @@ export default function Navbar() {
     if (!target) return;
     e.preventDefault();
 
-    const html = document.documentElement;
-    const originalScrollBehavior = html.style.scrollBehavior;
-    html.style.scrollBehavior = "auto";
-
-    const targetPosition = target.getBoundingClientRect().top + window.scrollY;
-    const startPosition = window.scrollY;
-    const distance = targetPosition - startPosition;
-    const duration = 1000; // 1.0s: relaxed, elegant, premium motion
-    let start: number | null = null;
-
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const animation = (currentTime: number) => {
-      if (start === null) start = currentTime;
-      const timeElapsed = currentTime - start;
-      const progress = Math.min(timeElapsed / duration, 1);
-      const ease = easeInOutCubic(progress);
-
-      window.scrollTo(0, startPosition + distance * ease);
-
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      } else {
-        html.style.scrollBehavior = originalScrollBehavior;
-      }
-    };
-
-    requestAnimationFrame(animation);
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -70,8 +47,8 @@ export default function Navbar() {
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "py-4 bg-white/70 backdrop-blur-xl border-b border-black/5 shadow-sm"
-            : "py-6 bg-transparent"
+            ? "py-4 bg-white/80 backdrop-blur-xl border-b border-zinc-200/80 shadow-sm"
+            : "py-5 bg-white/90 backdrop-blur-xl border-b border-zinc-200"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, TrendingUp, Users } from "lucide-react";
+import { ArrowRight, TrendingUp, Users, Globe } from "lucide-react";
 
 export default function Hero() {
 
@@ -10,35 +10,11 @@ export default function Hero() {
     const target = document.getElementById(targetId);
     if (!target) return;
 
-    const html = document.documentElement;
-    const originalScrollBehavior = html.style.scrollBehavior;
-    html.style.scrollBehavior = "auto";
-
-    const targetPosition = target.getBoundingClientRect().top + window.scrollY;
-    const startPosition = window.scrollY;
-    const distance = targetPosition - startPosition;
-    const duration = 1000; // 1.0s: relaxed, elegant, premium motion
-    let start: number | null = null;
-
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const animation = (currentTime: number) => {
-      if (start === null) start = currentTime;
-      const timeElapsed = currentTime - start;
-      const progress = Math.min(timeElapsed / duration, 1);
-      const ease = easeInOutCubic(progress);
-
-      window.scrollTo(0, startPosition + distance * ease);
-
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      } else {
-        html.style.scrollBehavior = originalScrollBehavior;
-      }
-    };
-
-    requestAnimationFrame(animation);
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
   };
 
   const containerVariants = {
@@ -93,7 +69,7 @@ export default function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="lg:col-span-7 flex flex-col items-start text-left gap-6"
+          className="lg:col-span-6 flex flex-col items-start text-left gap-6"
         >
           {/* Tagline Badge */}
           <motion.span
@@ -108,7 +84,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.1] tracking-tight text-zinc-950"
           >
-          <span className="block text-zinc-950 mb-2">High-Impact Digital Visibility{" "}</span>
+          <span className="block text-zinc-950 mb-2">Digital Brand Acceleration{" "}</span>
             <span
               style={{
                 color: "#E8000E",
@@ -136,8 +112,7 @@ export default function Hero() {
             <a
               href="#services"
               onClick={(e) => handleScroll(e, "services")}
-              className="relative flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-bold text-white transition-all duration-300 shadow-md hover:scale-105 active:scale-95 group w-full"
-              style={{ backgroundColor: "#E8000E" }}
+              className="relative flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-bold text-white bg-zinc-950 border border-zinc-800 hover:bg-zinc-900 hover:border-zinc-700 transition-all duration-300 shadow-md hover:scale-105 active:scale-95 group w-full"
             >
               Explore Advertising Solutions
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -158,12 +133,12 @@ export default function Hero() {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
-          className="lg:col-span-5 relative w-full flex items-center justify-center"
+          className="lg:col-span-6 relative w-full flex items-center justify-center"
         >
           {/* Premium High-Contrast Matte-Black Dashboard Card */}
-          <div className="relative w-full aspect-[4/3] sm:aspect-square lg:aspect-[4/3] rounded-2xl bg-zinc-950 p-6 shadow-2xl border border-zinc-800 flex flex-col justify-between overflow-hidden">
+          <div className="relative w-full aspect-[4/3] sm:aspect-square lg:aspect-[4/3] rounded-[32px] bg-zinc-950 p-6 shadow-2xl border border-zinc-800 flex flex-col justify-between overflow-hidden">
             {/* Glossy top-right shimmer */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.01] via-transparent to-transparent pointer-events-none rounded-2xl" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.01] via-transparent to-transparent pointer-events-none rounded-[32px]" />
 
             {/* Dashboard header dots */}
             <div className="flex items-center gap-4 border-b border-zinc-800 pb-4">
@@ -179,31 +154,31 @@ export default function Hero() {
 
             {/* Stats row */}
             <div className="grid grid-cols-2 gap-4 my-6">
-              <div className="relative p-4 rounded-xl bg-white border border-zinc-300 shadow-sm flex flex-col justify-between aspect-video overflow-hidden">
+              <div className="relative p-6 rounded-2xl bg-white border border-zinc-300 shadow-sm flex flex-col justify-between overflow-hidden">
                 {/* Red Left Accent Bar (Perfectly Rounded Corner Alignment) */}
-                <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
-                <div className="flex items-center justify-between pl-1">
-                  <span className="text-xs text-zinc-700 font-extrabold">Avg Monthly Impressions</span>
-                  <Users className="w-4 h-4 text-red-500" />
+                <div className="absolute top-0 left-0 bottom-0 w-[5px] bg-[#E8000E]" />
+                <div className="flex items-start justify-between pl-1 h-10 sm:h-12 gap-2 w-full">
+                  <span className="text-xs sm:text-[13px] text-[#E8000E] font-black uppercase tracking-wider leading-tight">Monthly Impression</span>
+                  <Users className="w-5 h-5 text-[#E8000E] shrink-0 mt-0.5" />
                 </div>
-                <div className="mt-2 pl-1">
-                  <span className="text-2xl font-black tracking-tight text-zinc-950">30M+</span>
-                  <span className="block text-[10px] text-emerald-600 font-bold mt-1">
+                <div className="flex-1 flex flex-col justify-center pl-1 pb-3.5">
+                  <span className="text-4xl sm:text-[40px] font-black tracking-tight text-[#E8000E] block leading-none">30M+</span>
+                  <span className="block text-[11px] sm:text-xs text-zinc-950 font-black tracking-wide mt-2">
                     Avg Monthly Reach
                   </span>
                 </div>
               </div>
 
-              <div className="relative p-4 rounded-xl bg-white border border-zinc-300 shadow-sm flex flex-col justify-between aspect-video overflow-hidden">
+              <div className="relative p-6 rounded-2xl bg-white border border-zinc-300 shadow-sm flex flex-col justify-between overflow-hidden">
                 {/* Red Left Accent Bar (Perfectly Rounded Corner Alignment) */}
-                <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
-                <div className="flex items-center justify-between pl-1">
-                  <span className="text-xs text-zinc-700 font-extrabold">Premium Audience</span>
-                  <TrendingUp className="w-4 h-4 text-red-500" />
+                <div className="absolute top-0 left-0 bottom-0 w-[5px] bg-[#E8000E]" />
+                <div className="flex items-start justify-between pl-1 h-10 sm:h-12 gap-2 w-full">
+                  <span className="text-xs sm:text-[13px] text-[#E8000E] font-black uppercase tracking-wider leading-tight">Premium Audience</span>
+                  <TrendingUp className="w-5 h-5 text-[#E8000E] shrink-0 mt-0.5" />
                 </div>
-                <div className="mt-2 pl-1">
-                  <span className="text-2xl font-black tracking-tight text-zinc-950">70%</span>
-                  <span className="block text-[10px] text-red-650 font-bold mt-1">
+                <div className="flex-1 flex flex-col justify-center pl-1 pb-3.5">
+                  <span className="text-4xl sm:text-[40px] font-black tracking-tight text-[#E8000E] block leading-none">70%</span>
+                  <span className="block text-[11px] sm:text-xs text-zinc-950 font-black tracking-wide mt-2">
                     Ages 18–35 Segment
                   </span>
                 </div>
@@ -252,16 +227,16 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, -9, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-6 -right-6 px-4 py-2.5 rounded-xl bg-white border border-zinc-300 shadow-md flex items-center gap-2"
+            className="absolute -top-6 -right-6 px-4 py-2.5 rounded-xl bg-white border border-zinc-300 shadow-md flex items-center gap-3"
           >
             <div className="p-1.5 rounded-lg bg-red-500/10 text-[#E8000E]">
               <Users className="w-4 h-4" />
             </div>
             <div>
-              <span className="block text-[10px] text-zinc-400 font-bold uppercase">
+              <span className="block text-[10px] text-zinc-400 font-bold uppercase tracking-wider">
                 Targeting Split
               </span>
-              <span className="text-xs font-black text-zinc-900">80% M / 20% F</span>
+              <span className="text-xs font-black text-zinc-900 block mt-0.5">80% M / 20% F</span>
             </div>
           </motion.div>
  
@@ -269,14 +244,16 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute -bottom-4 -left-6 px-4 py-2.5 rounded-xl bg-white border border-zinc-300 shadow-md flex items-center gap-2"
+            className="absolute -bottom-4 -left-6 px-4 py-2.5 rounded-xl bg-white border border-zinc-300 shadow-md flex items-center gap-3"
           >
-            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600">
+              <Globe className="w-4 h-4" />
+            </div>
             <div>
-              <span className="block text-[10px] text-zinc-400 font-bold uppercase">
+              <span className="block text-[10px] text-zinc-400 font-bold uppercase tracking-wider">
                 Audience Depth
               </span>
-              <span className="text-xs font-black text-zinc-900">Local & International</span>
+              <span className="text-xs font-black text-zinc-900 block mt-0.5">Local & International</span>
             </div>
           </motion.div>
         </motion.div>

@@ -27,24 +27,27 @@ export default function CustomCursor() {
       if (!isVisible) setIsVisible(true);
     };
 
+    let lastTarget: HTMLElement | null = null;
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (!target) return;
+      if (!target || target === lastTarget) return;
+      lastTarget = target;
 
       const cursorAttr = target.closest("[data-cursor]")?.getAttribute("data-cursor");
+      let nextType: "default" | "hover" | "view" = "default";
+
       if (cursorAttr === "view") {
-        setHoverType("view");
+        nextType = "view";
       } else if (
-        target.closest("a") ||
-        target.closest("button") ||
-        target.closest("input") ||
-        target.closest('[role="button"]') ||
-        target.closest(".clickable-hover")
+        target.closest("a, button, input, [role='button'], .clickable-hover")
       ) {
-        setHoverType("hover");
-      } else {
-        setHoverType("default");
+        nextType = "hover";
       }
+
+      setHoverType((prev) => {
+        if (prev !== nextType) return nextType;
+        return prev;
+      });
     };
 
     const handleMouseLeave = () => {
