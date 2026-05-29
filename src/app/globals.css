@@ -1,26 +1,178 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #09090b;
+    
+    --card-bg: #ffffff;
+    --card-border: rgba(9, 9, 11, 0.06);
+    --card-hover-border: rgba(232, 0, 14, 0.2);
+    
+    --glow-red: rgba(232, 0, 14, 0.04);
+    --glow-rose: rgba(244, 63, 94, 0.04);
+    --glow-orange: rgba(245, 158, 11, 0.03);
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    min-height: 100vh;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom premium scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #e4e4e7;
+    border-radius: 4px;
+    border: 2px solid #ffffff;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff0000;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Grid Pattern Background */
+.bg-grid-pattern {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(9, 9, 11, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(9, 9, 11, 0.015) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse at 50% 50%, black 60%, transparent 100%);
+}
+
+.bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(9, 9, 11, 0.03) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse at 50% 50%, black 60%, transparent 100%);
+}
+
+/* Text Satin Metallic Gradient */
+.text-satin {
+  background: linear-gradient(135deg, #09090b 30%, #4b5563 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-glow-red {
+  background: linear-gradient(135deg, #ff4d4d 30%, #ff0000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glow Background Effects — NO mix-blend-mode to prevent black flash artifacts */
+.bg-glow-orb {
+  filter: blur(140px);
+  opacity: 0.25;
+  pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(9, 9, 11, 0.05);
+  box-shadow: 0 10px 35px -10px rgba(0, 0, 0, 0.04);
+}
+
+.glass-card {
+  background: #ffffff;
+  border: 1px solid rgba(9, 9, 11, 0.06);
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.03);
+}
+
+.glass-card:hover {
+  background: #ffffff;
+  border-color: rgba(232, 0, 14, 0.18);
+  box-shadow: 0 15px 40px -12px rgba(9, 9, 11, 0.08), 0 0 24px 0 rgba(232, 0, 14, 0.03);
+}
+
+/* ─── Marquee ─────────────────────────────────────────────────────────────── */
+
+@keyframes marquee-left {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+/* The actual scrolling track — GPU-accelerated, no reflow */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.marquee-track-left {
+  animation: marquee-left 80s linear infinite;
+}
+
+.marquee-track-right {
+  animation: marquee-right 80s linear infinite;
+}
+
+
+/* ─── Float animation for background orbs only ────────────────────────────── */
+/* Only translateY — NO scale, prevents GPU layer recalculation & black flash  */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-18px); }
+}
+
+.animate-float {
+  animation: float 12s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 16s ease-in-out infinite;
+  animation-delay: -4s; /* offset so it doesn't sync with first orb */
+}
+
+/* ─── Scroll-driven section reveal ───────────────────────────────────────── */
+/* Used by Framer Motion whileInView — just ensures GPU layers are ready      */
+.reveal-section {
+  will-change: opacity, transform;
+  transform: translateZ(0);
+}
+
+/* Apple-style smooth mask slider */
+.mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
 }
