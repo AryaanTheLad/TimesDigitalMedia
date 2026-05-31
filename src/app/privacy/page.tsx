@@ -137,7 +137,7 @@ export default function PrivacyPolicyPage() {
                 For all inquiries regarding data protection, access to the personal data we hold, or queries regarding how we optimize campaign metrics, please contact our Data Protection Manager at:
               </p>
               <div className="p-4 rounded-xl bg-zinc-50 border border-zinc-200 font-mono text-xs text-zinc-800 self-start">
-                <span className="block font-black text-zinc-950">Email:</span> info@timesdigitalmedia.com
+                <span className="block font-black text-zinc-950">Email:</span> thetimesdigitalmedia@gmail.com
               </div>
               <p>
                 <span className="text-zinc-950 font-black">Changes to this Policy:</span> Any updates or alterations to this Privacy Policy will be posted immediately on this page. Significant changes will also be announced via registered client emails to guarantee complete compliance and transparent governance.

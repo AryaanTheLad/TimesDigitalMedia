@@ -44,22 +44,40 @@ export default function About() {
                 We have a strong reputation for credibility, relevance, and timely reporting, we enable advertisers to effectively showcase products to a vast viewership across Pakistan's key commercial hubs, Islamabad, Rawalpindi, Karachi, Lahore, Quetta, Peshawar and key international markets, offering brands both local depth and global exposure.
               </p>
 
-              {/* Headquarters Address Block */}
-              <div className="mt-4 p-5 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-start gap-4 shadow-sm relative overflow-hidden group">
-                {/* Red Left Accent Border */}
-                <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
-                <div className="p-2 rounded-xl bg-red-50 text-[#E8000E] border border-red-200/60 shrink-0">
-                  <MapPin className="w-4 h-4" />
+              {/* Symmetrical Address & Logo Horizontal Row */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 w-full">
+                
+                {/* 1. Headquarters Address Block */}
+                <div className="relative p-5 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center gap-4 shadow-sm overflow-hidden group min-h-[110px]">
+                  {/* Red Left Accent Border */}
+                  <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
+                  <div className="p-2.5 rounded-xl bg-red-50 text-[#E8000E] border border-red-200/60 shrink-0 flex items-center justify-center">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <span className="block text-[10px] font-black text-[#E8000E] uppercase tracking-widest leading-none mb-1.5">
+                      Office Address
+                    </span>
+                    <p className="text-xs sm:text-sm text-zinc-800 font-extrabold leading-normal">
+                      House no. 183, Street 5, Sector-V, <br />
+                      DHA Phase 8, Lahore, Pakistan
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <span className="block text-[10px] font-black text-[#E8000E] uppercase tracking-widest leading-none mb-2">
-                    Headquarters Address
-                  </span>
-                  <p className="text-xs sm:text-sm text-zinc-800 font-extrabold leading-normal">
-                    House no. 183, Street 5, Sector-V, <br className="hidden sm:inline" />
-                    DHA Phase 8, Lahore, Pakistan
-                  </p>
+
+                {/* 2. Brand Logo Block (Symmetrical to Address Block) */}
+                <div className="relative p-5 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center justify-center shadow-sm overflow-hidden group min-h-[110px]">
+                  {/* Red Left Accent Border */}
+                  <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
+                  <div className="w-full h-full flex items-center justify-center p-2">
+                    <img 
+                      src="/logo.png" 
+                      alt="Times Digital Media Logo" 
+                      className="max-w-full max-h-[60px] object-contain transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
                 </div>
+
               </div>
             </div>
  

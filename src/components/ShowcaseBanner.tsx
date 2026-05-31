@@ -14,7 +14,7 @@ export default function ShowcaseBanner() {
         <div className="flex flex-col items-center text-center gap-4 mb-10">
           <span className="text-[11px] font-bold text-purple-600 uppercase tracking-widest bg-purple-50 px-3 py-1 rounded-full border border-purple-200/60 flex items-center gap-1.5">
             <Megaphone className="w-3 h-3 text-purple-500" />
-            Live Campaign Spotlight
+            Campaign Spotlight
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-zinc-900 leading-tight tracking-tight">
             Ibadat International University <br />
