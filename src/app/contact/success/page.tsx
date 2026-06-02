@@ -28,18 +28,18 @@ function SuccessContent() {
         1. Uncomment the script elements below.
         2. Replace 'AW-CONVERSION_ID/CONVERSION_LABEL' with your real marketing credentials.
         
-        <!-- Global site tag (gtag.js) - Google Ads: AW-CONVERSION_ID -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-CONVERSION_ID"></script>
+        <!-- Global site tag (gtag.js) - Google Ads: AW-18207064634 -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18207064634"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'AW-CONVERSION_ID');
+          gtag('config', 'AW-18207064634');
         </script>
         
         <script>
           gtag('event', 'conversion', {
-              'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
+              'send_to': 'AW-18207064634/YOUR_CONVERSION_LABEL',
               'value': 1.0,
               'currency': 'USD'
           });

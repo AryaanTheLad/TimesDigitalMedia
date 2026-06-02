@@ -80,6 +80,21 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
     >
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18207064634"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'AW-18207064634');
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col font-sans bg-[#ffffff] text-[#09090b] overflow-x-hidden antialiased select-none md:select-auto">
         {/* JSON-LD Structured Data / Schema Markup for SEO */}
         <script
