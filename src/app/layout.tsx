@@ -16,7 +16,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Times Digital Media | Premium Creative Digital Marketing Agency",
+  metadataBase: new URL("https://timesdigitalmedia.com"),
+  alternates: {
+    canonical: "/",
+  },
+  title: {
+    default: "Times Digital Media | Premium Creative Digital Marketing Agency",
+    template: "%s | Times Digital Media"
+  },
   description:
     "Times Digital Media helps high-end brands scale globally through paid social advertising (Meta, TikTok, Google Ads), viral short-form content, expert video production, influencer networking, and complete marketing campaign management.",
   keywords: [
@@ -29,6 +36,8 @@ export const metadata: Metadata = {
     "Viral Marketing",
     "Brand Strategy Consultant",
     "Times Digital Media",
+    "Times Digital Media Agency",
+    "Lahore Marketing Agency"
   ],
   authors: [{ name: "Times Digital Media Team" }],
   openGraph: {
@@ -39,12 +48,21 @@ export const metadata: Metadata = {
     siteName: "Times Digital Media",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Times Digital Media logo"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: "Times Digital Media | Premium Digital Marketing",
     description:
       "Scaling high-growth brands via creative digital marketing, paid acquisitions, and viral editing.",
+    images: ["/logo.png"]
   },
   robots: {
     index: true,
@@ -63,6 +81,77 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
     >
       <body className="min-h-screen flex flex-col font-sans bg-[#ffffff] text-[#09090b] overflow-x-hidden antialiased select-none md:select-auto">
+        {/* JSON-LD Structured Data / Schema Markup for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://timesdigitalmedia.com/#organization",
+                  "name": "Times Digital Media",
+                  "url": "https://timesdigitalmedia.com",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "@id": "https://timesdigitalmedia.com/#logo",
+                    "url": "https://timesdigitalmedia.com/logo.png",
+                    "caption": "Times Digital Media Logo"
+                  },
+                  "image": {
+                    "@id": "https://timesdigitalmedia.com/#logo"
+                  },
+                  "sameAs": [
+                    "https://www.facebook.com/timesofislamabadurdu",
+                    "https://www.instagram.com/timesofislamabad/",
+                    "https://x.com/TimesofIslambad"
+                  ]
+                },
+                {
+                  "@type": "ProfessionalService",
+                  "@id": "https://timesdigitalmedia.com/#service",
+                  "name": "Times Digital Media",
+                  "url": "https://timesdigitalmedia.com",
+                  "logo": "https://timesdigitalmedia.com/logo.png",
+                  "image": "https://timesdigitalmedia.com/logo.png",
+                  "description": "Times Digital Media is a premium creative digital marketing agency helping brands scale globally through paid advertising, content creation, and web development.",
+                  "telephone": "+923164461707",
+                  "email": "thetimesdigitalmedia@gmail.com",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "House no. 183, Street 5, Sector-V, DHA Phase 8",
+                    "addressLocality": "Lahore",
+                    "addressRegion": "Punjab",
+                    "postalCode": "54000",
+                    "addressCountry": "PK"
+                  },
+                  "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 31.4697,
+                    "longitude": 74.4518
+                  },
+                  "priceRange": "$$$",
+                  "openingHoursSpecification": [
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      "dayOfWeek": [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday"
+                      ],
+                      "opens": "09:00",
+                      "closes": "18:00"
+                    }
+                  ]
+                }
+              ]
+            })
+          }}
+        />
+
         {/* Fluid custom trailing cursor */}
         <CustomCursor />
 

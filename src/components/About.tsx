@@ -1,6 +1,6 @@
 "use client";
 
-import { ShieldCheck, BarChart, HardDrive, MapPin } from "lucide-react";
+import { ShieldCheck, BarChart, HardDrive, MapPin, Mail, Phone } from "lucide-react";
 
 export default function About() {
   const values = [
@@ -37,48 +37,12 @@ export default function About() {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-900 leading-tight tracking-tight">
                 We Showcase Your ADs to a Vast and Influential Global + Local Audience.
               </h2>
-              <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-bold">
+              <p className="text-sm sm:text-base text-zinc-750 leading-relaxed font-bold">
                 Times Digital Media is a digtial marketing agency. We present a powerful and lucrative advertising platform for brands, corporations, institutes and businesses seeking high-impact digital visibility and meaningful audience engagement.
               </p>
-              <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-bold">
+              <p className="text-sm sm:text-base text-zinc-750 leading-relaxed font-bold">
                 We have a strong reputation for credibility, relevance, and timely reporting, we enable advertisers to effectively showcase products to a vast viewership across Pakistan's key commercial hubs, Islamabad, Rawalpindi, Karachi, Lahore, Quetta, Peshawar and key international markets, offering brands both local depth and global exposure.
               </p>
-
-              {/* Symmetrical Address & Logo Horizontal Row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 w-full">
-                
-                {/* 1. Headquarters Address Block */}
-                <div className="relative p-5 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center gap-4 shadow-sm overflow-hidden group min-h-[110px]">
-                  {/* Red Left Accent Border */}
-                  <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
-                  <div className="p-2.5 rounded-xl bg-red-50 text-[#E8000E] border border-red-200/60 shrink-0 flex items-center justify-center">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <span className="block text-[10px] font-black text-[#E8000E] uppercase tracking-widest leading-none mb-1.5">
-                      Office Address
-                    </span>
-                    <p className="text-xs sm:text-sm text-zinc-800 font-extrabold leading-normal">
-                      House no. 183, Street 5, Sector-V, <br />
-                      DHA Phase 8, Lahore, Pakistan
-                    </p>
-                  </div>
-                </div>
-
-                {/* 2. Brand Logo Block (Symmetrical to Address Block) */}
-                <div className="relative p-5 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center justify-center shadow-sm overflow-hidden group min-h-[110px]">
-                  {/* Red Left Accent Border */}
-                  <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
-                  <div className="w-full h-full flex items-center justify-center p-2">
-                    <img 
-                      src="/logo.png" 
-                      alt="Times Digital Media Logo" 
-                      className="max-w-full max-h-[60px] object-contain transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                </div>
-
-              </div>
             </div>
  
             {/* Right Block: Capabilities Values List */}
@@ -102,6 +66,69 @@ export default function About() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Symmetrical Address, Contacts & Logo Horizontal Row (Full Width) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 w-full">
+            
+            {/* 1. Headquarters Address Block */}
+            <div className="relative p-6 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center gap-4 shadow-sm overflow-hidden group min-h-[130px]">
+              {/* Red Left Accent Border */}
+              <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
+              <div className="p-3 rounded-xl bg-red-50 text-[#E8000E] border border-red-200/60 shrink-0 flex items-center justify-center">
+                <MapPin className="w-5 h-5" />
+              </div>
+              <div className="flex flex-col justify-center">
+                <span className="block text-[10px] font-black text-[#E8000E] uppercase tracking-widest leading-none mb-2">
+                  Office Address
+                </span>
+                <p className="text-xs sm:text-sm text-zinc-800 font-extrabold leading-normal">
+                  House no. 183, Street 5, Sector-V, <br />
+                  DHA Phase 8, Lahore, Pakistan
+                </p>
+              </div>
+            </div>
+
+            {/* 2. Contact Details Block */}
+            <div className="relative p-6 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center gap-4 shadow-sm overflow-hidden group min-h-[130px]">
+              {/* Red Left Accent Border */}
+              <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
+              <div className="p-3 rounded-xl bg-red-50 text-[#E8000E] border border-red-200/60 shrink-0 flex items-center justify-center">
+                <Mail className="w-5 h-5" />
+              </div>
+              <div className="flex flex-col justify-center text-left w-full overflow-hidden">
+                <span className="block text-[10px] font-black text-[#E8000E] uppercase tracking-widest leading-none mb-2">
+                  Get In Touch
+                </span>
+                <a 
+                  href="mailto:thetimesdigitalmedia@gmail.com" 
+                  className="block text-xs sm:text-sm text-zinc-800 font-extrabold leading-normal hover:text-[#E8000E] transition-colors duration-300"
+                  title="thetimesdigitalmedia@gmail.com"
+                >
+                  thetimesdigitalmedia@gmail.com
+                </a>
+                <a 
+                  href="tel:+923164461707" 
+                  className="block text-xs sm:text-sm text-zinc-800 font-extrabold leading-normal hover:text-[#E8000E] transition-colors duration-300 mt-1"
+                >
+                  +92 316 4461707
+                </a>
+              </div>
+            </div>
+
+            {/* 3. Brand Logo Block (Symmetrical to other Blocks) */}
+            <div className="relative p-6 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center justify-center shadow-sm overflow-hidden group min-h-[130px]">
+              {/* Red Left Accent Border */}
+              <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
+              <div className="w-full h-full flex items-center justify-center p-2">
+                <img 
+                  src="/logo.png" 
+                  alt="Times Digital Media Logo" 
+                  className="max-w-full max-h-[60px] object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+            </div>
+
           </div>
  
         </div>
