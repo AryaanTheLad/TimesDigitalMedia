@@ -5,6 +5,9 @@ import About from "@/components/About";
 export const metadata = {
   title: "About Us | Times Digital Media",
   description: "Learn about Times Digital Media, Pakistan's premier creative digital marketing and advertising agency.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

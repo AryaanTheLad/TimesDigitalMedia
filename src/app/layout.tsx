@@ -94,6 +94,27 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Event snippet for Click to call conversion page */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              function gtag_report_conversion(url) {
+                var callback = function () {
+                  if (typeof(url) != 'undefined') {
+                    window.location = url;
+                  }
+                };
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-18207064634/JfykCMrn_bccELqE5-lD',
+                    'value': 1.0,
+                    'currency': 'PKR',
+                    'event_callback': callback
+                });
+                return false;
+              }
+            `,
+          }}
+        />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-[#ffffff] text-[#09090b] overflow-x-hidden antialiased select-none md:select-auto">
         {/* JSON-LD Structured Data / Schema Markup for SEO */}

@@ -4,6 +4,9 @@ import Footer from "@/components/Footer";
 export const metadata = {
   title: "Terms of Service | Times Digital Media",
   description: "Review the governing terms of service, intellectual property guidelines, and campaign delivery conditions at Times Digital Media.",
+  alternates: {
+    canonical: "/terms",
+  },
 };
 
 export default function TermsOfServicePage() {

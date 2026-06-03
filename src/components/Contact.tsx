@@ -86,7 +86,18 @@ export default function Contact() {
                 thetimesdigitalmedia@gmail.com
               </a>
               <span className="hidden sm:inline text-zinc-300 font-normal">|</span>
-              <a href="tel:+923164461707" className="hover:text-red-600 transition-colors duration-300">
+              <a 
+                href="tel:+923164461707" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (typeof window !== "undefined" && (window as any).gtag_report_conversion) {
+                    (window as any).gtag_report_conversion("tel:+923164461707");
+                  } else {
+                    window.location.href = "tel:+923164461707";
+                  }
+                }}
+                className="hover:text-red-600 transition-colors duration-300"
+              >
                 +92 316 4461707
               </a>
             </div>

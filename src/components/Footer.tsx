@@ -131,6 +131,14 @@ export default function Footer() {
               <span className="hidden sm:inline text-zinc-300 font-normal">|</span>
               <a 
                 href="tel:+923164461707" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (typeof window !== "undefined" && (window as any).gtag_report_conversion) {
+                    (window as any).gtag_report_conversion("tel:+923164461707");
+                  } else {
+                    window.location.href = "tel:+923164461707";
+                  }
+                }}
                 className="flex items-center gap-2 hover:text-[#E8000E] transition-colors duration-300 group"
               >
                 <Phone className="w-4 h-4 text-[#E8000E] shrink-0" />

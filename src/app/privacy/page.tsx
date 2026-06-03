@@ -4,6 +4,9 @@ import Footer from "@/components/Footer";
 export const metadata = {
   title: "Privacy Policy | Times Digital Media",
   description: "Learn about the data collection, utilization, and privacy principles governing our strategic advertising solutions at Times Digital Media.",
+  alternates: {
+    canonical: "/privacy",
+  },
 };
 
 export default function PrivacyPolicyPage() {
