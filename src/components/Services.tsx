@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Camera,
   TrendingUp,
   CircleDollarSign,
   Code,
@@ -42,11 +41,16 @@ export default function Services() {
       leftBorder: "border-l-4 border-l-blue-600",
     },
     {
-      icon: <Camera className="w-5 h-5 text-rose-500" />,
-      title: "Content Marketing",
+      icon: (
+        <svg className="w-5 h-5 text-rose-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+          <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" />
+        </svg>
+      ),
+      title: "Google & YouTube Ads",
       description:
-        "Premium and diverse branded content designed to build leads, engagement, and brand presence. Tailored to your needs.",
-      badge: "CONTENT CREATION",
+        "Promote your brand on Google Search results, Google Workspaces, YouTube, and partner networks. Launch targeted campaigns generating high-quality leads and awareness.",
+      badge: "GOOGLE PROMOTION",
       badgeClass: "bg-rose-50 border-rose-200/60 text-rose-700",
       hoverGlow: "radial-gradient(circle at 80% 20%, rgba(244, 63, 94, 0.12) 0%, transparent 65%)",
       hoverBorder: "hover:border-rose-400 hover:shadow-rose-500/10",

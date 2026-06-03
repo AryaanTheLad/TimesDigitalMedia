@@ -57,7 +57,7 @@ export default function Clients() {
       logoPadding: "p-0.5",
       logoScale: "scale-[1.45]",
     },
-    {
+    /* {
       name: "Mohkam Furnishers",
       category: "Luxury Furniture & DTC",
       description:
@@ -68,6 +68,19 @@ export default function Clients() {
       hoverGlow: "radial-gradient(circle at center, rgba(245, 158, 11, 0.08) 0%, transparent 70%)",
       badgeClass: "bg-amber-50 border-amber-200 text-amber-700",
       logoPath: "/logo_mohkam.jpg",
+    }, */
+    {
+      name: "CIMS School of Law",
+      category: "Higher Education",
+      description:
+        "Engineered strategic digital campaign setups, amplifying enrollment capture and public branding. Optimized ad reach and messaging targeted at prospective legal studies candidates.",
+      themeColor: "text-blue-900",
+      borderTheme: "border-l-4 border-l-blue-900 hover:border-blue-800",
+      bgTheme: "bg-blue-50/10",
+      hoverGlow: "radial-gradient(circle at center, rgba(30, 58, 138, 0.08) 0%, transparent 70%)",
+      badgeClass: "bg-blue-50 border-blue-200 text-blue-800",
+      logoPath: "/logo_cims.jpg",
+      logoPadding: "p-0.5",
     },
     {
       name: "Stitch",

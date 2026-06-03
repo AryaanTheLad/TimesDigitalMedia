@@ -35,7 +35,7 @@ export default function About() {
                 Who We Are
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-900 leading-tight tracking-tight">
-                We Showcase Your ADs to a Vast and Influential Global + Local Audience.
+                We Showcase Your Ads to a Vast and Influential Global + Local Audience.
               </h2>
               <p className="text-sm sm:text-base text-zinc-750 leading-relaxed font-bold">
                 Times Digital Media is a digtial marketing agency. We present a powerful and lucrative advertising platform for brands, corporations, institutes and businesses seeking high-impact digital visibility and meaningful audience engagement.
