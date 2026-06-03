@@ -8,6 +8,11 @@ import SocialProof from "@/components/SocialProof";
 import Packages from "@/components/Packages";
 import Footer from "@/components/Footer";
 
+export const metadata = {
+  title: "Times Digital Media | Digital Marketing Agency",
+  description: "Google Ads, Meta Ads & Social Media Marketing Agency in Pakistan. Get more leads and sales in 30 days. Free strategy call — talk to our team today.",
+};
+
 export default function Home() {
   return (
     <>
