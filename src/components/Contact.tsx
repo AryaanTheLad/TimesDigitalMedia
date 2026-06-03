@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import Magnetic from "@/components/Magnetic";
 
 export default function Contact() {
   const router = useRouter();
@@ -41,17 +41,8 @@ export default function Contact() {
       });
 
       if (response.ok) {
-        // Redirect to success page
-        const query = new URLSearchParams({
-          type: "inquiry",
-          name: name,
-          email: email,
-          phone: phone || "",
-          adSpend: adSpend,
-          hurdles: hurdles,
-          message: message,
-        });
-        router.push(`/contact/success?${query.toString()}`);
+        // Redirect to success page with a clean URL (no parameters)
+        router.push("/contact/success");
       } else {
         alert("Something went wrong. Please email us at thetimesdigitalmedia@gmail.com directly.");
       }
@@ -117,8 +108,21 @@ export default function Contact() {
         </div>
 
         {/* Contact Form Centered */}
-        <div className="max-w-2xl mx-auto w-full">
+        <div className="max-w-2xl mx-auto w-full relative">
           <div className="rounded-3xl p-6 md:p-8 border border-zinc-200/80 bg-zinc-50 flex flex-col justify-between relative overflow-hidden shadow-xl">
+            
+            {/* Sleek Animated Linear Progress Bar Loader */}
+            {isSubmitting && (
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-red-100 overflow-hidden z-20">
+                <motion.div 
+                  initial={{ left: "-100%" }}
+                  animate={{ left: "100%" }}
+                  transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
+                  className="absolute top-0 bottom-0 w-[50%] bg-[#E8000E]"
+                />
+              </div>
+            )}
+
             <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-red-500/[0.02] rounded-full blur-[80px] pointer-events-none" />
 
             <div>
@@ -232,8 +236,20 @@ export default function Contact() {
                   type="submit"
                   className="w-full py-4 mt-2 rounded-xl text-sm font-bold flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-600/10 cursor-pointer transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-sans"
                 >
-                  {isSubmitting ? "Routing Inquiry..." : "Submit Campaign Request"}
-                  <ArrowRight className="w-4 h-4" />
+                  {isSubmitting ? (
+                    <div className="flex items-center gap-2">
+                      <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      <span>Routing Inquiry...</span>
+                    </div>
+                  ) : (
+                    <>
+                      <span>Submit Campaign Request</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
               </form>
             </div>
