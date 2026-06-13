@@ -4,12 +4,13 @@ import { motion } from "framer-motion";
 import { CheckCircle, ArrowLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 export default function SuccessPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1 w-full bg-white pt-20">
+      <main className="flex-1 w-full bg-transparent pt-20">
         <div className="min-h-[70vh] flex flex-col items-center justify-center py-20 px-6 relative overflow-hidden">
           {/* 
             ========================================================================
@@ -75,13 +76,14 @@ export default function SuccessPage() {
               </p>
 
               {/* Exit option */}
-              <a
+              <Link
                 href="/"
+                prefetch={false}
                 className="w-full py-4 rounded-xl text-sm font-bold flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-0.5" />
                 Back to homepage
-              </a>
+              </Link>
 
               {/* Quick Direct Contacts */}
               <div className="mt-8 pt-6 border-t border-zinc-200 w-full flex flex-col gap-2.5 items-center justify-center text-[10px] text-zinc-400 font-bold uppercase tracking-wider">

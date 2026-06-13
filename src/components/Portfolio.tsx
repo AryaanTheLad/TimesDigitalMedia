@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
+import Image from "next/image";
 
 interface CreativeAsset {
   src: string;
@@ -19,6 +20,9 @@ interface PortfolioClient {
   hoverGlow: string;
   badgeClass: string;
   logoPath: string;
+  logoPadding?: string;
+  logoBg?: string;
+  logoObject?: string;
   creatives: CreativeAsset[];
 }
 
@@ -47,17 +51,39 @@ export default function Portfolio() {
       name: "Stitch",
       subtitle: "Clothing & Retail E-Commerce",
       description:
-        "Scaled DTC lead capture, online sales volume, and retail visibility. Built targeted digital clearance ads and cultural campaigns capturing high-converting fashion consumers across social networks.",
+        "Scaled DTC lead capture, online sales volume, and retail visibility. Deployed targeted digital clearance ads and cultural campaigns capturing high-converting fashion consumers across social networks.",
       category: "Clothing Brand",
       themeColor: "text-indigo-650",
       borderTheme: "border-l-4 border-l-indigo-650 hover:border-indigo-500",
       hoverGlow: "radial-gradient(circle at center, rgba(99, 102, 241, 0.08) 0%, transparent 70%)",
       badgeClass: "bg-indigo-50 border-indigo-200 text-indigo-700",
       logoPath: "/logo_stitch.jpg",
+      logoPadding: "p-0",
+      logoBg: "bg-black border-black",
+      logoObject: "object-cover",
       creatives: [
         { src: "/portfolio_stitch_1.jpg", alt: "Stitch Azadi Sale - Flat 30% Off Campaign" },
         { src: "/portfolio_stitch_2.jpg", alt: "Stitch End of Season Sale Campaign" },
         { src: "/portfolio_stitch_3.jpg", alt: "Stitch The Digital Garden Cambric Edition" },
+      ],
+    },
+    {
+      id: "starshah",
+      name: "Star Shah",
+      subtitle: "Viral Music Campaign & Video PR",
+      description:
+        "Orchestrated a highly successful Instagram Reels and video marketing campaign to promote the new track 'Haule Haule'. Deployed bts sequences, location singing performances, and interactive QnA sessions, scaling artist reach.",
+      category: "Music Artist",
+      themeColor: "text-red-650",
+      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
+      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
+      badgeClass: "bg-red-50 border-red-200 text-red-700",
+      logoPath: "/logo_starshah.jpg",
+      logoPadding: "p-0",
+      logoBg: "bg-black border-black",
+      logoObject: "object-cover",
+      creatives: [
+        { src: "/logo_starshah.jpg", alt: "Star Shah Artist Profile" },
       ],
     },
   ];
@@ -87,7 +113,7 @@ export default function Portfolio() {
           </div>
 
           {/* Client Selection Boxes */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {clients.map((client) => (
               <a
                 key={client.id}
@@ -105,11 +131,13 @@ export default function Portfolio() {
 
                 {/* Logo & Category */}
                 <div className="relative z-10 flex items-center justify-between gap-4 mb-8">
-                  <div className="w-16 h-16 p-1.5 bg-white border border-zinc-200 rounded-2xl flex items-center justify-center overflow-hidden shrink-0 group-hover:scale-105 transition-transform duration-500 shadow-sm">
-                    <img
+                  <div className={`w-16 h-16 ${client.logoPadding || 'p-1.5'} ${client.logoBg || 'bg-white border-zinc-200'} border rounded-2xl flex items-center justify-center overflow-hidden shrink-0 group-hover:scale-105 transition-transform duration-500 shadow-sm`}>
+                    <Image
                       src={client.logoPath}
                       alt={`${client.name} Logo`}
-                      className="w-full h-full object-contain"
+                      width={64}
+                      height={64}
+                      className={`w-full h-full ${client.logoObject || 'object-contain'}`}
                     />
                   </div>
                   <span className={`text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full border ${client.badgeClass}`}>
@@ -134,10 +162,12 @@ export default function Portfolio() {
                 <div className="relative z-10 flex gap-2 mt-8 overflow-hidden rounded-xl border border-zinc-200 p-2 bg-zinc-50/50">
                   {client.creatives.slice(0, 3).map((creative, index) => (
                     <div key={index} className="relative w-1/3 aspect-[16/10] rounded-lg overflow-hidden border border-zinc-200 bg-zinc-200 animate-reveal-items">
-                      <img
+                      <Image
                         src={creative.src}
                         alt={creative.alt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        fill
+                        sizes="(max-width: 768px) 30vw, 20vw"
+                        className={`object-cover group-hover:scale-105 transition-transform duration-500`}
                       />
                     </div>
                   ))}

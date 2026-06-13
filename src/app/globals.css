@@ -60,7 +60,17 @@
   }
 }
 
+/* Hide scrollbar but keep scrollable */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Custom Grid Pattern Background */
+
 .bg-grid-pattern {
   background-size: 50px 50px;
   background-image: 

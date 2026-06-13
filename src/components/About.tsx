@@ -1,6 +1,7 @@
 "use client";
 
 import { ShieldCheck, BarChart, HardDrive, MapPin, Mail, Phone } from "lucide-react";
+import Image from "next/image";
 
 export default function About() {
   const values = [
@@ -129,9 +130,11 @@ export default function About() {
               {/* Red Left Accent Border */}
               <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
               <div className="w-full h-full flex items-center justify-center p-2">
-                <img 
-                  src="/logo.png" 
-                  alt="Times Digital Media Logo" 
+                <Image
+                  src="/logo.png"
+                  alt="Times Digital Media Logo"
+                  width={200}
+                  height={60}
                   className="max-w-full max-h-[60px] object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>

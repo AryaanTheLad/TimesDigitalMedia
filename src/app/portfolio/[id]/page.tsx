@@ -11,12 +11,13 @@ export async function generateStaticParams() {
   return [
     { id: "zameen" },
     { id: "stitch" },
+    { id: "starshah" },
   ];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const capitalized = id === "zameen" ? "Zameen.com" : "Stitch";
+  const capitalized = id === "zameen" ? "Zameen.com" : id === "starshah" ? "Star Shah" : "Stitch";
   return {
     title: `${capitalized} Campaign Portfolio | Times Digital Media`,
     description: `Case study and creative showcase highlighting our digital advertising campaigns and lead acquisition results for ${capitalized}.`,
@@ -35,7 +36,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
       <Navbar />
 
       {/* Main Case Study Section Container */}
-      <main className="flex-1 w-full bg-white pt-20">
+      <main className="flex-1 w-full bg-transparent pt-20">
         <PortfolioCaseStudy clientId={id} />
       </main>
 

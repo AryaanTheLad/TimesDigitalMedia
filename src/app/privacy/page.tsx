@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
     <>
       <Navbar />
 
-      <main className="flex-1 w-full bg-white pt-32 pb-20">
+      <main className="flex-1 w-full bg-transparent pt-32 pb-20">
         <div className="max-w-4xl mx-auto px-6 md:px-12">
           
           {/* Header Block */}

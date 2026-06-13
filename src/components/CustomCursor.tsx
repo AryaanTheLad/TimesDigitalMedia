@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 
 export default function CustomCursor() {
   const [hoverType, setHoverType] = useState<"default" | "hover" | "view">("default");
@@ -24,7 +24,7 @@ export default function CustomCursor() {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
     };
 
     let lastTarget: HTMLElement | null = null;
@@ -69,21 +69,19 @@ export default function CustomCursor() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [mouseX, mouseY, isVisible]);
-
-  if (!isVisible) return null;
+  }, [mouseX, mouseY]);
 
   return (
     <>
       {/* 1. Precise Inner Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-1.5 h-1.5 bg-red-600 rounded-full z-[9999] pointer-events-none -translate-x-1/2 -translate-y-1/2"
-        style={{ x: mouseX, y: mouseY }}
+        className="fixed top-0 left-0 w-1.5 h-1.5 bg-red-600 rounded-full z-[9999] pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-opacity duration-200"
+        style={{ x: mouseX, y: mouseY, opacity: isVisible ? 1 : 0 }}
       />
 
       {/* 2. Trailing Outer Ring / Morphing Capsule */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full z-[9998] pointer-events-none -translate-x-1/2 -translate-y-1/2 flex items-center justify-center font-mono font-bold text-[9px] uppercase tracking-widest text-red-500 overflow-hidden"
+        className="fixed top-0 left-0 rounded-full z-[9998] pointer-events-none -translate-x-1/2 -translate-y-1/2 flex items-center justify-center font-mono font-bold text-red-500 overflow-hidden border"
         style={{
           x: trailX,
           y: trailY,
@@ -104,24 +102,28 @@ export default function CustomCursor() {
               ? "rgba(232, 0, 14, 0.5)"
               : "rgba(9, 9, 11, 0.18)",
           borderWidth: hoverType === "default" ? "1px" : "1.5px",
+          opacity: isVisible ? 1 : 0,
         }}
         transition={{
           type: "spring",
           stiffness: 300,
           damping: 24,
+          opacity: { duration: 0.2 },
         }}
       >
-        {/* Descriptive Text Hint on case study cards */}
-        {hoverType === "view" && (
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.2 }}
-            className="text-white text-[9px] tracking-widest font-extrabold"
-          >
-            View
-          </motion.span>
-        )}
+        <AnimatePresence>
+          {hoverType === "view" && (
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.2 }}
+              className="text-white text-[9px] tracking-widest font-extrabold uppercase whitespace-nowrap"
+            >
+              View
+            </motion.span>
+          )}
+        </AnimatePresence>
       </motion.div>
     </>
   );

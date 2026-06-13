@@ -15,7 +15,7 @@ export default function AboutPage() {
     <>
       <Navbar />
 
-      <main className="flex-1 w-full bg-white pt-20">
+      <main className="flex-1 w-full bg-transparent pt-20">
         <About />
       </main>
 

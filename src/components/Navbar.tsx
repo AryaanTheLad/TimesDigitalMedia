@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const NAV_LINKS = [
   { label: "About", href: "/about", targetId: "" },
@@ -29,7 +30,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, targetId: string) => {
     const target = document.getElementById(targetId);
     if (!target) return;
     e.preventDefault();
@@ -55,8 +56,9 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
-          <a
+          <Link
             href="/"
+            prefetch={false}
             onClick={(e) => {
               if (window.location.pathname === "/") {
                 e.preventDefault();
@@ -68,21 +70,36 @@ export default function Navbar() {
             <span className="text-3xl sm:text-4xl font-black tracking-tighter text-zinc-950 flex items-center gap-1.5">
               TIMES <span className="text-[#E8000E]">DIGITAL MEDIA</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleScrollToSection(e, link.targetId)}
-                className="relative text-sm font-semibold text-zinc-600 hover:text-black transition-colors duration-300 py-1 px-1 group"
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
+            {NAV_LINKS.map((link) => {
+              if (link.targetId) {
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => handleScrollToSection(e, link.targetId)}
+                    className="relative text-sm font-semibold text-zinc-600 hover:text-black transition-colors duration-300 py-1 px-1 group"
+                  >
+                    {link.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 transition-all duration-300 group-hover:w-full" />
+                  </a>
+                );
+              }
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  prefetch={false}
+                  className="relative text-sm font-semibold text-zinc-600 hover:text-black transition-colors duration-300 py-1 px-1 group"
+                >
+                  {link.label}
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 transition-all duration-300 group-hover:w-full" />
+                </Link>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Button */}
@@ -108,23 +125,41 @@ export default function Navbar() {
           >
             <div className="flex flex-col gap-6">
               {NAV_LINKS.map((link, idx) => (
-                <motion.a
+                <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05, duration: 0.4 }}
                   key={link.label}
-                  href={link.href}
-                  onClick={(e) => {
-                    setIsMobileMenuOpen(false);
-                    handleScrollToSection(e, link.targetId);
-                  }}
-                  className="text-2xl font-bold text-zinc-800 hover:text-black flex items-center justify-between group"
+                  className="w-full"
                 >
-                  {link.label}
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-red-500">
-                    →
-                  </span>
-                </motion.a>
+                  {link.targetId ? (
+                    <a
+                      href={link.href}
+                      onClick={(e) => {
+                        setIsMobileMenuOpen(false);
+                        handleScrollToSection(e, link.targetId);
+                      }}
+                      className="text-2xl font-bold text-zinc-800 hover:text-black flex items-center justify-between group py-2"
+                    >
+                      {link.label}
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-red-500">
+                        →
+                      </span>
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      prefetch={false}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-2xl font-bold text-zinc-800 hover:text-black flex items-center justify-between group py-2"
+                    >
+                      {link.label}
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-red-500">
+                        →
+                      </span>
+                    </Link>
+                  )}
+                </motion.div>
               ))}
             </div>
           </motion.div>

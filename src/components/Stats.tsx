@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 interface StatItemProps {
   value: number;
   suffix: string;
   label: string;
   description: string;
-  isStatic?: boolean;
 }
 
-function Counter({ value, suffix = "", duration = 2.0 }: { value: number; suffix?: string; duration?: number }) {
+function Counter({ value, suffix = "", duration = 1.5 }: { value: number; suffix?: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [displayValue, setDisplayValue] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -29,7 +29,7 @@ function Counter({ value, suffix = "", duration = 2.0 }: { value: number; suffix
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
             
-            // Premium cubic out ease function (fast start, slow end)
+            // Cubic out ease (fast start, slow end)
             const easeProgress = 1 - Math.pow(1 - progress, 3);
             const currentVal = Math.floor(easeProgress * value);
             
@@ -54,63 +54,10 @@ function Counter({ value, suffix = "", duration = 2.0 }: { value: number; suffix
   }, [value, duration, hasAnimated]);
 
   return (
-    <span ref={ref} className="font-mono">
-      {displayValue.toLocaleString()}
+    <span ref={ref}>
+      {displayValue}
       {suffix}
     </span>
-  );
-}
-
-function StatCard({ value, suffix, label, description, isStatic }: StatItemProps) {
-  return (
-    <div
-      className="relative rounded-3xl p-6 md:p-8 flex flex-col justify-between border border-zinc-300 overflow-hidden group min-h-[360px] transition-all duration-300 bg-white border-l-4 border-l-[#E8000E] hover:border-red-500 hover:border-l-4 hover:border-l-[#E8000E] hover:shadow-[0_20px_40px_rgba(232,0,14,0.06)] hover:-translate-y-1"
-    >
-      {/* Dynamic hover-glow background orb */}
-      <div
-        aria-hidden="true"
-        className="absolute -top-16 -right-16 w-72 h-72 rounded-full pointer-events-none transition-opacity duration-500 opacity-0 group-hover:opacity-100"
-        style={{
-          background:
-            "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, rgba(232, 0, 14, 0) 70%)",
-        }}
-      />
-      {/* Subtle ambient glow always visible */}
-      <div
-        aria-hidden="true"
-        className="absolute -top-16 -right-16 w-72 h-72 rounded-full pointer-events-none opacity-30"
-        style={{
-          background:
-            "radial-gradient(circle at center, rgba(232, 0, 14, 0.03) 0%, rgba(232, 0, 14, 0) 70%)",
-        }}
-      />
-
-      <div className="relative z-10 flex flex-col h-full justify-between gap-6">
-        <div>
-          {/* 1. Large, Bold Highlighted Title at the Top */}
-          <h3 className="text-xl sm:text-2xl font-black text-[#E8000E] leading-tight tracking-tight mb-4 transition-colors duration-300">
-            {label}
-          </h3>
-          
-          {/* 2. Massive animated counter in the center */}
-          <div className="text-5xl sm:text-6xl font-black tracking-tight text-zinc-900 font-mono group-hover:text-[#E8000E] transition-colors duration-300">
-            {isStatic ? (
-              <span>
-                {value}
-                {suffix}
-              </span>
-            ) : (
-              <Counter value={value} suffix={suffix} />
-            )}
-          </div>
-        </div>
-
-        {/* 3. Narrative description at the bottom */}
-        <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed font-bold mt-auto">
-          {description}
-        </p>
-      </div>
-    </div>
   );
 }
 
@@ -119,44 +66,117 @@ export default function Stats() {
     {
       value: 1,
       suffix: "M+",
-      label: "Avg Daily Impressions",
+      label: "Daily Impressions",
       description:
-        "High-frequency, high-impact visibility delivering over 1 Million daily impressions to showcase your AD to an active, direct, and dynamic audience.",
-      isStatic: true,
+        "High-impact visibility delivering active reach to a dynamic, buying audience daily.",
     },
     {
       value: 30,
       suffix: "M+",
-      label: "Monthly Impressions",
+      label: "Monthly Footprint",
       description:
-        "Massive monthly digital footprint and audience engagement across our pages, delivering extensive brand exposure.",
+        "Extensive brand exposure and engagement scaling across all digital campaign assets.",
     },
     {
       value: 2,
       suffix: "M+",
-      label: "Total Platform Followers",
+      label: "Platform Followers",
       description:
-        "Active, loyal, and engaged community of over 2 Million+ followers built organically across our official Facebook, Instagram, and X pages.",
+        "An organic, active community nurtured across official Facebook, Instagram, and X channels.",
     },
     {
       value: 70,
       suffix: "%",
-      label: "18–35 Demographic",
+      label: "18–35 Core Demographic",
       description:
-        "Youthful audience known for strong purchasing power and high online engagement. Tailored for precision targeting (80% M / 20% F).",
+        "Precision targeted reach focusing on high-purchasing youth segments (80% M / 20% F).",
     },
   ];
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+    },
+  };
+
   return (
-    <section id="metrics" className="relative py-16 overflow-hidden bg-white">
-      <div className="absolute inset-0 bg-dot-pattern opacity-60 z-0 pointer-events-none" />
+    <section id="metrics" className="relative py-8 md:py-12 overflow-hidden bg-transparent border-t border-stone-200/50">
+
+
+      {/* Decorative Crosshairs */}
+      <div className="absolute right-[5%] bottom-[10%] pointer-events-none z-0">
+        <svg className="w-5 h-5 text-zinc-900/[0.04]" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+          <line x1="10" y1="2" x2="10" y2="18" strokeWidth="0.8" />
+          <line x1="2" y1="10" x2="18" y2="10" strokeWidth="0.8" />
+        </svg>
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {statsData.map((stat, index) => (
-            <StatCard key={index} {...stat} />
-          ))}
+        
+        {/* Section eyebrow */}
+        <div className="mb-8 md:mb-10 flex flex-col items-start">
+          <span className="text-[9px] font-mono tracking-widest uppercase text-stone-400">
+            02 / Key Metrics
+          </span>
+          <h2 className="text-xl md:text-2xl font-black font-display tracking-tight text-[#09090b] mt-3">
+            Performance at Scale
+          </h2>
         </div>
+
+        {/* Horizontal Editorial Row */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+          className="grid grid-cols-1 md:grid-cols-4 gap-y-16 md:gap-y-0"
+        >
+          {statsData.map((stat, index) => (
+            <motion.div 
+              key={index} 
+              variants={itemVariants}
+              className={`relative flex flex-col items-start px-0 md:px-8 first:pl-0 last:pr-0`}
+            >
+              {/* Vertical divider on desktop, horizontal on mobile */}
+              {index > 0 && (
+                <>
+                  <div className="hidden md:block absolute left-0 top-4 bottom-4 w-[1px] bg-stone-200" />
+                  <div className="block md:hidden w-full h-[1px] bg-stone-200 mb-8" />
+                </>
+              )}
+
+              {/* Massive Numeral */}
+              <div className="text-6xl sm:text-7xl lg:text-8xl font-serif lining-nums font-bold tracking-tight text-[#E8000E] leading-none mb-6">
+                <Counter value={stat.value} suffix={stat.suffix} />
+              </div>
+
+              {/* Label */}
+              <h3 className="text-xs font-mono font-bold tracking-wider uppercase text-[#09090b] mb-3">
+                {stat.label}
+              </h3>
+
+              {/* Description */}
+              <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed font-body font-medium max-w-xs">
+                {stat.description}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+
       </div>
     </section>
   );
 }
+
