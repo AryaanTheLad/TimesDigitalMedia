@@ -3,10 +3,13 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Lenis from "lenis";
+import { DEBUG_TOGGLES } from "../app/debug-toggles";
 
 export default function LenisScroll() {
   const pathname = usePathname();
   const lenisRef = useRef<Lenis | null>(null);
+
+  if (DEBUG_TOGGLES.disableLenis) return null;
 
   useEffect(() => {
     // Respect user prefers-reduced-motion media queries
@@ -27,14 +30,16 @@ export default function LenisScroll() {
       (window as any).lenis = lenis;
     }
 
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisRef.current = null;
       if (typeof window !== "undefined") {

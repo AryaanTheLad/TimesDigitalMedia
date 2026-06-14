@@ -101,7 +101,7 @@ export default function Footer() {
             
             {/* Left Brand Area */}
             <div className="lg:col-span-5 flex flex-col gap-6 items-start">
-              <Link href="/" className="text-lg font-black font-display tracking-tight text-white">
+              <Link prefetch={false} href="/" className="text-lg font-black font-display tracking-tight text-white">
                 TIMES <span className="text-[#E8000E]">DIGITAL MEDIA</span>
               </Link>
               <p className="text-xs sm:text-sm text-zinc-400 max-w-md font-body font-medium leading-relaxed">

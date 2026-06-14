@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Play, Sparkles, Flame, Eye, Video, Film, Share2 } from "lucide-react";
+import { DEBUG_TOGGLES } from "../app/debug-toggles";
 
 export default function ContentCreation() {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const inViewRaw = useInView(containerRef, { once: true, margin: "-100px" });
+  const isInView = DEBUG_TOGGLES.disableIntersectionObservers ? true : inViewRaw;
 
   const steps = [
     {
@@ -48,9 +50,10 @@ export default function ContentCreation() {
           
           {/* Left Text Block */}
           <div className="lg:col-span-6 flex flex-col gap-6">
-            <span className="text-[11px] font-bold text-indigo-400 uppercase tracking-widest bg-indigo-500/10 px-3 py-1 rounded-lg border border-indigo-500/20 w-fit">
-              Short-Form Engine
-            </span>
+            <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-indigo-400 w-fit">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
+              <span>Short-Form Engine</span>
+            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-satin leading-tight">
               Viral Short-Form Content Produced From Scratch.
             </h2>
@@ -90,7 +93,7 @@ export default function ContentCreation() {
           {/* Right Mobile Visual Showcase Mockup */}
           <div className="lg:col-span-6 flex items-center justify-center relative w-full">
             {/* Ambient Background Glow */}
-            <div className="absolute w-[300px] h-[300px] rounded-full bg-indigo-500/10 blur-[100px] pointer-events-none" />
+            <div className="absolute w-[300px] h-[300px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%)" }} />
 
             {/* Dual Phone Showcase Layout */}
             <div className="relative flex items-center gap-6 max-w-md w-full justify-center">

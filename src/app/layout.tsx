@@ -3,7 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import Sidebars from "@/components/Sidebars";
+import LenisScroll from "@/components/LenisScroll";
 import { Analytics } from "@vercel/analytics/react";
+import { MotionConfig } from "framer-motion";
+import { DEBUG_TOGGLES } from "./debug-toggles";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -78,7 +81,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
+      className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <head>
         {/* Google tag (gtag.js) */}
@@ -189,31 +192,54 @@ export default function RootLayout({
           }}
         />
 
-        {/* Fluid custom trailing cursor */}
-        <CustomCursor />
+        {DEBUG_TOGGLES.disableCSSAnimations && (
+          <style dangerouslySetInnerHTML={{__html: `
+            *, *::before, *::after {
+              animation: none !important;
+              transition: none !important;
+            }
+          `}} />
+        )}
+        {DEBUG_TOGGLES.disableBlurEffects && (
+          <style dangerouslySetInnerHTML={{__html: `
+            *, *::before, *::after {
+              filter: none !important;
+              backdrop-filter: none !important;
+              -webkit-backdrop-filter: none !important;
+            }
+          `}} />
+        )}
 
-        {/* Structural navigational sidebars */}
-        <Sidebars />
+        <MotionConfig reducedMotion={DEBUG_TOGGLES.disableFramerMotion ? "always" : "user"}>
+          {/* Fluid custom trailing cursor */}
+          <CustomCursor />
 
-        {/*
-          Global ambient background orbs.
-          – position: fixed so they stay behind all content regardless of scroll
-          – NO overflow-hidden here; that was the root cause of black clipping flashes
-          – pointer-events: none so they never interfere with interaction
-        */}
-        <div
-          aria-hidden="true"
-          className="fixed inset-0 pointer-events-none z-0"
-        >
-          <div className="absolute top-[-15%] left-[-10%] w-[55%] h-[65%] rounded-full bg-red-600/10 bg-glow-orb animate-float" />
-          <div className="absolute top-[35%] right-[-12%] w-[48%] h-[58%] rounded-full bg-rose-600/8 bg-glow-orb animate-float-delayed" />
-          <div className="absolute bottom-[-10%] left-[25%] w-[50%] h-[50%] rounded-full bg-red-800/5 bg-glow-orb animate-float" style={{ animationDelay: "-8s" }} />
-        </div>
+          {/* Lenis Smooth Scrolling wrapper */}
+          <LenisScroll />
 
-        <div className="relative z-10 w-full flex flex-col flex-1">
-          {children}
-          <Analytics />
-        </div>
+          {/* Structural navigational sidebars */}
+          <Sidebars />
+
+          {/*
+            Global ambient background orbs.
+            – position: fixed so they stay behind all content regardless of scroll
+            – NO overflow-hidden here; that was the root cause of black clipping flashes
+            – pointer-events: none so they never interfere with interaction
+          */}
+          <div
+            aria-hidden="true"
+            className="fixed inset-0 pointer-events-none z-0"
+          >
+            <div className="absolute top-[-15%] left-[-10%] w-[55%] h-[65%] rounded-full bg-glow-orb animate-float" style={{ background: "radial-gradient(circle at center, rgba(232, 0, 14, 0.18) 0%, transparent 70%)" }} />
+            <div className="absolute top-[35%] right-[-12%] w-[48%] h-[58%] rounded-full bg-glow-orb animate-float-delayed" style={{ background: "radial-gradient(circle at center, rgba(244, 63, 94, 0.12) 0%, transparent 70%)" }} />
+            <div className="absolute bottom-[-10%] left-[25%] w-[50%] h-[50%] rounded-full bg-glow-orb animate-float" style={{ background: "radial-gradient(circle at center, rgba(153, 27, 27, 0.08) 0%, transparent 70%)", animationDelay: "-8s" }} />
+          </div>
+
+          <div className="relative z-10 w-full flex flex-col flex-1">
+            {children}
+            <Analytics />
+          </div>
+        </MotionConfig>
       </body>
     </html>
   );

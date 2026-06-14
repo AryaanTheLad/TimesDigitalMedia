@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { DEBUG_TOGGLES } from "../app/debug-toggles";
 
 interface SectionItem {
   id: string;
@@ -25,6 +26,9 @@ export default function Sidebars() {
   ];
 
   useEffect(() => {
+    if (DEBUG_TOGGLES.disableIntersectionObservers) {
+      return;
+    }
     const observerOptions = {
       // Shrink intersection area to a 10% strip in the center of the screen
       rootMargin: "-45% 0px -45% 0px",

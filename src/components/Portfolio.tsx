@@ -100,10 +100,10 @@ export default function Portfolio() {
         >
           {/* Header */}
           <div className="flex flex-col items-center text-center gap-4 mb-16">
-            <span className="text-[11px] font-bold text-red-650 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-lg border border-red-200/60 flex items-center gap-1.5">
+            <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-red-650">
               <Sparkles className="w-3.5 h-3.5 text-red-500 animate-pulse" />
-              Our Campaigns
-            </span>
+              <span>Our Campaigns</span>
+            </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-zinc-900 leading-tight tracking-tight">
               Times Creative Portfolio
             </h1>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { DEBUG_TOGGLES } from "../app/debug-toggles";
 
 interface StatItemProps {
   value: number;
@@ -10,12 +11,31 @@ interface StatItemProps {
   description: string;
 }
 
-function Counter({ value, suffix = "", duration = 1.5 }: { value: number; suffix?: string; duration?: number }) {
+function Counter({ 
+  value, 
+  suffix = "", 
+  duration = 1.5, 
+  animate = true 
+}: { 
+  value: number; 
+  suffix?: string; 
+  duration?: number; 
+  animate?: boolean; 
+}) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [displayValue, setDisplayValue] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const [displayValue, setDisplayValue] = useState(animate ? 0 : value);
+  const [hasAnimated, setHasAnimated] = useState(!animate);
 
+  // Setup intersection observer
   useEffect(() => {
+    if (!animate) return;
+
+    if (DEBUG_TOGGLES.disableIntersectionObservers) {
+      setHasAnimated(true);
+      setDisplayValue(value);
+      return;
+    }
+
     const el = ref.current;
     if (!el || hasAnimated) return;
 
@@ -23,26 +43,6 @@ function Counter({ value, suffix = "", duration = 1.5 }: { value: number; suffix
       ([entry]) => {
         if (entry.isIntersecting) {
           setHasAnimated(true);
-          let startTimestamp: number | null = null;
-          
-          const step = (timestamp: number) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
-            
-            // Cubic out ease (fast start, slow end)
-            const easeProgress = 1 - Math.pow(1 - progress, 3);
-            const currentVal = Math.floor(easeProgress * value);
-            
-            setDisplayValue(currentVal);
-            
-            if (progress < 1) {
-              window.requestAnimationFrame(step);
-            } else {
-              setDisplayValue(value);
-            }
-          };
-          
-          window.requestAnimationFrame(step);
           observer.unobserve(el);
         }
       },
@@ -50,8 +50,47 @@ function Counter({ value, suffix = "", duration = 1.5 }: { value: number; suffix
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
-  }, [value, duration, hasAnimated]);
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasAnimated, value, animate]);
+
+  // Handle animation loop
+  useEffect(() => {
+    if (!animate || !hasAnimated) return;
+
+    if (DEBUG_TOGGLES.disableIntersectionObservers) {
+      setDisplayValue(value);
+      return;
+    }
+
+    let rafId: number;
+    let startTimestamp: number | null = null;
+    
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
+      
+      // Cubic out ease (fast start, slow end)
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const currentVal = Math.floor(easeProgress * value);
+      
+      setDisplayValue(currentVal);
+      
+      if (progress < 1) {
+        rafId = window.requestAnimationFrame(step);
+      } else {
+        setDisplayValue(value);
+      }
+    };
+    
+    rafId = window.requestAnimationFrame(step);
+    return () => {
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
+  }, [hasAnimated, value, duration, animate]);
 
   return (
     <span ref={ref}>
@@ -159,7 +198,7 @@ export default function Stats() {
 
               {/* Massive Numeral */}
               <div className="text-6xl sm:text-7xl lg:text-8xl font-serif lining-nums font-bold tracking-tight text-[#E8000E] leading-none mb-6">
-                <Counter value={stat.value} suffix={stat.suffix} />
+                <Counter value={stat.value} suffix={stat.suffix} animate={stat.value !== 1} />
               </div>
 
               {/* Label */}

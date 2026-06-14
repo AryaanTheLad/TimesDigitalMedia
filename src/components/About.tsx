@@ -32,9 +32,10 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Block: Bold Statement */}
             <div className="lg:col-span-6 flex flex-col gap-6">
-              <span className="text-[11px] font-bold text-[#E8000E] uppercase tracking-widest bg-red-50 px-3 py-1 rounded-lg border border-red-200/60 w-fit">
-                Who We Are
-              </span>
+              <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-[#E8000E] w-fit">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E8000E] animate-pulse" />
+                <span>Who We Are</span>
+              </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-900 leading-tight tracking-tight">
                 We Showcase Your Ads to a Vast and Influential Global + Local Audience.
               </h2>

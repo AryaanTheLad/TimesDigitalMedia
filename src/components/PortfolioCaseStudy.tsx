@@ -187,7 +187,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
     return (
       <div className="py-24 text-center">
         <h2 className="text-xl font-bold text-zinc-800">Campaign Not Found</h2>
-        <Link href="/portfolio" className="text-red-650 font-bold underline mt-2 block">
+        <Link prefetch={false} href="/portfolio" className="text-red-650 font-bold underline mt-2 block">
           Back to Portfolio
         </Link>
       </div>
