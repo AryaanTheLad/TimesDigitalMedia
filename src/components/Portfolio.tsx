@@ -100,7 +100,7 @@ export default function Portfolio() {
         >
           {/* Header */}
           <div className="flex flex-col items-center text-center gap-4 mb-16">
-            <span className="text-[11px] font-bold text-red-650 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-full border border-red-200/60 flex items-center gap-1.5">
+            <span className="text-[11px] font-bold text-red-650 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-lg border border-red-200/60 flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-red-500 animate-pulse" />
               Our Campaigns
             </span>
@@ -140,7 +140,7 @@ export default function Portfolio() {
                       className={`w-full h-full ${client.logoObject || 'object-contain'}`}
                     />
                   </div>
-                  <span className={`text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full border ${client.badgeClass}`}>
+                  <span className={`text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-lg border ${client.badgeClass}`}>
                     {client.category}
                   </span>
                 </div>

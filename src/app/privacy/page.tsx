@@ -19,7 +19,7 @@ export default function PrivacyPolicyPage() {
           
           {/* Header Block */}
           <div className="border-b border-zinc-200 pb-8 mb-12">
-            <span className="text-[11px] font-extrabold uppercase tracking-widest bg-red-50 text-[#E8000E] px-3 py-1.5 rounded-full border border-red-200/60 inline-block mb-4">
+            <span className="text-[11px] font-extrabold uppercase tracking-widest bg-red-50 text-[#E8000E] px-3 py-1.5 rounded-lg border border-red-200/60 inline-block mb-4">
               Governance & Security
             </span>
             <h1 className="text-4xl md:text-5xl font-black text-zinc-950 tracking-tight leading-tight">

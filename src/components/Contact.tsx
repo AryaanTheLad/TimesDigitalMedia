@@ -55,14 +55,14 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-32 bg-white">
+    <section id="contact" className="relative pt-10 pb-24 bg-white">
       <div className="absolute inset-0 bg-dot-pattern opacity-60 z-0 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
         {/* Title */}
-        <div className="flex flex-col items-center text-center gap-4 mb-20">
-          <span className="text-[11px] font-bold text-red-600 uppercase tracking-widest bg-red-55 px-3 py-1 rounded-full border border-red-200/60">
+        <div className="flex flex-col items-center text-center gap-4 mb-10">
+          <span className="text-[11px] font-bold text-red-600 uppercase tracking-widest bg-red-55 px-3 py-1 rounded-lg border border-red-200/60">
             Get in touch
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-900 max-w-2xl leading-tight tracking-tight">
@@ -97,7 +97,7 @@ export default function Contact() {
               href="https://wa.me/923164461707?text=Hey%2C%20I%20am%20interested%20in%20your%20digital%20marketing%20services"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all duration-300 group cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all duration-300 group cursor-pointer"
             >
               <svg className="w-4 h-4 fill-current transition-transform duration-300 group-hover:scale-105" viewBox="0 0 24 24">
                 <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.437 0 9.862-4.386 9.866-9.775.002-2.61-1.01-5.064-2.85-6.908-1.838-1.844-4.283-2.86-6.885-2.86-5.445 0-9.871 4.387-9.875 9.776-.002 1.83.473 3.619 1.378 5.187L1.936 21.08l4.711-1.926zm12.48-5.382c-.343-.172-2.03-1.002-2.343-1.117-.312-.114-.541-.172-.77.172-.228.344-.886 1.117-1.085 1.346-.2.228-.399.257-.742.086-1.579-.79-2.735-1.378-3.82-3.238-.286-.492.286-.457.82-1.52.091-.183.046-.343-.023-.486-.068-.143-.541-1.3-.741-1.782-.195-.47-.393-.406-.54-.414-.14-.007-.301-.008-.461-.008-.16 0-.422.06-.643.301-.22.24-.843.83-.843 2.022 0 1.191.867 2.339.988 2.502.121.163 1.706 2.605 4.133 3.651.577.249 1.028.397 1.379.508.58.185 1.108.159 1.525.097.465-.069 1.432-.585 1.633-1.15.201-.564.201-1.05.14-1.15-.06-.1-.22-.16-.563-.332z" />

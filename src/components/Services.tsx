@@ -192,7 +192,7 @@ export default function Services() {
                         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden block lg:hidden"
                       >
-                        <div className="pb-8 pl-12 pr-4 flex flex-col gap-4">
+                        <div className="pb-8 pl-4 sm:pl-12 pr-4 flex flex-col gap-4">
                           <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed font-body font-medium">
                             {service.description}
                           </p>

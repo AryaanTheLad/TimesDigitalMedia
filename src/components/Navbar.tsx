@@ -36,10 +36,14 @@ export default function Navbar() {
     e.preventDefault();
 
     const targetPosition = target.getBoundingClientRect().top + window.scrollY - 80;
-    window.scrollTo({
-      top: targetPosition,
-      behavior: "smooth",
-    });
+    if (typeof window !== "undefined" && (window as any).lenis) {
+      (window as any).lenis.scrollTo(targetPosition);
+    } else {
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -62,7 +66,11 @@ export default function Navbar() {
             onClick={(e) => {
               if (window.location.pathname === "/") {
                 e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                if (typeof window !== "undefined" && (window as any).lenis) {
+                  (window as any).lenis.scrollTo(0);
+                } else {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
               }
             }}
             className="flex items-center gap-2 group"
@@ -121,7 +129,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 top-[70px] z-40 md:hidden bg-white/95 backdrop-blur-2xl border-t border-black/5 px-8 py-12 flex flex-col justify-between"
+            className="fixed inset-0 top-[70px] z-40 md:hidden bg-white/95 backdrop-blur-2xl border-t border-black/5 px-8 py-12 flex flex-col justify-between overflow-y-auto"
           >
             <div className="flex flex-col gap-6">
               {NAV_LINKS.map((link, idx) => (

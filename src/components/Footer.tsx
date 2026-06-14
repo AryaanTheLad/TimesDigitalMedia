@@ -14,17 +14,25 @@ export default function Footer() {
     e.preventDefault();
 
     const targetPosition = target.getBoundingClientRect().top + window.scrollY - 80;
-    window.scrollTo({
-      top: targetPosition,
-      behavior: "smooth",
-    });
+    if (typeof window !== "undefined" && (window as any).lenis) {
+      (window as any).lenis.scrollTo(targetPosition);
+    } else {
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   const handleScrollTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (typeof window !== "undefined" && (window as any).lenis) {
+      (window as any).lenis.scrollTo(0);
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
   const handlePhoneClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -76,7 +84,7 @@ export default function Footer() {
           >
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider text-[#09090b] bg-white hover:bg-stone-100 transition-colors shadow-sm"
+              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-wider text-[#09090b] bg-white hover:bg-stone-100 transition-colors shadow-sm"
             >
               Start a Conversation
             </Link>

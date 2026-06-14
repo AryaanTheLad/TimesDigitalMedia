@@ -48,7 +48,7 @@ export default function ContentCreation() {
           
           {/* Left Text Block */}
           <div className="lg:col-span-6 flex flex-col gap-6">
-            <span className="text-[11px] font-bold text-indigo-400 uppercase tracking-widest bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20 w-fit">
+            <span className="text-[11px] font-bold text-indigo-400 uppercase tracking-widest bg-indigo-500/10 px-3 py-1 rounded-lg border border-indigo-500/20 w-fit">
               Short-Form Engine
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-satin leading-tight">
@@ -140,7 +140,7 @@ export default function ContentCreation() {
                   </p>
                   
                   {/* Views pills */}
-                  <div className="inline-flex items-center gap-1 bg-black/50 border border-white/10 backdrop-blur px-2 py-0.5 rounded-full w-fit mt-1">
+                  <div className="inline-flex items-center gap-1 bg-black/50 border border-white/10 backdrop-blur px-2 py-0.5 rounded-lg w-fit mt-1">
                     <Eye className="w-2.5 h-2.5 text-indigo-400" />
                     <span className="text-[8px] font-extrabold text-white">1.8M VIEWS</span>
                   </div>

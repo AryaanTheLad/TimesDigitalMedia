@@ -13,16 +13,6 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        // Long-lived cache for all static assets in /_next/static (JS, CSS, fonts)
-        source: "/_next/static/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
         // Long-lived cache for all public image/media assets
         source: "/:path*(png|jpg|jpeg|webp|avif|svg|ico|woff|woff2)",
         headers: [

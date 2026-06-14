@@ -70,10 +70,31 @@ export default function Clients() {
               key={idx} 
               onMouseEnter={() => setHoveredIdx(idx)}
               onMouseLeave={() => setHoveredIdx(null)}
-              className="relative group min-h-[160px] sm:min-h-[180px] lg:min-h-[200px]"
+              className="relative group lg:min-h-[200px] flex flex-col lg:block"
             >
-              {/* Main Card (Always Visible) */}
-              <div className="absolute inset-0 bg-white rounded-3xl border border-zinc-200 flex items-center justify-center p-6 z-20 transition-all duration-300 group-hover:border-red-500/25 group-hover:shadow-md">
+              {/* Mobile Card Layout (Visible on lg and below) */}
+              <div className="flex lg:hidden flex-col items-center justify-center bg-white rounded-3xl border border-zinc-200 p-6 gap-4 text-center">
+                <div className="h-16 flex items-center justify-center">
+                  <Image
+                    src={logo.path}
+                    alt={logo.name}
+                    width={120}
+                    height={48}
+                    className={`max-w-[120px] max-h-12 object-contain grayscale opacity-80 ${logo.imgClass || ""}`}
+                  />
+                </div>
+                <div className="flex flex-col items-center">
+                  <span className="text-[9px] font-mono font-bold text-[#E8000E] uppercase tracking-wider mb-1">
+                    {logo.role}
+                  </span>
+                  <p className="text-[10px] text-[#57534E] leading-relaxed font-body font-medium max-w-[180px]">
+                    {logo.desc}
+                  </p>
+                </div>
+              </div>
+
+              {/* Desktop Card Layout (Visible on lg and above) */}
+              <div className="hidden lg:flex absolute inset-0 bg-white rounded-3xl border border-zinc-200 items-center justify-center p-6 z-20 transition-all duration-300 group-hover:border-red-500/25 group-hover:shadow-md">
                 <div className="h-24 flex items-center justify-center shrink-0">
                   <Image
                     src={logo.path}
@@ -85,7 +106,7 @@ export default function Clients() {
                 </div>
               </div>
 
-              {/* Revealable Dropdown Panel */}
+              {/* Revealable Dropdown Panel (Visible on lg and above) */}
               <motion.div
                 initial={{ opacity: 0, y: -15, scaleY: 0.9 }}
                 animate={{ 
@@ -95,7 +116,7 @@ export default function Clients() {
                 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 style={{ originY: 0 }}
-                className="absolute top-[88%] left-[2px] right-[2px] bg-white border-x border-b border-zinc-200 rounded-b-3xl shadow-[0_15px_30px_rgba(0,0,0,0.06)] z-10 p-5 pt-8 flex flex-col items-center text-center pointer-events-none"
+                className="hidden lg:flex absolute top-[88%] left-[2px] right-[2px] bg-white border-x border-b border-zinc-200 rounded-b-3xl shadow-[0_15px_30px_rgba(0,0,0,0.06)] z-10 p-5 pt-8 flex-col items-center text-center pointer-events-none"
               >
                 <span className="text-[9px] font-mono font-bold text-[#E8000E] uppercase tracking-wider mb-1.5 block">
                   {logo.role}
@@ -116,7 +137,7 @@ export default function Clients() {
           >
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors shadow-sm"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors shadow-sm"
             >
               View Portfolio
               <ArrowUpRight className="w-4 h-4" />

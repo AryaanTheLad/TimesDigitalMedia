@@ -105,7 +105,7 @@ export default function SocialProof() {
                   <h3 className="text-xl sm:text-2xl font-black font-display text-[#09090b]">
                     {item.title}
                   </h3>
-                  <span className={`text-[9px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${item.badgeClass}`}>
+                  <span className={`text-[9px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg border ${item.badgeClass}`}>
                     {item.badge}
                   </span>
                 </div>

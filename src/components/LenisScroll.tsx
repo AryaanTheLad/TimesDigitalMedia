@@ -23,6 +23,9 @@ export default function LenisScroll() {
     });
 
     lenisRef.current = lenis;
+    if (typeof window !== "undefined") {
+      (window as any).lenis = lenis;
+    }
 
     function raf(time: number) {
       lenis.raf(time);
@@ -34,6 +37,9 @@ export default function LenisScroll() {
     return () => {
       lenis.destroy();
       lenisRef.current = null;
+      if (typeof window !== "undefined") {
+        delete (window as any).lenis;
+      }
     };
   }, []);
 

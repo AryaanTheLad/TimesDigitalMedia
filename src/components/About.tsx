@@ -32,7 +32,7 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Block: Bold Statement */}
             <div className="lg:col-span-6 flex flex-col gap-6">
-              <span className="text-[11px] font-bold text-[#E8000E] uppercase tracking-widest bg-red-50 px-3 py-1 rounded-full border border-red-200/60 w-fit">
+              <span className="text-[11px] font-bold text-[#E8000E] uppercase tracking-widest bg-red-50 px-3 py-1 rounded-lg border border-red-200/60 w-fit">
                 Who We Are
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-900 leading-tight tracking-tight">

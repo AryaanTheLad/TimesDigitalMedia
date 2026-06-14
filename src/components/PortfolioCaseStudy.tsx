@@ -210,7 +210,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Back to Portfolio
         </Link>
-        <span className={`text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full border ${client.badgeClass}`}>
+        <span className={`text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-lg border ${client.badgeClass}`}>
           {client.category}
         </span>
       </div>
@@ -288,7 +288,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                         key={key}
                         onClick={() => setActiveFilter(key)}
                         className={`
-                          relative flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full
+                          relative flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl
                           text-xs font-bold tracking-wide border transition-all duration-300 ease-out
                           ${isActive
                             ? "bg-[#E8000E] text-white border-[#E8000E] shadow-[0_4px_16px_rgba(232,0,14,0.35)] scale-[1.04]"
@@ -304,7 +304,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                         <span className="uppercase tracking-wider whitespace-nowrap">{label}</span>
                         {/* Count badge */}
                         <span className={`
-                          inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full text-[10px] font-black
+                          inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-md text-[10px] font-black
                           ${isActive
                             ? "bg-white/25 text-white"
                             : "bg-zinc-100 text-zinc-500"
@@ -356,7 +356,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
 
                   {/* Reel details at the bottom */}
                   <div className="absolute bottom-0 inset-x-0 p-4 flex flex-col gap-1.5 z-10 text-white">
-                    <span className="text-[9px] font-extrabold uppercase tracking-widest bg-white/10 px-2 py-0.5 rounded-full border border-white/10 w-fit">
+                    <span className="text-[9px] font-extrabold uppercase tracking-widest bg-white/10 px-2 py-0.5 rounded-lg border border-white/10 w-fit">
                       {reel.category === "bts"
                         ? "BTS"
                         : reel.category === "qa"
@@ -427,7 +427,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
         </div>
         <Link
           href="/contact"
-          className="relative z-10 shrink-0 px-6 py-3.5 rounded-full text-xs font-black uppercase tracking-wider text-white bg-[#E8000E] border border-red-700 hover:bg-red-700 transition-all hover:scale-103 shadow-md hover:shadow-red-650/20"
+          className="relative z-10 shrink-0 px-6 py-3.5 rounded-xl text-xs font-black uppercase tracking-wider text-white bg-[#E8000E] border border-red-700 hover:bg-red-700 transition-all hover:scale-103 shadow-md hover:shadow-red-650/20"
         >
           Book A Strategy Call
         </Link>
@@ -448,7 +448,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
           >
             <button
               onClick={() => setLightboxImage(null)}
-              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white text-lg font-bold transition-all shadow-md"
+              className="absolute top-6 right-6 w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white text-lg font-bold transition-all shadow-md"
               aria-label="Close Lightbox"
             >
               ✕
@@ -493,7 +493,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
           >
             <button
               onClick={() => setActiveReelId(null)}
-              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white text-lg font-bold transition-all shadow-md z-50"
+              className="absolute top-6 right-6 w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white text-lg font-bold transition-all shadow-md z-50"
               aria-label="Close Lightbox"
             >
               ✕
@@ -526,7 +526,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                   href={`https://www.instagram.com/reel/${activeReelId}/`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-black/60 hover:bg-black/80 text-white rounded-full text-[10px] font-black uppercase tracking-wider border border-white/10 transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-black/60 hover:bg-black/80 text-white rounded-xl text-[10px] font-black uppercase tracking-wider border border-white/10 transition-colors"
                 >
                   <span>Open Instagram</span>
                   <span>↗</span>

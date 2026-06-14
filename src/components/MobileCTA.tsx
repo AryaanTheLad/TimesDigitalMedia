@@ -33,9 +33,9 @@ export default function MobileCTA() {
         >
           <a
             href="#contact"
-            className="pointer-events-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-bold text-black bg-white border border-white/20 shadow-[0_12px_24px_-8px_rgba(255,255,255,0.4)] active:scale-95 transition-transform"
+            className="pointer-events-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-xs font-bold text-black bg-white border border-white/20 shadow-[0_12px_24px_-8px_rgba(255,255,255,0.4)] active:scale-95 transition-transform"
           >
-            <Calendar className="w-4 h-4 text-indigo-600 fill-indigo-600/10" />
+            <Calendar className="w-4 h-4 text-red-600 fill-red-600/10" />
             Book Free Growth Call
           </a>
         </motion.div>

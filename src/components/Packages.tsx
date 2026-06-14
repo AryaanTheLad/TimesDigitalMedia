@@ -97,7 +97,7 @@ export default function Packages() {
 
             <Link
               href="/contact"
-              className="mt-8 w-full py-3.5 rounded-full text-center text-xs font-bold uppercase tracking-wider text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors"
+              className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors"
             >
               Choose Starter
             </Link>
@@ -172,7 +172,7 @@ export default function Packages() {
 
             <Link
               href="/contact"
-              className="mt-8 w-full py-3.5 rounded-full text-center text-xs font-bold uppercase tracking-wider text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors shadow-sm"
+              className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors shadow-sm"
             >
               Get Growth Engine
             </Link>
@@ -248,7 +248,7 @@ export default function Packages() {
 
             <Link
               href="/contact"
-              className="mt-8 w-full py-3.5 rounded-full text-center text-xs font-bold uppercase tracking-wider text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors"
+              className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors"
             >
               Inquire Custom
             </Link>

@@ -67,10 +67,14 @@ export default function Sidebars() {
 
     const offset = id === "hero" ? 0 : 80;
     const targetPosition = el.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({
-      top: targetPosition,
-      behavior: "smooth",
-    });
+    if (typeof window !== "undefined" && (window as any).lenis) {
+      (window as any).lenis.scrollTo(targetPosition);
+    } else {
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (

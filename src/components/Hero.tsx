@@ -215,7 +215,7 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, -6, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-4 -right-4 px-4 py-2.5 rounded-xl bg-[#09090b] border border-zinc-800 shadow-2xl flex items-center gap-3 z-20"
+            className="absolute -top-4 right-0 sm:-right-4 px-4 py-2.5 rounded-xl bg-[#09090b] border border-zinc-800 shadow-2xl flex items-center gap-3 z-20"
           >
             <div className="p-1.5 rounded-lg bg-zinc-900 text-[#E8000E]">
               <Users className="w-4 h-4" />
@@ -232,7 +232,7 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute -bottom-4 -left-4 px-4 py-2.5 rounded-xl bg-[#09090b] border border-zinc-800 shadow-2xl flex items-center gap-3 z-20"
+            className="absolute -bottom-4 left-0 sm:-left-4 px-4 py-2.5 rounded-xl bg-[#09090b] border border-zinc-800 shadow-2xl flex items-center gap-3 z-20"
           >
             <div className="p-1.5 rounded-lg bg-zinc-900 text-[#E8000E]">
               <Globe className="w-4 h-4" />
