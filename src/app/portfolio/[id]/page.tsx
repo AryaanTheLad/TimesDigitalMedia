@@ -7,17 +7,21 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return [
     { id: "zameen" },
     { id: "stitch" },
     { id: "starshah" },
+    { id: "marshall" },
+    { id: "asmatariq" },
   ];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const capitalized = id === "zameen" ? "Zameen.com" : id === "starshah" ? "Star Shah" : "Stitch";
+  const capitalized = id === "zameen" ? "Zameen.com" : id === "starshah" ? "Star Shah" : id === "marshall" ? "Marshall Ahmad" : id === "asmatariq" ? "Asma Tariq Studio" : "Stitch";
   return {
     title: `${capitalized} Campaign Portfolio | Times Digital Media`,
     description: `Case study and creative showcase highlighting our digital advertising campaigns and lead acquisition results for ${capitalized}.`,

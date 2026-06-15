@@ -47,6 +47,18 @@ export default function Clients() {
       role: "Music Artist Campaign",
       desc: "Structured multi-stage organic social campaigns for single launches."
     },
+    { 
+      name: "Marshall Ahmad", 
+      path: "/logo_marshall.jpg",
+      role: "Single Launch Campaign",
+      desc: "Viral video transitions and organic PR campaigns driving streams for his hit single 'Lutteya'."
+    },
+    { 
+      name: "Asma Tariq Studio", 
+      path: "/logo_asmatariq.png",
+      role: "Studio Space Campaign",
+      desc: "Video campaigns driving rental bookings for shoots, productions, and creative events."
+    },
   ];
 
   return (
@@ -70,7 +82,9 @@ export default function Clients() {
               key={idx} 
               onMouseEnter={() => setHoveredIdx(idx)}
               onMouseLeave={() => setHoveredIdx(null)}
-              className="relative group lg:min-h-[200px] flex flex-col lg:block"
+              className={`relative group lg:min-h-[200px] flex flex-col lg:block ${
+                hoveredIdx === idx ? "z-30" : "z-10"
+              }`}
             >
               {/* Mobile Card Layout (Visible on lg and below) */}
               <div className="flex lg:hidden flex-col items-center justify-center bg-white rounded-3xl border border-zinc-200 p-6 gap-4 text-center">
@@ -81,6 +95,7 @@ export default function Clients() {
                     width={120}
                     height={48}
                     className={`max-w-[120px] max-h-12 object-contain grayscale opacity-80 ${logo.imgClass || ""}`}
+                    unoptimized
                   />
                 </div>
                 <div className="flex flex-col items-center">
@@ -102,6 +117,7 @@ export default function Clients() {
                     width={130}
                     height={56}
                     className={`max-w-[130px] max-h-14 object-contain transition-all duration-300 ${hoveredIdx === idx ? "grayscale-0 opacity-100" : "grayscale opacity-60"} ${logo.imgClass || ""}`}
+                    unoptimized
                   />
                 </div>
               </div>

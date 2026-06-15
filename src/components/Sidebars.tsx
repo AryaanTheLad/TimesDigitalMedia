@@ -26,44 +26,72 @@ export default function Sidebars() {
   ];
 
   useEffect(() => {
-    if (DEBUG_TOGGLES.disableIntersectionObservers) {
-      return;
-    }
-    const observerOptions = {
-      // Shrink intersection area to a 10% strip in the center of the screen
-      rootMargin: "-45% 0px -45% 0px",
-      threshold: 0,
-    };
+    if (!isHomepage) return;
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
+    let rafId: number;
+
+    const handleScroll = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+
+      rafId = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+
+        // If at the very top, highlight hero
+        if (scrollY < 80) {
+          setActiveSection("hero");
+          return;
         }
+
+        // If at the very bottom, highlight packages
+        if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 100) {
+          setActiveSection("packages");
+          return;
+        }
+
+        // Target the center region of the viewport (45% from the top)
+        const viewportCenter = scrollY + window.innerHeight * 0.45;
+        let currentSection = "hero";
+        let closestDistance = Infinity;
+
+        for (const section of sections) {
+          const el = document.getElementById(section.id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            const absoluteTop = rect.top + scrollY;
+            const height = rect.height;
+
+            // Check if the viewport center line is within the section bounds
+            if (viewportCenter >= absoluteTop && viewportCenter < absoluteTop + height) {
+              currentSection = section.id;
+              break;
+            }
+
+            // Fallback: calculate the closest section center
+            const distance = Math.abs(viewportCenter - (absoluteTop + height / 2));
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              currentSection = section.id;
+            }
+          }
+        }
+
+        setActiveSection((prev) => {
+          if (prev !== currentSection) return currentSection;
+          return prev;
+        });
       });
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    // Observe all our sections
-    sections.forEach((section) => {
-      const el = document.getElementById(section.id);
-      if (el) observer.observe(el);
-    });
-
-    // Fallback: update on scroll at the very top of the page
-    const handleScroll = () => {
-      if (window.scrollY < 50) {
-        setActiveSection("hero");
-      }
-    };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    // Initial run to set the state on page mount
+    handleScroll();
 
     return () => {
-      observer.disconnect();
+      if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [pathname, isHomepage]);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);

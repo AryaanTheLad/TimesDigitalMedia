@@ -87,6 +87,7 @@ export default function ShowcaseBanner() {
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 60vw, 58vw"
               className="object-cover object-center transition-transform duration-1000 hover:scale-102"
               quality={80}
+              unoptimized
             />
             {/* Ambient vignette overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent pointer-events-none" />

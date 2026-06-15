@@ -137,6 +137,7 @@ export default function About() {
                   width={200}
                   height={60}
                   className="max-w-full max-h-[60px] object-contain transition-transform duration-500 group-hover:scale-105"
+                  unoptimized
                 />
               </div>
             </div>

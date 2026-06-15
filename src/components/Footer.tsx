@@ -47,9 +47,9 @@ export default function Footer() {
   const footerLinks = {
     agency: [
       { label: "Who We Are", href: "/about", targetId: "" },
-      { label: "Creative Portfolio", href: "/portfolio", targetId: "" },
       { label: "Reach & Demographics", href: "/#proof", targetId: "proof" },
       { label: "Growth Packages", href: "/#packages", targetId: "packages" },
+      { label: "Creative Portfolio", href: "/portfolio", targetId: "" },
       { label: "News Portal", href: "https://www.timesofislamabad.com", targetId: "https://www.timesofislamabad.com" },
     ],
     legal: [

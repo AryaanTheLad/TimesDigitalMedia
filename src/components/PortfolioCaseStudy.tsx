@@ -155,28 +155,92 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
         { label: "Engagement Style", value: "BTS, Q&A, Singing" },
       ],
       reels: [
-        { id: "DPEKqAwCDzE", title: "Haule Haule - Official Release Teaser", category: "promo" },
-        { id: "DOe77RxiBta", title: "Behind The Scenes - Studio Recording Session", category: "bts" },
-        { id: "DOYZIQdDKOd", title: "Live Acoustic Session - Lakeside Performance", category: "singing" },
+        { id: "DPEKqAwCDzE", title: "Haule Haule - Hometown Session", category: "promo" },
+        { id: "DOe77RxiBta", title: "Struggle and Hustle", category: "singing" },
+        { id: "DOYZIQdDKOd", title: "Live Acoustic Session", category: "singing" },
         { id: "DOV0SOEiIy4", title: "Artist Q&A - Part 1: Inspiration Behind Haule Haule", category: "qa" },
-        { id: "DOQPT4FDDVs", title: "Haule Haule - Streaming Now Trailer", category: "promo" },
-        { id: "DONnhE5jKLu", title: "BTS - Music Video Shoot Behind the Scenes", category: "bts" },
-        { id: "DOLizrvivzn", title: "Singing Live - Rooftop sunset acoustic", category: "singing" },
-        { id: "DOGXKS_DKwu", title: "Artist Q&A - Part 2: Composition & Lyrics", category: "qa" },
-        { id: "DOD5V8eDIWA", title: "Haule Haule - Spotify Top Hits Promo", category: "promo" },
-        { id: "DN-xPNeDEG7", title: "BTS - Vocal Warmups & Rehearsals", category: "bts" },
-        { id: "DN8O1OWjIvS", title: "Location Singing - Mountain View Live Performance", category: "singing" },
-        { id: "DN5frrmDMdY", title: "Artist Q&A - Part 3: Fan Questions & Answers", category: "qa" },
-        { id: "DN28DoKWIbv", title: "Haule Haule - Instagram Reels Launch", category: "promo" },
-        { id: "DN0UMy12HDE", title: "Behind The Scenes - Styling & Look Tests", category: "bts" },
-        { id: "DNiv0X7sI40", title: "Live Session - City Lights Acoustic", category: "singing" },
-        { id: "DNaPgqGsATP", title: "Artist Q&A - Part 4: Production secrets", category: "qa" },
-        { id: "DNXdfNEMiwb", title: "Haule Haule - Radio Interview Promo", category: "promo" },
-        { id: "DNSehiQMUje", title: "BTS - Music Video Edit Room", category: "bts" },
-        { id: "DNP5UxmMbnd", title: "Singing Live - Cozy Indoor Session", category: "singing" },
-        { id: "DNKi8RUsWXJ", title: "Artist Q&A - Part 5: Collaborations & Future Releases", category: "qa" },
-        { id: "DNIBU1cMttB", title: "Haule Haule - Milestone 1M Streams Teaser", category: "promo" },
-        { id: "DNGbKDusDeU", title: "Behind The Scenes - Album Art Photoshoot", category: "bts" },
+        { id: "DOQPT4FDDVs", title: "Artist Q&A - Part 2: Composition & Lyrics", category: "qa" },
+        { id: "DONnhE5jKLu", title: "Artist Q&A - Part 3: Fan Questions & Answers", category: "qa" },
+        { id: "DOLizrvivzn", title: "Singing Live - HomeTown Fans and Family", category: "singing" },
+        { id: "DOGXKS_DKwu", title: "Slow and Steady Wins The Race", category: "promo" },
+        { id: "DOD5V8eDIWA", title: "Haule Haule - Chai Wala", category: "singing" },
+        { id: "DN-xPNeDEG7", title: "Imprinted into Okara's legacy", category: "promo" },
+        { id: "DN8O1OWjIvS", title: "Location Singing - Okara Railway Station", category: "singing" },
+        { id: "DN5frrmDMdY", title: "Location Singing - Suburbs of Okara", category: "singing" },
+        { id: "DN28DoKWIbv", title: "Location Singing - Fields of Okara", category: "singing" },
+        { id: "DN0UMy12HDE", title: "Singing In The City That Made You", category: "singing" },
+        { id: "DNiv0X7sI40", title: "About Your Journey", category: "promo" },
+        { id: "DNaPgqGsATP", title: "BTS - Styling and Getting Ready", category: "bts" },
+        { id: "DNXdfNEMiwb", title: "BTS - Setting The Shot", category: "bts" },
+        { id: "DNSehiQMUje", title: "Reaction to Haule Haule", category: "promo" },
+        { id: "DNP5UxmMbnd", title: "Before / After", category: "promo" },
+        { id: "DNKi8RUsWXJ", title: "BTS - Camera vs You", category: "bts" },
+        { id: "DNIBU1cMttB", title: "Haule Haule - People Who Made It Possible.", category: "bts" },
+        { id: "DNGbKDusDeU", title: "BTS - Creating The Music Video", category: "bts" },
+      ],
+    },
+    {
+      id: "marshall",
+      name: "Marshall Ahmad",
+      subtitle: "'Lutteya' Single Launch Campaign",
+      description:
+        "Orchestrated a highly successful Instagram Reels and video marketing campaign to promote Marshall Ahmad's hit single 'Lutteya'. Deployed stylish transformation edits, transition sequences, and streetwear aesthetics, generating organic virality and stream growth.",
+      category: "Music Artist",
+      themeColor: "text-red-650",
+      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
+      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
+      badgeClass: "bg-red-50 border-red-200 text-red-700",
+      logoPath: "/logo_marshall.jpg",
+      logoPadding: "p-0",
+      logoBg: "bg-black border-black",
+      logoObject: "object-cover",
+      stats: [
+        { label: "Single Promoted", value: "Lutteya" },
+        { label: "Target Audience", value: "Music Fans & Youth" },
+        { label: "Core Channels", value: "Instagram Reels" },
+        { label: "Engagement Style", value: "Transitions, Modern Music" },
+      ],
+      reels: [
+        { id: "DNIuVOcsmOH", title: "Lutteya - Official Transition Promo Reel", category: "promo" },
+        { id: "DOJQXTLkqHO", title: "BTS - Styling & Outfits for Lutteya Music Video", category: "bts" },
+      ],
+    },
+    {
+      id: "asmatariq",
+      name: "Asma Tariq Studio",
+      subtitle: "Creative Space & Studio Booking Promo",
+      description:
+        "Designed and executed a structured Instagram Reels campaign to promote a premium rental studio space. Highlighted the studio's versatile layouts, natural lighting, and styling corners, driving bookings for brand shoots, video productions, and creative activities.",
+      category: "Creative Space",
+      themeColor: "text-red-650",
+      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
+      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
+      badgeClass: "bg-red-50 border-red-200 text-red-700",
+      logoPath: "/logo_asmatariq.png",
+      logoPadding: "p-0",
+      logoBg: "bg-black border-black",
+      logoObject: "object-contain",
+      stats: [
+        { label: "Primary Service", value: "Creative Space Rental" },
+        { label: "Target Audience", value: "Brands & Creators" },
+        { label: "Core Channels", value: "Instagram Reels" },
+        { label: "Booking Drivers", value: "Aesthetic Layouts, Gear" },
+      ],
+      reels: [
+        { id: "DRU3Y7zjAJf", title: "Studio Space Showcase - Sunlight & Aesthetic Backdrops", category: "promo" },
+        { id: "DRhfljAjGB-", title: "BTS - Behind the scenes of a catalog shoot in action", category: "bts" },
+        { id: "DRryuxiDG5H", title: "Studio Walkthrough - Layout options for events & activities", category: "promo" },
+        { id: "DSDHJPtjLKQ", title: "Lighting Test - Pro gear setups for portrait sessions", category: "bts" },
+        { id: "DSfVt1QjGwp", title: "Fashion Editorial Shoot BTS - Studio 1 setup", category: "bts" },
+        { id: "DTFyzSTDFxO", title: "Space Highlight - Natural light corners & styling zone", category: "promo" },
+        { id: "DTQQSSGjJH_", title: "Q&A - How to book the studio for private brand activities", category: "qa" },
+        { id: "DTVK-UiDIlc", title: "Creative Showcase - Influencer content day in studio", category: "promo" },
+        { id: "DTdWoRGjOsW", title: "Shoot BTS - Commercial product photography session", category: "bts" },
+        { id: "DTiX3vMjIA3", title: "Client Review - Host your next event or activity here", category: "qa" },
+        { id: "DTlRYjwjMHL", title: "Q&A - Studio equipment, lights, and gear included", category: "qa" },
+        { id: "DTnMrZCDPBo", title: "Studio Walkthrough - Twilight lighting vibes", category: "promo" },
+        { id: "DT25rMsDPfz", title: "BTS - Setting up backdrops and prop sets", category: "bts" },
+        { id: "DUqfaU3jDzK", title: "Event Promo - Booking the studio for workshops", category: "promo" },
       ],
     },
   ];
@@ -204,6 +268,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
       {/* Back Navigation Bar */}
       <div className="flex items-center justify-between pb-6 mb-8 border-b border-zinc-200">
         <Link
+          prefetch={false}
           href="/portfolio"
           className="group flex items-center gap-2 text-xs font-bold text-zinc-500 hover:text-black transition-colors"
         >
@@ -227,6 +292,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                 height={56}
                 className={`w-full h-full ${client.logoObject || 'object-contain'}`}
                 priority
+                unoptimized
               />
             </div>
             <div>
@@ -337,12 +403,12 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                 >
                   {/* Reel Thumbnail Backdrop */}
                   <Image
-                    src={`/thumbnails/starshah/${reel.id}.jpg`}
+                    src={`/thumbnails/${client.id}/${reel.id}.jpg`}
                     alt={reel.title}
                     fill
                     sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, 22vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    quality={80}
+                    unoptimized
                   />
                   {/* Dark Red-to-Black Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-[#E8000E]/10 opacity-90 group-hover:opacity-100 transition-opacity" />
@@ -401,6 +467,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   quality={80}
+                  unoptimized
                 />
                 {/* Dark Full overlay with campaign name centered on hover */}
                 <div className="absolute inset-0 bg-black/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">

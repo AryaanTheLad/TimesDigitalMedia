@@ -127,6 +127,7 @@ export default function SocialProof() {
                       sizes="(max-width: 768px) 90vw, 45vw"
                       className="object-contain rounded-lg"
                       quality={80}
+                      unoptimized
                     />
                   </div>
                 </div>

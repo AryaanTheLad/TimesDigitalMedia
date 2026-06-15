@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+
 import Image from "next/image";
 
 interface CreativeAsset {
@@ -86,6 +86,44 @@ export default function Portfolio() {
         { src: "/logo_starshah.jpg", alt: "Star Shah Artist Profile" },
       ],
     },
+    {
+      id: "marshall",
+      name: "Marshall Ahmad",
+      subtitle: "'Lutteya' Single Launch Campaign",
+      description:
+        "Orchestrated a highly successful Instagram Reels and video marketing campaign to promote Marshall Ahmad's hit single 'Lutteya'. Deployed stylish transformation edits, transition sequences, and streetwear aesthetics, generating organic virality and stream growth.",
+      category: "Music Artist",
+      themeColor: "text-red-650",
+      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
+      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
+      badgeClass: "bg-red-50 border-red-200 text-red-700",
+      logoPath: "/logo_marshall.jpg",
+      logoPadding: "p-0",
+      logoBg: "bg-black border-black",
+      logoObject: "object-cover",
+      creatives: [
+        { src: "/logo_marshall.jpg", alt: "Marshall Ahmad Profile" },
+      ],
+    },
+    {
+      id: "asmatariq",
+      name: "Asma Tariq Studio",
+      subtitle: "Creative Space & Studio Booking Promo",
+      description:
+        "Designed and executed a structured Instagram Reels campaign to promote a premium rental studio space. Highlighted the studio's versatile layouts, natural lighting, and styling corners, driving bookings for brand shoots, video productions, and creative activities.",
+      category: "Creative Space",
+      themeColor: "text-red-650",
+      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
+      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
+      badgeClass: "bg-red-50 border-red-200 text-red-700",
+      logoPath: "/logo_asmatariq.png",
+      logoPadding: "p-0",
+      logoBg: "bg-black border-black",
+      logoObject: "object-cover",
+      creatives: [
+        { src: "/logo_asmatariq.png", alt: "Asma Tariq Studio Profile" },
+      ],
+    },
   ];
 
   return (
@@ -100,8 +138,7 @@ export default function Portfolio() {
         >
           {/* Header */}
           <div className="flex flex-col items-center text-center gap-4 mb-16">
-            <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-red-650">
-              <Sparkles className="w-3.5 h-3.5 text-red-500 animate-pulse" />
+            <div className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-red-650">
               <span>Our Campaigns</span>
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-zinc-900 leading-tight tracking-tight">
@@ -138,6 +175,7 @@ export default function Portfolio() {
                       width={64}
                       height={64}
                       className={`w-full h-full ${client.logoObject || 'object-contain'}`}
+                      unoptimized
                     />
                   </div>
                   <span className={`text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-lg border ${client.badgeClass}`}>
@@ -168,6 +206,7 @@ export default function Portfolio() {
                         fill
                         sizes="(max-width: 768px) 30vw, 20vw"
                         className={`object-cover group-hover:scale-105 transition-transform duration-500`}
+                        unoptimized
                       />
                     </div>
                   ))}
