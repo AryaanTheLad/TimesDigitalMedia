@@ -76,27 +76,32 @@ export default function Clients() {
         </div>
 
         {/* ─── Client Cards Grid with Slide-Down Reveal ─── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 relative">
+        <div className="flex flex-wrap justify-center gap-6 relative">
           {brandLogos.map((logo, idx) => (
             <div 
               key={idx} 
               onMouseEnter={() => setHoveredIdx(idx)}
               onMouseLeave={() => setHoveredIdx(null)}
-              className={`relative group lg:min-h-[200px] flex flex-col lg:block ${
+              className={`relative group w-full sm:w-[calc(50%-12px)] lg:w-[calc(16.666%-20px)] lg:min-h-[200px] flex flex-col lg:block ${
                 hoveredIdx === idx ? "z-30" : "z-10"
               }`}
             >
               {/* Mobile Card Layout (Visible on lg and below) */}
               <div className="flex lg:hidden flex-col items-center justify-center bg-white rounded-3xl border border-zinc-200 p-6 gap-4 text-center">
-                <div className="h-16 flex items-center justify-center">
-                  <Image
-                    src={logo.path}
-                    alt={logo.name}
-                    width={120}
-                    height={48}
-                    className={`max-w-[120px] max-h-12 object-contain grayscale opacity-80 ${logo.imgClass || ""}`}
-                    unoptimized
-                  />
+                <div className="flex flex-col items-center gap-1.5">
+                  <div className="h-16 flex items-center justify-center">
+                    <Image
+                      src={logo.path}
+                      alt={logo.name}
+                      width={120}
+                      height={48}
+                      className={`max-w-[120px] max-h-12 object-contain grayscale opacity-80 ${logo.imgClass || ""}`}
+                      unoptimized
+                    />
+                  </div>
+                  <span className="text-xs font-bold text-[#09090b] tracking-tight">
+                    {logo.name}
+                  </span>
                 </div>
                 <div className="flex flex-col items-center">
                   <span className="text-[9px] font-mono font-bold text-[#E8000E] uppercase tracking-wider mb-1">
@@ -109,8 +114,8 @@ export default function Clients() {
               </div>
 
               {/* Desktop Card Layout (Visible on lg and above) */}
-              <div className="hidden lg:flex absolute inset-0 bg-white rounded-3xl border border-zinc-200 items-center justify-center p-6 z-20 transition-all duration-300 group-hover:border-red-500/25 group-hover:shadow-md">
-                <div className="h-24 flex items-center justify-center shrink-0">
+              <div className="hidden lg:flex absolute inset-0 bg-white rounded-3xl border border-zinc-200 flex-col items-center justify-center p-6 z-20 transition-all duration-300 group-hover:border-red-500/25 group-hover:shadow-md">
+                <div className="h-20 flex items-center justify-center shrink-0">
                   <Image
                     src={logo.path}
                     alt={logo.name}
@@ -120,6 +125,9 @@ export default function Clients() {
                     unoptimized
                   />
                 </div>
+                <span className="mt-3 text-xs font-bold text-stone-700 tracking-tight transition-colors duration-300 group-hover:text-[#09090b]">
+                  {logo.name}
+                </span>
               </div>
 
               {/* Revealable Dropdown Panel (Visible on lg and above) */}
