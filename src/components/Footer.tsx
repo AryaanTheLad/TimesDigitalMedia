@@ -165,23 +165,98 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Direct Contacts */}
-              <div className="flex flex-col sm:flex-row items-start lg:items-center justify-start lg:justify-end gap-x-8 gap-y-3 mt-2 text-xs font-mono font-bold text-zinc-400 w-full">
-                <a 
-                  href="mailto:thetimesdigitalmedia@gmail.com" 
-                  className="flex items-center gap-2 hover:text-[#E8000E] transition-colors"
-                >
-                  <Mail className="w-3.5 h-3.5 text-[#E8000E]" />
-                  <span>thetimesdigitalmedia@gmail.com</span>
-                </a>
-                <a 
-                  href="tel:+923164461707" 
-                  onClick={handlePhoneClick}
-                  className="flex items-center gap-2 hover:text-[#E8000E] transition-colors"
-                >
-                  <Phone className="w-3.5 h-3.5 text-[#E8000E]" />
-                  <span>+92 316 4461707</span>
-                </a>
+              <div className="flex flex-col items-center w-full lg:w-fit lg:self-end gap-3.5 mt-2">
+                {/* Direct Contacts */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-x-8 gap-y-3 text-xs font-mono font-bold text-zinc-400">
+                  <a 
+                    href="mailto:thetimesdigitalmedia@gmail.com" 
+                    className="flex items-center gap-2 hover:text-[#E8000E] transition-colors"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-[#E8000E]" />
+                    <span>thetimesdigitalmedia@gmail.com</span>
+                  </a>
+                  <a 
+                    href="tel:+923164461707" 
+                    onClick={handlePhoneClick}
+                    className="flex items-center gap-2 hover:text-[#E8000E] transition-colors"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-[#E8000E]" />
+                    <span>+92 316 4461707</span>
+                  </a>
+                </div>
+
+                {/* Social Links */}
+                <div className="flex items-center justify-center gap-5">
+                  <a 
+                    href="https://www.facebook.com/timesofislamabadurdu" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-zinc-400 hover:text-[#E8000E] transition-all duration-300 hover:scale-110"
+                    aria-label="Facebook"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-4 h-4"
+                    >
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+                  </a>
+                  <a 
+                    href="https://www.instagram.com/timesdigitalmedia/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-zinc-400 hover:text-[#E8000E] transition-all duration-300 hover:scale-110"
+                    aria-label="Instagram"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-4 h-4"
+                    >
+                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                    </svg>
+                  </a>
+                  <a 
+                    href="https://x.com/TimesofIslambad" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-zinc-400 hover:text-[#E8000E] transition-all duration-300 hover:scale-110"
+                    aria-label="X (formerly Twitter)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-4 h-4"
+                    >
+                      <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                      <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
 
