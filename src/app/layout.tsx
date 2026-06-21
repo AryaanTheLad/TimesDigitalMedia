@@ -156,7 +156,7 @@ export default function RootLayout({
                   "logo": "https://timesdigitalmedia.com/logo.png",
                   "image": "https://timesdigitalmedia.com/logo.png",
                   "description": "Times Digital Media is a premium creative digital marketing agency helping brands scale globally through paid advertising, content creation, and web development.",
-                  "telephone": "+923164461707",
+                  "telephone": "+923298223036",
                   "email": "thetimesdigitalmedia@gmail.com",
                   "address": {
                     "@type": "PostalAddress",

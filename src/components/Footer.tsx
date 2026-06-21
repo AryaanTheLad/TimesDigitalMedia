@@ -38,9 +38,9 @@ export default function Footer() {
   const handlePhoneClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (typeof window !== "undefined" && (window as any).gtag_report_conversion) {
-      (window as any).gtag_report_conversion("tel:+923164461707");
+      (window as any).gtag_report_conversion("tel:+923298223036");
     } else {
-      window.location.href = "tel:+923164461707";
+      window.location.href = "tel:+923298223036";
     }
   };
 
@@ -176,12 +176,12 @@ export default function Footer() {
                     <span>thetimesdigitalmedia@gmail.com</span>
                   </a>
                   <a 
-                    href="tel:+923164461707" 
+                    href="tel:+923298223036" 
                     onClick={handlePhoneClick}
                     className="flex items-center gap-2 hover:text-[#E8000E] transition-colors"
                   >
                     <Phone className="w-3.5 h-3.5 text-[#E8000E]" />
-                    <span>+92 316 4461707</span>
+                    <span>+92 329 8223036</span>
                   </a>
                 </div>
 

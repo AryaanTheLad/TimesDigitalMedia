@@ -99,13 +99,13 @@ export default function Contact() {
 
               {/* Phone Card */}
               <a 
-                href="tel:+923164461707" 
+                href="tel:+923298223036" 
                 onClick={(e) => {
                   e.preventDefault();
                   if (typeof window !== "undefined" && (window as any).gtag_report_conversion) {
-                    (window as any).gtag_report_conversion("tel:+923164461707");
+                    (window as any).gtag_report_conversion("tel:+923298223036");
                   } else {
-                    window.location.href = "tel:+923164461707";
+                    window.location.href = "tel:+923298223036";
                   }
                 }}
                 className="flex items-center gap-4 p-4 rounded-2xl border border-zinc-200/80 bg-zinc-50/50 hover:bg-zinc-100/50 hover:border-zinc-300 transition-all duration-300 group shadow-sm hover:shadow"
@@ -115,13 +115,13 @@ export default function Contact() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <span className="block text-[9px] text-zinc-400 font-bold uppercase tracking-wider font-mono">Call Our Team</span>
-                  <span className="text-xs sm:text-sm font-bold text-zinc-800">+92 316 4461707</span>
+                  <span className="text-xs sm:text-sm font-bold text-zinc-800">+92 329 8223036</span>
                 </div>
               </a>
 
               {/* WhatsApp Card */}
               <a 
-                href="https://wa.me/923164461707?text=Hey%2C%20I%20am%20interested%20in%20your%20digital%20marketing%20services"
+                href="https://wa.me/923298223036?text=Hey%2C%20I%20am%20interested%20in%20your%20digital%20marketing%20services"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 rounded-2xl border border-emerald-100 bg-emerald-50/20 hover:bg-emerald-50/40 hover:border-emerald-200 transition-all duration-300 group shadow-sm hover:shadow"

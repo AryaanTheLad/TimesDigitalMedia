@@ -110,18 +110,18 @@ export default function About() {
                   thetimesdigitalmedia@gmail.com
                 </a>
                 <a 
-                  href="tel:+923164461707" 
+                  href="tel:+923298223036" 
                   onClick={(e) => {
                     e.preventDefault();
                     if (typeof window !== "undefined" && (window as any).gtag_report_conversion) {
-                      (window as any).gtag_report_conversion("tel:+923164461707");
+                      (window as any).gtag_report_conversion("tel:+923298223036");
                     } else {
-                      window.location.href = "tel:+923164461707";
+                      window.location.href = "tel:+923298223036";
                     }
                   }}
                   className="block text-xs sm:text-sm text-zinc-800 font-extrabold leading-normal hover:text-[#E8000E] transition-colors duration-300 mt-1"
                 >
-                  +92 316 4461707
+                  +92 329 8223036
                 </a>
               </div>
             </div>

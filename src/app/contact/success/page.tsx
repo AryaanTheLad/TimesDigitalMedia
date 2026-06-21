@@ -95,8 +95,8 @@ export default function SuccessPage() {
                     thetimesdigitalmedia@gmail.com
                   </a>
                   <span className="hidden sm:inline text-zinc-300">|</span>
-                  <a href="tel:+923164461707" className="hover:text-zinc-700 transition-colors">
-                    +92 316 4461707
+                  <a href="tel:+923298223036" className="hover:text-zinc-700 transition-colors">
+                    +92 329 8223036
                   </a>
                 </div>
               </div>
