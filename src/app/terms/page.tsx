@@ -88,7 +88,7 @@ export default function TermsOfServicePage() {
                 3. Creative Submissions & Campaign Deliverables
               </h2>
               <p>
-                As a contributor or client submitting creative materials to Times Digital Media—including but not limited to copy, photographs, ad graphics, video reels, or audio files for marketing placements—you grant Times Digital Media a non-exclusive, royalty-free, global license to host, adapt, modify, and run the materials across our digital media channels and ad networks to fulfill your campaign objectives.
+                As a contributor or client submitting creative materials to Times Digital Media, including but not limited to copy, photographs, ad graphics, video reels, or audio files for marketing placements, you grant Times Digital Media a non-exclusive, royalty-free, global license to host, adapt, modify, and run the materials across our digital media channels and ad networks to fulfill your campaign objectives.
               </p>
               <p>
                 Copyright in your submitted materials will remain fully with you. This permission is non-exclusive, so you can continue to use your assets in any other way, including allowing others to use them.

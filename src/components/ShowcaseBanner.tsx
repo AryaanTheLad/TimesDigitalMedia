@@ -54,7 +54,7 @@ export default function ShowcaseBanner() {
                   Target Group
                 </span>
                 <span className="text-3xl sm:text-4xl font-black font-body text-[#E8000E] block leading-none">
-                  18–35
+                  18-35
                 </span>
                 <span className="block text-[10px] text-[#57534E] font-bold uppercase tracking-wider mt-2">
                   Academic Segment

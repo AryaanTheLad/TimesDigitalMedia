@@ -111,7 +111,7 @@ export default function Sidebars() {
 
   return (
     <>
-      {/* Left Sidebar — Section indicator index */}
+      {/* Left Sidebar - Section indicator index */}
       {isHomepage && (
         <div 
           className="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-center gap-6 select-none"
@@ -151,7 +151,7 @@ export default function Sidebars() {
         </div>
       )}
 
-      {/* Right Sidebar — Vertical outline brand banner */}
+      {/* Right Sidebar - Vertical outline brand banner */}
       <div 
         className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-center select-none"
         style={{

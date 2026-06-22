@@ -222,9 +222,9 @@ export default function RootLayout({
 
           {/*
             Global ambient background orbs.
-            – position: fixed so they stay behind all content regardless of scroll
-            – NO overflow-hidden here; that was the root cause of black clipping flashes
-            – pointer-events: none so they never interfere with interaction
+            - position: fixed so they stay behind all content regardless of scroll
+            - NO overflow-hidden here; that was the root cause of black clipping flashes
+            - pointer-events: none so they never interfere with interaction
           */}
           <div
             aria-hidden="true"

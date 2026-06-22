@@ -23,12 +23,29 @@ function Counter({
   animate?: boolean; 
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [displayValue, setDisplayValue] = useState(animate ? 0 : value);
+  // Always initialize with the FINAL value so SSR/no-JS/reduced-motion never shows 0
+  const [displayValue, setDisplayValue] = useState(value);
   const [hasAnimated, setHasAnimated] = useState(!animate);
+  const [canAnimate, setCanAnimate] = useState(false);
+
+  // On mount (client only), check if we can animate
+  useEffect(() => {
+    if (!animate) return;
+
+    // Respect prefers-reduced-motion
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setHasAnimated(true);
+      return;
+    }
+
+    // Motion is allowed - set to 0 so we can count up
+    setCanAnimate(true);
+    setDisplayValue(0);
+  }, [animate]);
 
   // Setup intersection observer
   useEffect(() => {
-    if (!animate) return;
+    if (!canAnimate || hasAnimated) return;
 
     if (DEBUG_TOGGLES.disableIntersectionObservers) {
       setHasAnimated(true);
@@ -37,7 +54,7 @@ function Counter({
     }
 
     const el = ref.current;
-    if (!el || hasAnimated) return;
+    if (!el) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -53,11 +70,11 @@ function Counter({
     return () => {
       observer.disconnect();
     };
-  }, [hasAnimated, value, animate]);
+  }, [hasAnimated, value, canAnimate]);
 
   // Handle animation loop
   useEffect(() => {
-    if (!animate || !hasAnimated) return;
+    if (!canAnimate || !hasAnimated) return;
 
     if (DEBUG_TOGGLES.disableIntersectionObservers) {
       setDisplayValue(value);
@@ -90,7 +107,7 @@ function Counter({
         window.cancelAnimationFrame(rafId);
       }
     };
-  }, [hasAnimated, value, duration, animate]);
+  }, [hasAnimated, value, duration, canAnimate]);
 
   return (
     <span ref={ref}>
@@ -126,7 +143,7 @@ export default function Stats() {
     {
       value: 70,
       suffix: "%",
-      label: "18–35 Core Demographic",
+      label: "18-35 Core Demographic",
       description:
         "Precision targeted reach focusing on high-purchasing youth segments (80% M / 20% F).",
     },

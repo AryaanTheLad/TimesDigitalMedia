@@ -1,7 +1,6 @@
 "use client";
 
 import { Check, Globe, Video, TrendingUp, Search, ShieldCheck, Mail } from "lucide-react";
-import Link from "next/link";
 
 export default function Packages() {
 
@@ -95,12 +94,12 @@ export default function Packages() {
               </div>
             </div>
 
-            <Link
-              href="/contact"
-              className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors"
+            <a
+              href="#audit"
+              className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors block"
             >
               Choose Starter
-            </Link>
+            </a>
           </div>
 
 
@@ -127,8 +126,11 @@ export default function Packages() {
                 <div className="mt-8">
                   <div className="flex items-baseline gap-1">
                     <span className="text-4xl sm:text-5xl font-black font-body text-[#E8000E] leading-none">$999</span>
-                    <span className="text-[#57534E] text-[10px] font-mono font-bold uppercase tracking-wider">/ month</span>
+                    <span className="text-[#57534E] text-[10px] font-mono font-bold uppercase tracking-wider">/mo management</span>
                   </div>
+                  <p className="text-[10px] text-[#57534E] font-medium leading-relaxed mt-3 max-w-xs">
+                    You set your own ad budget, billed transparently to YOUR Meta/Google account. You always own and see your data.
+                  </p>
                 </div>
 
                 <div className="w-full border-t border-stone-200/80 my-8" />
@@ -141,11 +143,11 @@ export default function Packages() {
                   <ul className="flex flex-col gap-4">
                     {[
                       "Website development",
-                      "Complete on-page SEO — rank high in Google",
+                      "Complete on-page SEO to rank high in Google",
                       "highly-designed social posts (FB + IG + X)",
                       "3-4 custom short-form reels / month",
                       "Cross-published on handles AND our 1M+ network",
-                      "Full Meta Ads management (FB + IG) — ad spend included",
+                      "Full Meta Ads management (FB + IG). Your ad budget billed directly to your own account",
                       "Precision geographic & demographic audience targeting",
                       "Complete lead generation setup",
                     ].map((feature, i) => (
@@ -170,12 +172,12 @@ export default function Packages() {
               </div>
             </div>
 
-            <Link
-              href="/contact"
-              className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors shadow-sm"
+            <a
+              href="#audit"
+              className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors shadow-sm block"
             >
               Get Growth Engine
-            </Link>
+            </a>
           </div>
 
 
@@ -246,12 +248,12 @@ export default function Packages() {
               </div>
             </div>
 
-            <Link
-              href="/contact"
-              className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors"
+            <a
+              href="#audit"
+              className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors block"
             >
               Inquire Custom
-            </Link>
+            </a>
           </div>
           
         </div>

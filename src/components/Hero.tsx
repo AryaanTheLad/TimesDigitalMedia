@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, TrendingUp, Users, Globe } from "lucide-react";
-import Link from "next/link";
 
 export default function Hero() {
   const containerVariants = {
@@ -71,19 +70,18 @@ export default function Hero() {
             className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-[#E8000E]"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#E8000E] animate-pulse" />
-            <span>Digital Brand Acceleration</span>
+            <span>Performance Marketing</span>
           </motion.div>
 
           {/* Heading */}
           <motion.div variants={itemVariants} className="flex flex-col">
             <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-black font-body tracking-tight text-[#09090b] leading-[1.1]">
-              Digital Brand <br />
-              Acceleration
+              More qualified leads <br />
+              in 30 days.
             </h1>
-            <h2 className="text-4xl sm:text-5xl lg:text-[54px] font-black font-body tracking-tight text-[#E8000E] leading-[1.1] underline decoration-[#E8000E] decoration-4 underline-offset-8 mt-2">
-              1 Million Daily <br />
-              Impressions
-            </h2>
+            <span className="text-4xl sm:text-5xl lg:text-[54px] font-black font-body tracking-tight text-[#E8000E] leading-[1.1] underline decoration-[#E8000E] decoration-4 underline-offset-8 mt-2">
+              1 Million Daily Impressions.
+            </span>
           </motion.div>
 
           {/* Subtitle */}
@@ -91,7 +89,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-xs sm:text-sm text-[#57534E] max-w-xl leading-relaxed font-body font-medium mt-2"
           >
-            Times Digital Media agency presents a powerful and lucrative advertising platform for brands, corporations, institutes and businesses to effectively showcase their products and services to a vast, youthful audience.
+            We&apos;re Pakistan&apos;s only growth agency that runs your paid ads AND distributes your brand across our own 1M+ follower media network. Performance marketing plus a built-in audience, all under one roof.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -103,17 +101,36 @@ export default function Hero() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Link
-                href="/contact"
-                className="flex items-center justify-between gap-4 px-6 py-4 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#09090b] hover:bg-stone-850 transition-colors shadow-sm min-w-[240px]"
+              <a
+                href="#audit"
+                className="flex items-center justify-between gap-4 px-6 py-4 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors shadow-sm min-w-[240px]"
               >
-                <span>Explore Advertising Solutions</span>
+                <span>Get My Free Growth Audit</span>
                 <ArrowRight className="w-4 h-4 text-white" />
-              </Link>
+              </a>
             </motion.div>
 
-
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <a
+                href="#proof"
+                className="flex items-center justify-between gap-4 px-6 py-4 rounded-xl text-xs sm:text-sm font-bold text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors min-w-[240px]"
+              >
+                <span>See Client Results</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </motion.div>
           </motion.div>
+
+          {/* Micro-trust line */}
+          <motion.p
+            variants={itemVariants}
+            className="text-[10px] sm:text-xs text-stone-400 font-medium font-body mt-1"
+          >
+            Trusted by WWF Pakistan, Zameen.com, Ibadat University &amp; more.
+          </motion.p>
         </motion.div>
 
         {/* ─── Right Column: Performance Dashboard Mockup ─── */}
@@ -167,7 +184,7 @@ export default function Hero() {
                 <div className="flex flex-col mt-4">
                   <span className="text-2xl sm:text-3xl lg:text-4xl font-serif lining-nums font-bold tracking-tight text-white leading-none">70%</span>
                   <span className="block text-[9px] sm:text-[10px] text-zinc-400 font-medium tracking-tight mt-2">
-                    Ages 18–35 Segment
+                    Ages 18-35 Segment
                   </span>
                 </div>
               </div>

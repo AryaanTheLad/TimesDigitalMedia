@@ -492,12 +492,12 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
             Let's collaborate to build highly optimized paid campaigns, creative designs, and scale your brand reach today.
           </p>
         </div>
-        <Link
-          href="/contact"
+        <a
+          href="/#audit"
           className="relative z-10 shrink-0 px-6 py-3.5 rounded-xl text-xs font-black uppercase tracking-wider text-white bg-[#E8000E] border border-red-700 hover:bg-red-700 transition-all hover:scale-103 shadow-md hover:shadow-red-650/20"
         >
           Book A Strategy Call
-        </Link>
+        </a>
       </div>
 
       {/* =========================================================================

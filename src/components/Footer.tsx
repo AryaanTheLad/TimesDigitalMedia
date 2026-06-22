@@ -82,12 +82,12 @@ export default function Footer() {
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
             className="mt-6 inline-flex"
           >
-            <Link
-              href="/contact"
+            <a
+              href="#audit"
               className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-wider text-[#09090b] bg-white hover:bg-stone-100 transition-colors shadow-sm"
             >
-              Start a Conversation
-            </Link>
+              Get My Free Growth Audit
+            </a>
           </motion.div>
         </div>
       </div>

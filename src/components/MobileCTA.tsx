@@ -32,11 +32,11 @@ export default function MobileCTA() {
           className="fixed bottom-6 left-0 right-0 z-40 px-6 flex justify-center md:hidden pointer-events-none"
         >
           <a
-            href="#contact"
+            href="#audit"
             className="pointer-events-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-xs font-bold text-black bg-white border border-white/20 shadow-[0_12px_24px_-8px_rgba(255,255,255,0.4)] active:scale-95 transition-transform"
           >
             <Calendar className="w-4 h-4 text-red-600 fill-red-600/10" />
-            Book Free Growth Call
+            Get My Free Growth Audit
           </a>
         </motion.div>
       )}

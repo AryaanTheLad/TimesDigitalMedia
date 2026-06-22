@@ -34,7 +34,7 @@ export default function SocialProof() {
       badge: "Media Channels",
       badgeClass: "bg-stone-100 border-stone-200 text-stone-800",
       description:
-        "Connect with a highly influential profile, dominated by the active 25–44 age bracket and a robust 80%+ male audience split.",
+        "Connect with a highly influential profile, dominated by the active 25-44 age bracket and a robust 80%+ male audience split.",
       imagePath: "/demographics_countries.jpg",
     },
     {

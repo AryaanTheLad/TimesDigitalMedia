@@ -97,7 +97,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* Glow Background Effects — NO mix-blend-mode to prevent black flash artifacts */
+/* Glow Background Effects - NO mix-blend-mode to prevent black flash artifacts */
 .bg-glow-orb {
   opacity: 0.25;
   pointer-events: none;
@@ -157,7 +157,7 @@
   100% { transform: translateX(0%); }
 }
 
-/* The actual scrolling track — GPU-accelerated, no reflow */
+/* The actual scrolling track - GPU-accelerated, no reflow */
 .marquee-track {
   display: flex;
   width: max-content;
@@ -175,7 +175,7 @@
 
 
 /* ─── Float animation for background orbs only ────────────────────────────── */
-/* Only translateY — NO scale, prevents GPU layer recalculation & black flash  */
+/* Only translateY - NO scale, prevents GPU layer recalculation & black flash  */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-18px); }
@@ -191,7 +191,7 @@
 }
 
 /* ─── Scroll-driven section reveal ───────────────────────────────────────── */
-/* Used by Framer Motion whileInView — just ensures GPU layers are ready      */
+/* Used by Framer Motion whileInView - just ensures GPU layers are ready      */
 .reveal-section {
   will-change: opacity, transform;
   transform: translateZ(0);
