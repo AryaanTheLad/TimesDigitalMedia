@@ -45,7 +45,7 @@ export default function Packages() {
                 {/* Price block */}
                 <div className="mt-8">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-4xl sm:text-5xl font-black font-body text-[#E8000E] leading-none">$333</span>
+                    <span className="text-4xl sm:text-5xl font-black font-body text-[#E8000E] leading-none">$133</span>
                     <span className="text-[#57534E] text-[10px] font-mono font-bold uppercase tracking-wider">/ month</span>
                   </div>
                 </div>
@@ -103,7 +103,7 @@ export default function Packages() {
           </div>
 
 
-          {/* ────────────────── PACKAGE 2: Growth Engine (Highlighted) ────────────────── */}
+          {/* ────────────────── PACKAGE 2: Growth Campaign (Highlighted) ────────────────── */}
           <div className="relative rounded-[32px] bg-white border-2 border-[#E8000E] p-8 flex flex-col justify-between shadow-md overflow-hidden group">
             
             <div className="flex-1 flex flex-col justify-between">
@@ -116,7 +116,7 @@ export default function Packages() {
                 </div>
 
                 <h3 className="text-2xl font-black font-display text-[#E8000E] mt-4 tracking-tight">
-                  Growth Engine
+                  Growth Campaign
                 </h3>
                 <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed font-body font-medium mt-3">
                   Website development, on-page SEO, Meta Ads campaign management & lead generation under one roof.
@@ -125,7 +125,7 @@ export default function Packages() {
                 {/* Price block */}
                 <div className="mt-8">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-4xl sm:text-5xl font-black font-body text-[#E8000E] leading-none">$999</span>
+                    <span className="text-4xl sm:text-5xl font-black font-body text-[#E8000E] leading-none">$333</span>
                     <span className="text-[#57534E] text-[10px] font-mono font-bold uppercase tracking-wider">/mo management</span>
                   </div>
                   <p className="text-[10px] text-[#57534E] font-medium leading-relaxed mt-3 max-w-xs">
@@ -176,7 +176,7 @@ export default function Packages() {
               href="#audit"
               className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors shadow-sm block"
             >
-              Get Growth Engine
+              Get Growth Campaign
             </a>
           </div>
 
