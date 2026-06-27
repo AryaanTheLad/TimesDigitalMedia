@@ -94,7 +94,7 @@ export default function Packages() {
             </div>
 
             <a
-              href="#audit"
+              href="/contact"
               className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors block"
             >
               Choose Starter
@@ -172,7 +172,7 @@ export default function Packages() {
             </div>
 
             <a
-              href="#audit"
+              href="/contact"
               className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors shadow-sm block"
             >
               Get Growth Campaign
@@ -248,7 +248,7 @@ export default function Packages() {
             </div>
 
             <a
-              href="#audit"
+              href="/contact"
               className="mt-8 w-full py-3.5 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors block"
             >
               Inquire Custom
