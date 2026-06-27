@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Layers, Play } from "lucide-react";
 import Link from "next/link";
@@ -16,6 +16,7 @@ interface ReelItem {
   id: string;
   title: string;
   category: "bts" | "qa" | "singing" | "promo";
+  platform?: "youtube" | "instagram";
 }
 
 interface PortfolioClient {
@@ -35,6 +36,28 @@ interface PortfolioClient {
   stats: { label: string; value: string }[];
   creatives?: CreativeAsset[];
   reels?: ReelItem[];
+}
+
+function ReelImage({ src, alt, className, fallbackSrc }: { src: string; alt: string; className?: string; fallbackSrc: string }) {
+  const [imgSrc, setImgSrc] = useState(src);
+  
+  useEffect(() => {
+    setImgSrc(src);
+  }, [src]);
+
+  return (
+    <Image
+      src={imgSrc}
+      alt={alt}
+      fill
+      sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, 22vw"
+      className={className}
+      onError={() => {
+        setImgSrc(fallbackSrc);
+      }}
+      unoptimized
+    />
+  );
 }
 
 interface PortfolioCaseStudyProps {
@@ -243,6 +266,82 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
         { id: "DUqfaU3jDzK", title: "Reality Show.", category: "promo" },
       ],
     },
+    {
+      id: "ibadat",
+      name: "Ibadat International University",
+      subtitle: "Student Acquisition & Admissions Drive",
+      description:
+        "Designed and executed a structured student acquisition drive for Ibadat International University. Deployed search and social campaigns targeting core academic segments, resulting in a successful spring admissions campaign.",
+      category: "Higher Education",
+      themeColor: "text-red-650",
+      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
+      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
+      badgeClass: "bg-red-50 border-red-200 text-red-700",
+      logoPath: "/logo_ibadat.jpg",
+      logoPadding: "p-0",
+      logoBg: "bg-white border-zinc-200",
+      logoObject: "object-contain",
+      stats: [
+        { label: "Target Group", value: "18-35 Student Intake" },
+        { label: "Campaign Focus", value: "Spring '26 Drive" },
+        { label: "Core Channels", value: "Meta Ads & YouTube" },
+        { label: "Active Admissions", value: "Highest Enrollments" },
+      ],
+      creatives: [
+        {
+          src: "/ibadat_admissions.png",
+          alt: "Ibadat International University Admissions Campaign",
+          spanClass: "md:col-span-3",
+        },
+      ],
+      reels: [
+        { id: "x69SOCng1wc", title: "Admissions Spring 2026 Drive Promo", category: "promo", platform: "youtube" }
+      ],
+    },
+    {
+      id: "flight",
+      name: "Flight Education Consultants",
+      subtitle: "Global Student Placement & Visas",
+      description:
+        "Orchestrated a highly successful multi-channel student placement campaign for Flight Education Consultants. Deployed success stories, study guides, and Q&A sessions to showcase visa approvals and placement tracks across the UK, Australia, Canada, and Europe.",
+      category: "Education Consultant",
+      themeColor: "text-red-650",
+      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
+      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
+      badgeClass: "bg-red-50 border-red-200 text-red-700",
+      logoPath: "/logo_flight.jpg",
+      logoPadding: "p-0",
+      logoBg: "bg-white border-zinc-200",
+      logoObject: "object-contain",
+      stats: [
+        { label: "Visa Success", value: "98% Approvals" },
+        { label: "Destinations", value: "UK, CAN, AUS, EU" },
+        { label: "Core Channels", value: "Instagram Reels" },
+        { label: "Placement Reach", value: "Worldwide Placements" },
+      ],
+      reels: [
+        { id: "DRzkGOajB61", title: "Study in the UK - Requirements & Application Process", category: "promo" },
+        { id: "DR92zLBjFuD", title: "Student Visa Approval Success Story", category: "bts" },
+        { id: "DSxjZlDjIP2", title: "Why Choose Flight Education Consultants?", category: "promo" },
+        { id: "DSzjbp1jNRO", title: "Study in Australia - Intake Queries", category: "qa" },
+        { id: "DS2WLYfDCtw", title: "Canada Student Visa Updates 2026", category: "promo" },
+        { id: "DS5KtyIjH32", title: "Behind the Scenes at Flight Education Office", category: "bts" },
+        { id: "DS-JxFuDLkU", title: "Student Q&A: IELTS & English Requirements", category: "qa" },
+        { id: "DTIhzGMDBhZ", title: "Scholarship Opportunities in Europe", category: "promo" },
+        { id: "DTS080CDPdo", title: "Success Story - Visa Approved in 10 Days", category: "bts" },
+        { id: "DTX-h2VDHlZ", title: "Q&A: Cost of Living in Australia & UK", category: "qa" },
+        { id: "DTsk9O-DFbR", title: "Study in USA - Step-by-Step Guide", category: "promo" },
+        { id: "DTvLIgrjE0o", title: "Behind the scenes with our visa consultants", category: "bts" },
+        { id: "DT8BsPODMFA", title: "Q&A: Academic Gap Acceptance Rules", category: "qa" },
+        { id: "DUBLV3CjGCZ", title: "Study in Sweden & Germany - Free Education?", category: "promo" },
+        { id: "DUV4deHDBLT", title: "Student Review - Flight Education Experience", category: "bts" },
+        { id: "DUgHbrYjMPy", title: "Q&A: Blocked Account for Germany", category: "qa" },
+        { id: "DUtK9QQjJIn", title: "How to Apply for UK Dependents Visa", category: "promo" },
+        { id: "DU-69DRDc06", title: "Behind the scenes of our Pre-departure Seminar", category: "bts" },
+        { id: "DVOcLT7jEzV", title: "Q&A: Post Study Work Visa Options", category: "qa" },
+        { id: "DVTksHnjoJX", title: "Flight Education Consultants Promotional Tour", category: "promo" },
+      ],
+    },
   ];
 
   const client = clients.find((c) => c.id === clientId);
@@ -320,17 +419,16 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
         </div>
       </div>
 
-      {/* Section Title */}
-      <div className="flex items-center gap-3 mb-8">
-        <Layers className="w-5 h-5 text-red-500" />
-        <h2 className="text-lg font-black text-zinc-950 uppercase tracking-wider">
-          {client.reels ? "Campaign Reels Showcase" : "Campaign Assets"}
-        </h2>
-      </div>
+      {/* Campaign Reels Showcase Section */}
+      {client.reels && client.reels.length > 0 && (
+        <div className="space-y-8 mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <Layers className="w-5 h-5 text-red-500" />
+            <h2 className="text-lg font-black text-zinc-950 uppercase tracking-wider">
+              Campaign Video Showcase
+            </h2>
+          </div>
 
-      {/* Dynamic Gallery: Reels Showcase vs. Creative Images Grid */}
-      {client.reels ? (
-        <div className="space-y-8">
           {/* Category Filter Tabs */}
           {(() => {
             const filterConfig = [
@@ -340,6 +438,10 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
               { key: "singing",label: "Live Singing",     icon: "♪" },
               { key: "qa",     label: "Q&A Sessions",     icon: "?" },
             ] as const;
+            
+            // Only show category filter tabs if there are actually reels in different categories
+            if (client.reels!.length <= 1) return null;
+
             return (
               <div className="relative mb-2">
                 {/* Scrollable pill strip */}
@@ -399,16 +501,14 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                     setActiveReelId(reel.id);
                     setIframeLoading(true);
                   }}
-                  className="group relative aspect-[9/16] rounded-3xl overflow-hidden bg-black border border-zinc-200 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5"
+                  className={`group relative ${reel.platform === 'youtube' ? 'aspect-video col-span-2 sm:col-span-2 md:col-span-2' : 'aspect-[9/16]'} rounded-3xl overflow-hidden bg-black border border-zinc-200 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5`}
                 >
                   {/* Reel Thumbnail Backdrop */}
-                  <Image
-                    src={`/thumbnails/${client.id}/${reel.id}.jpg`}
+                  <ReelImage
+                    src={reel.platform === "youtube" ? `https://img.youtube.com/vi/${reel.id}/0.jpg` : `/thumbnails/${client.id}/${reel.id}.jpg`}
                     alt={reel.title}
-                    fill
-                    sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, 22vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    unoptimized
+                    fallbackSrc={client.logoPath}
                   />
                   {/* Dark Red-to-Black Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-[#E8000E]/10 opacity-90 group-hover:opacity-100 transition-opacity" />
@@ -423,7 +523,9 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                   {/* Reel details at the bottom */}
                   <div className="absolute bottom-0 inset-x-0 p-4 flex flex-col gap-1.5 z-10 text-white">
                     <span className="text-[9px] font-extrabold uppercase tracking-widest bg-white/10 px-2 py-0.5 rounded-lg border border-white/10 w-fit">
-                      {reel.category === "bts"
+                      {reel.platform === "youtube" 
+                        ? "YouTube Campaign" 
+                        : reel.category === "bts"
                         ? "BTS"
                         : reel.category === "qa"
                         ? "Q&A Session"
@@ -436,48 +538,74 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                     </h3>
                   </div>
 
-                  {/* Instagram Logo overlay top right */}
+                  {/* Platform Logo overlay top right */}
                   <div className="absolute top-4 right-4 w-6 h-6 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center border border-white/10">
-                    <svg
-                      className="w-3.5 h-3.5 fill-white"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                    </svg>
+                    {reel.platform === "youtube" ? (
+                      <svg className="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      </svg>
+                    ) : (
+                      <svg
+                        className="w-3.5 h-3.5 fill-white"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                      </svg>
+                    )}
                   </div>
                 </div>
               ))}
           </div>
         </div>
-      ) : (
-        /* Creative Grid Showcase Layout for images */
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 overflow-hidden rounded-3xl border border-zinc-200 shadow-xl max-w-6xl mx-auto">
-          {client.creatives?.map((creative, index) => (
-            <div
-              key={index}
-              onClick={() => setLightboxImage(creative.src)}
-              className={`group relative overflow-hidden bg-black cursor-zoom-in h-64 sm:h-80 md:h-[350px] ${creative.spanClass || "md:col-span-1"}`}
-            >
-              <div className="relative w-full h-full overflow-hidden">
-                <Image
-                  src={creative.src}
-                  alt={creative.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  quality={80}
-                  unoptimized
-                />
-                {/* Dark Full overlay with campaign name centered on hover */}
-                <div className="absolute inset-0 bg-black/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">
-                  <span className="text-white text-xs sm:text-sm font-extrabold tracking-tight leading-relaxed max-w-xs">
-                    {creative.alt}
-                  </span>
+      )}
+
+      {/* Campaign Creative Assets Showcase Section */}
+      {client.creatives && client.creatives.length > 0 && (
+        <div className="space-y-8">
+          {client.reels && client.reels.length > 0 ? (
+            <div className="flex items-center gap-3 mb-6 pt-12 border-t border-zinc-200">
+              <Layers className="w-5 h-5 text-red-500" />
+              <h2 className="text-lg font-black text-zinc-950 uppercase tracking-wider">
+                Creative Campaign Assets
+              </h2>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3 mb-8">
+              <Layers className="w-5 h-5 text-red-500" />
+              <h2 className="text-lg font-black text-zinc-950 uppercase tracking-wider">
+                Campaign Assets
+              </h2>
+            </div>
+          )}
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 overflow-hidden rounded-3xl border border-zinc-200 shadow-xl max-w-6xl mx-auto">
+            {client.creatives.map((creative, index) => (
+              <div
+                key={index}
+                onClick={() => setLightboxImage(creative.src)}
+                className={`group relative overflow-hidden bg-black cursor-zoom-in h-64 sm:h-80 md:h-[350px] ${creative.spanClass || "md:col-span-1"}`}
+              >
+                <div className="relative w-full h-full overflow-hidden">
+                  <Image
+                    src={creative.src}
+                    alt={creative.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    quality={80}
+                    unoptimized
+                  />
+                  {/* Dark Full overlay with campaign name centered on hover */}
+                  <div className="absolute inset-0 bg-black/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">
+                    <span className="text-white text-xs sm:text-sm font-extrabold tracking-tight leading-relaxed max-w-xs">
+                      {creative.alt}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
 
@@ -566,40 +694,55 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
               ✕
             </button>
 
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[380px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-zinc-950 flex flex-col justify-center items-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {iframeLoading && (
-                <div className="absolute inset-0 flex items-center justify-center z-10 bg-zinc-950">
-                  <div className="w-10 h-10 border-4 border-red-500 border-t-transparent rounded-full animate-spin" />
-                </div>
-              )}
-              <iframe
-                src={`https://www.instagram.com/reel/${activeReelId}/embed/`}
-                className="w-full h-full border-0 rounded-2xl bg-zinc-950"
-                frameBorder="0"
-                scrolling="no"
-                allowFullScreen
-                onLoad={() => setIframeLoading(false)}
-              />
-              
-              <div className="absolute bottom-4 right-4 z-20">
-                <a
-                  href={`https://www.instagram.com/reel/${activeReelId}/`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-black/60 hover:bg-black/80 text-white rounded-xl text-[10px] font-black uppercase tracking-wider border border-white/10 transition-colors"
+            {(() => {
+              const activeReel = client.reels?.find((r) => r.id === activeReelId);
+              const isYouTube = activeReel?.platform === "youtube";
+              const embedUrl = isYouTube 
+                ? `https://www.youtube.com/embed/${activeReelId}?autoplay=1` 
+                : `https://www.instagram.com/reel/${activeReelId}/embed/`;
+              const externalUrl = isYouTube
+                ? `https://www.youtube.com/watch?v=${activeReelId}`
+                : `https://www.instagram.com/reel/${activeReelId}/`;
+
+              return (
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.95, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className={`relative w-full ${
+                    isYouTube ? "max-w-[800px] aspect-video" : "max-w-[380px] aspect-[9/16]"
+                  } rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-zinc-950 flex flex-col justify-center items-center`}
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  <span>Open Instagram</span>
-                  <span>↗</span>
-                </a>
-              </div>
-            </motion.div>
+                  {iframeLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center z-10 bg-zinc-950">
+                      <div className="w-10 h-10 border-4 border-red-500 border-t-transparent rounded-full animate-spin" />
+                    </div>
+                  )}
+                  <iframe
+                    src={embedUrl}
+                    className="w-full h-full border-0 rounded-2xl bg-zinc-950"
+                    frameBorder="0"
+                    scrolling="no"
+                    allowFullScreen
+                    onLoad={() => setIframeLoading(false)}
+                  />
+                  
+                  <div className="absolute bottom-4 right-4 z-20">
+                    <a
+                      href={externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-black/60 hover:bg-black/80 text-white rounded-xl text-[10px] font-black uppercase tracking-wider border border-white/10 transition-colors"
+                    >
+                      <span>{isYouTube ? "Open YouTube" : "Open Instagram"}</span>
+                      <span>↗</span>
+                    </a>
+                  </div>
+                </motion.div>
+              );
+            })()}
           </motion.div>
         )}
       </AnimatePresence>

@@ -124,6 +124,44 @@ export default function Portfolio() {
         { src: "/logo_asmatariq.png", alt: "Asma Tariq Studio Profile" },
       ],
     },
+    {
+      id: "ibadat",
+      name: "Ibadat International University",
+      subtitle: "Student Acquisition & Admissions Drive",
+      description:
+        "Designed and executed a structured admissions campaign for Ibadat International University. Highlighted natural campus assets, high-impact drive narratives, and student acquisition pipelines, scaling student recruitment during the Spring 2026 admissions window.",
+      category: "Higher Education",
+      themeColor: "text-red-650",
+      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
+      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
+      badgeClass: "bg-red-50 border-red-200 text-red-700",
+      logoPath: "/logo_ibadat.jpg",
+      logoPadding: "p-0",
+      logoBg: "bg-white border-zinc-200",
+      logoObject: "object-contain",
+      creatives: [
+        { src: "/ibadat_admissions.png", alt: "Ibadat International University Admissions Campaign" },
+      ],
+    },
+    {
+      id: "flight",
+      name: "Flight Education Consultants",
+      subtitle: "Global Student Placement & Visas",
+      description:
+        "Engineered strategic paid placement and social campaigns for Flight Education Consultants. Highlighted success rates, visa approvals, and student placement journeys across key study destinations like UK, Canada, Australia, and Europe.",
+      category: "Education Consultant",
+      themeColor: "text-red-650",
+      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
+      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
+      badgeClass: "bg-red-50 border-red-200 text-red-700",
+      logoPath: "/logo_flight.jpg",
+      logoPadding: "p-0",
+      logoBg: "bg-white border-zinc-200",
+      logoObject: "object-contain",
+      creatives: [
+        { src: "/logo_flight.jpg", alt: "Flight Education Consultants Profile" },
+      ],
+    },
   ];
 
   return (

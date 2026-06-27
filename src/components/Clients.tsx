@@ -59,6 +59,12 @@ export default function Clients() {
       role: "Studio Space Campaign",
       desc: "Video campaigns driving rental bookings for shoots, productions, and creative events."
     },
+    { 
+      name: "Flight Education Consultants", 
+      path: "/logo_flight.jpg",
+      role: "Global Student Placement",
+      desc: "Comprehensive visa guidance and university placements for worldwide destinations."
+    },
   ];
 
   return (

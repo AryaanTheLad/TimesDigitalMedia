@@ -16,12 +16,14 @@ export async function generateStaticParams() {
     { id: "starshah" },
     { id: "marshall" },
     { id: "asmatariq" },
+    { id: "ibadat" },
+    { id: "flight" },
   ];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const capitalized = id === "zameen" ? "Zameen.com" : id === "starshah" ? "Star Shah" : id === "marshall" ? "Marshall Ahmad" : id === "asmatariq" ? "Asma Tariq Studio" : "Stitch";
+  const capitalized = id === "zameen" ? "Zameen.com" : id === "starshah" ? "Star Shah" : id === "marshall" ? "Marshall Ahmad" : id === "asmatariq" ? "Asma Tariq Studio" : id === "ibadat" ? "Ibadat International University" : id === "flight" ? "Flight Education Consultants" : "Stitch";
   return {
     title: `${capitalized} Campaign Portfolio | Times Digital Media`,
     description: `Case study and creative showcase highlighting our digital advertising campaigns and lead acquisition results for ${capitalized}.`,
