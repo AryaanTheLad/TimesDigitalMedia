@@ -60,6 +60,7 @@ export default function Packages() {
                   <ul className="flex flex-col gap-4">
                     {[
                       "Website maintenance & uptime management",
+                      "Meta Ads & Google Ads management",
                       "Social media account management (FB + IG + X)",
                       "Profile & branding optimization (bio, covers, highlights)",
                       "Monthly comprehensive performance report",

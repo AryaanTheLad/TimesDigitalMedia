@@ -4,6 +4,20 @@ import { motion } from "framer-motion";
 import { ArrowRight, TrendingUp, Users, Globe } from "lucide-react";
 
 export default function Hero() {
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = e.currentTarget.getAttribute("href");
+    if (!href || !href.startsWith("#")) return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY - 80;
+    if (typeof window !== "undefined" && (window as any).lenis) {
+      (window as any).lenis.scrollTo(targetPosition);
+    } else {
+      window.scrollTo({ top: targetPosition, behavior: "smooth" });
+    }
+  };
+
   const containerVariants = {
     hidden: {},
     visible: {
@@ -103,6 +117,7 @@ export default function Hero() {
             >
               <a
                 href="#audit"
+                onClick={handleSmoothScroll}
                 className="flex items-center justify-between gap-4 px-6 py-4 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors shadow-sm min-w-[240px]"
               >
                 <span>Get My Free Growth Audit</span>
@@ -115,7 +130,8 @@ export default function Hero() {
               whileTap={{ scale: 0.98 }}
             >
               <a
-                href="#proof"
+                href="#clients"
+                onClick={handleSmoothScroll}
                 className="flex items-center justify-between gap-4 px-6 py-4 rounded-xl text-xs sm:text-sm font-bold text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors min-w-[240px]"
               >
                 <span>See Client Results</span>
