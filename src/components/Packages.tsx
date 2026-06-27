@@ -39,7 +39,7 @@ export default function Packages() {
                   Starter & Maintenance
                 </h3>
                 <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed font-body font-medium mt-3">
-                  Onboarding, brand setup & ongoing management, establishing a solid, modern digital footprint. Add ons priced separately.
+                  Onboarding, brand setup & ongoing management. We manage your Meta & Google Ads and social media — you provide the creatives & posts. Add ons priced separately.
                 </p>
 
                 {/* Price block */}
@@ -80,9 +80,7 @@ export default function Packages() {
                 </span>
                 <div className="grid grid-cols-2 gap-2">
                   {[
-                    { title: "Per Impression", desc: "CPM-boosted ad posts" },
                     { title: "Promoted Post", desc: "Single sponsored ad" },
-                    { title: "Permanent Post", desc: "Always-on network ad" },
                     { title: "Extra Content", desc: "Custom posts / reels" }
                   ].map((addon, i) => (
                     <div key={i} className="p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-left">
@@ -145,7 +143,7 @@ export default function Packages() {
                       "Website development",
                       "Complete on-page SEO to rank high in Google",
                       "highly-designed social posts (FB + IG + X)",
-                      "3-4 custom short-form reels / month",
+                      "Content creation",
                       "Cross-published on handles AND our 1M+ network",
                       "Full Meta Ads management (FB + IG). Your ad budget billed directly to your own account",
                       "Precision geographic & demographic audience targeting",

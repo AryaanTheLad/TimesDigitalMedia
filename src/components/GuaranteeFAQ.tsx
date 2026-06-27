@@ -51,7 +51,7 @@ const faqs: FAQItem[] = [
   {
     question: "What size businesses do you take on?",
     answer:
-      "We work with businesses spending as little as $333/month on management (our Starter package) up to large enterprises with custom requirements. If you're serious about growth, we have a package that fits.",
+      "We work with businesses spending as little as $133/month on management (our Starter package) up to large enterprises with custom requirements. If you're serious about growth, we have a package that fits.",
   },
 ];
 
