@@ -162,6 +162,27 @@ export default function Portfolio() {
         { src: "/logo_flight.jpg", alt: "Flight Education Consultants Profile" },
       ],
     },
+    {
+      id: "zorobroast",
+      name: "Zoro Broast",
+      subtitle: "Fast Food Branding & Menu Launch",
+      description:
+        "Orchestrated the digital launch and menu branding campaigns for Zoro Broast. Designed high-impact social media posters, promotional banners, and visual food assets, driving customer engagement and local foot traffic for their Faisal Town, Vehari outlet.",
+      category: "Fast Food Brand",
+      themeColor: "text-red-650",
+      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
+      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
+      badgeClass: "bg-red-50 border-red-200 text-red-700",
+      logoPath: "/logo_zorobroast.jpg",
+      logoPadding: "p-0",
+      logoBg: "bg-white border-zinc-200",
+      logoObject: "object-contain",
+      creatives: [
+        { src: "/portfolio_zorobroast_1.png", alt: "Cheese Loaded Pizza Campaign Poster" },
+        { src: "/portfolio_zorobroast_2.png", alt: "Zoro Broast Extreme Crunch Fried Chicken Poster" },
+        { src: "/portfolio_zorobroast_3.png", alt: "Zoro Broast Wide Digital Banner Design" },
+      ],
+    },
   ];
 
   return (

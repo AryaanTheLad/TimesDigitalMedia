@@ -342,6 +342,50 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
         { id: "DVTksHnjoJX", title: "Flight Education Consultants Promotional Tour", category: "promo" },
       ],
     },
+    {
+      id: "zorobroast",
+      name: "Zoro Broast",
+      subtitle: "Fast Food Branding & Menu Launch",
+      description:
+        "Orchestrated the digital launch and menu branding campaigns for Zoro Broast. Designed high-impact social media posters, promotional banners, and visual food assets, driving customer engagement and local foot traffic for their Faisal Town, Vehari outlet.",
+      category: "Fast Food Brand",
+      themeColor: "text-red-650",
+      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
+      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
+      badgeClass: "bg-red-50 border-red-200 text-red-700",
+      logoPath: "/logo_zorobroast.jpg",
+      logoPadding: "p-0",
+      logoBg: "bg-white border-zinc-200",
+      logoObject: "object-contain",
+      stats: [
+        { label: "Digital Reach", value: "1.5 Million+" },
+        { label: "Target Audience", value: "Fast Food Lovers" },
+        { label: "Core Channels", value: "Social Media Design" },
+        { label: "Campaign Focus", value: "Menu Launch & Branding" },
+      ],
+      creatives: [
+        {
+          src: "/portfolio_zorobroast_1.png",
+          alt: "Cheese Loaded Pizza Campaign Poster",
+          spanClass: "md:col-span-1",
+        },
+        {
+          src: "/portfolio_zorobroast_2.png",
+          alt: "Zoro Broast Extreme Crunch Fried Chicken Poster",
+          spanClass: "md:col-span-1",
+        },
+        {
+          src: "/portfolio_zorobroast_4.png",
+          alt: "Hot and Delicious Arabian Burger Poster",
+          spanClass: "md:col-span-1",
+        },
+        {
+          src: "/portfolio_zorobroast_3.png",
+          alt: "Zoro Broast Wide Digital Banner Design",
+          spanClass: "md:col-span-3",
+        },
+      ],
+    },
   ];
 
   const client = clients.find((c) => c.id === clientId);
