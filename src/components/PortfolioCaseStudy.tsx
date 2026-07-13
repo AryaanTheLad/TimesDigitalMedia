@@ -384,6 +384,51 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
           alt: "Zoro Broast Wide Digital Banner Design",
           spanClass: "md:col-span-3",
         },
+        {
+          src: "/portfolio_zorobroast_5.png",
+          alt: "Best Pizza in Town Yellow & Black Digital Banner",
+          spanClass: "md:col-span-1",
+        },
+        {
+          src: "/portfolio_zorobroast_6.png",
+          alt: "BOGO Large Pizza Free Small Pizza with Drink Campaign (Black Edition)",
+          spanClass: "md:col-span-1",
+        },
+        {
+          src: "/portfolio_zorobroast_9.png",
+          alt: "One Slice Won't Be Enough Crimson Red Pizza Promotional Poster",
+          spanClass: "md:col-span-1",
+        },
+        {
+          src: "/portfolio_zorobroast_7.png",
+          alt: "Get The Big One Red & Gold BOGO Pizza Campaign Design",
+          spanClass: "md:col-span-3",
+        },
+        {
+          src: "/portfolio_zorobroast_8.png",
+          alt: "Order One Get One Free Pizza Deal Banner (Rs 1999)",
+          spanClass: "md:col-span-3",
+        },
+        {
+          src: "/portfolio_zorobroast_10.png",
+          alt: "har slice mein ZORO BOGO Pizza Offer Poster (Vertical Edition)",
+          spanClass: "md:col-span-1",
+        },
+        {
+          src: "/portfolio_zorobroast_11.png",
+          alt: "One Pizza Wasn't Enough BOGO Campaign Banner",
+          spanClass: "md:col-span-1",
+        },
+        {
+          src: "/portfolio_zorobroast_13.png",
+          alt: "Best Pizza in Town Red BOGO Campaign Design",
+          spanClass: "md:col-span-1",
+        },
+        {
+          src: "/portfolio_zorobroast_12.png",
+          alt: "Big on Flavour Bigger on Value Horizontal Pizza Promotion",
+          spanClass: "md:col-span-3",
+        },
       ],
     },
   ];
