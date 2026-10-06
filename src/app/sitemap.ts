@@ -35,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...INDUSTRIES.map((i) => entry(`/industries/${i.slug}`, 0.7, "monthly")),
     entry("/blog", 0.7, "weekly"),
     ...ARTICLES.map((a) => entry(`/blog/${a.slug}`, 0.7, "monthly", a.dateModified)),
+    entry("/blog/author/tdm-editorial-team", 0.3, "monthly"),
     entry("/about", 0.6, "monthly"),
     entry("/faq", 0.6, "monthly"),
     entry("/contact", 0.6, "yearly"),
