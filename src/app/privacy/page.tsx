@@ -55,7 +55,7 @@ export default function PrivacyPolicyPage() {
                 Why We Collect Data
               </h2>
               <p>
-                At <span className="text-zinc-950 font-black">timesdigitalmedia.com</span>, user and campaign data is collected for the following operational reasons:
+                At <span className="text-zinc-950 font-black">timesdigitalmedia.co</span>, user and campaign data is collected for the following operational reasons:
               </p>
               <ol className="list-decimal pl-6 flex flex-col gap-2">
                 <li>To provide highly customized, strategic advertising services unique to individual client brands.</li>

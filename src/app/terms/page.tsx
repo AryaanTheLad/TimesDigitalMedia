@@ -35,7 +35,7 @@ export default function TermsOfServicePage() {
             
             <section className="flex flex-col gap-4">
               <p>
-                Welcome to <span className="text-zinc-950 font-black">Times Digital Media</span>. By accessing, browsing, or utilizing timesdigitalmedia.com, our client portals, performance dashboards, or integrated campaign tools, you agree to be legally bound by these Terms of Service, which take effect immediately upon your first use. 
+                Welcome to <span className="text-zinc-950 font-black">Times Digital Media</span>. By accessing, browsing, or utilizing timesdigitalmedia.co, our client portals, performance dashboards, or integrated campaign tools, you agree to be legally bound by these Terms of Service, which take effect immediately upon your first use. 
               </p>
               <p>
                 If you do not agree to be bound by all of the following terms, you are advised not to use, register for, or contribute creative assets to the Times Digital Media platform or our agency networks.
@@ -111,7 +111,7 @@ export default function TermsOfServicePage() {
                 4. Times Digital Media Portal Community Rules
               </h2>
               <p>
-                Accessing client dashboards or entering our community spaces requires registering a valid corporate account at <span className="text-zinc-950 font-black">timesdigitalmedia.com</span>. All personal information supplied during registration will be handled strictly in accordance with our Privacy Policy.
+                Accessing client dashboards or entering our community spaces requires registering a valid corporate account at <span className="text-zinc-950 font-black">timesdigitalmedia.co</span>. All personal information supplied during registration will be handled strictly in accordance with our Privacy Policy.
               </p>
               <p>
                 To maintain a secure and professional environment on our dashboards and shared workspaces, all registered partners must strictly observe the following rules:
@@ -168,7 +168,7 @@ export default function TermsOfServicePage() {
                 <li>Any indirect, consequential, special, or exemplary damages arising from the use of our services or this website, regardless of the form of action.</li>
               </ul>
               <p>
-                Times Digital Media does not warrant or guarantee that functions available on this website will be uninterrupted or error-free, that defects will be corrected, or that the servers making timesdigitalmedia.com available are free of viruses or backend bugs.
+                Times Digital Media does not warrant or guarantee that functions available on this website will be uninterrupted or error-free, that defects will be corrected, or that the servers making timesdigitalmedia.co available are free of viruses or backend bugs.
               </p>
             </section>
 

@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://timesdigitalmedia.com"),
+  metadataBase: new URL("https://timesdigitalmedia.co"),
   alternates: {
     canonical: "/",
   },
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "Times Digital Media | Premium Creative Digital Marketing Agency",
     description:
       "Scale your brand through creative paid ads, viral reels, and high-performance influencer campaigns. Reach millions of prospective clients.",
-    url: "https://timesdigitalmedia.com",
+    url: "https://timesdigitalmedia.co",
     siteName: "Times Digital Media",
     locale: "en_US",
     type: "website",
@@ -130,17 +130,17 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "Organization",
-                  "@id": "https://timesdigitalmedia.com/#organization",
+                  "@id": "https://timesdigitalmedia.co/#organization",
                   "name": "Times Digital Media",
-                  "url": "https://timesdigitalmedia.com",
+                  "url": "https://timesdigitalmedia.co",
                   "logo": {
                     "@type": "ImageObject",
-                    "@id": "https://timesdigitalmedia.com/#logo",
-                    "url": "https://timesdigitalmedia.com/logo.png",
+                    "@id": "https://timesdigitalmedia.co/#logo",
+                    "url": "https://timesdigitalmedia.co/logo.png",
                     "caption": "Times Digital Media Logo"
                   },
                   "image": {
-                    "@id": "https://timesdigitalmedia.com/#logo"
+                    "@id": "https://timesdigitalmedia.co/#logo"
                   },
                   "sameAs": [
                     "https://www.facebook.com/timesofislamabadurdu",
@@ -150,11 +150,11 @@ export default function RootLayout({
                 },
                 {
                   "@type": "ProfessionalService",
-                  "@id": "https://timesdigitalmedia.com/#service",
+                  "@id": "https://timesdigitalmedia.co/#service",
                   "name": "Times Digital Media",
-                  "url": "https://timesdigitalmedia.com",
-                  "logo": "https://timesdigitalmedia.com/logo.png",
-                  "image": "https://timesdigitalmedia.com/logo.png",
+                  "url": "https://timesdigitalmedia.co",
+                  "logo": "https://timesdigitalmedia.co/logo.png",
+                  "image": "https://timesdigitalmedia.co/logo.png",
                   "description": "Times Digital Media is a premium creative digital marketing agency helping brands scale globally through paid advertising, content creation, and web development.",
                   "telephone": "+923298223036",
                   "email": "thetimesdigitalmedia@gmail.com",

@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://timesdigitalmedia.com";
+  const baseUrl = "https://timesdigitalmedia.co";
 
   return [
     {
