@@ -116,6 +116,10 @@ After setting up either or both endpoints:
 | `website` | Website or Instagram | "company.pk" |
 | `business` | What they sell and to whom | "Premium athleisure for women 25-40" |
 | `runningAds` | Current ad status | "Yes" / "No" / "Stopped" |
-| `budget` | Monthly budget range | "<$500" / "$500-2k" / "$2k-5k" / "$5k+" |
+| `budget` | Monthly marketing budget incl. ad spend (PKR) | "Under Rs 150k" / "Rs 150k–500k" / "Rs 500k–1.5M" / "Rs 1.5M+" |
 | `goal` | Primary 90-day goal | "More leads" / "More sales" / "Brand awareness" / "Launch" |
 | `_subject` | Email subject (Formspree only) | "New Growth Audit Request from Ahmed Khan" |
+| `utm_source` … `utm_content`, `gclid`, `fbclid` | Campaign attribution (when present) | "facebook", "cpc", … |
+| `landing_page`, `referrer` | First page of the session and referring host | "/pricing", "google.com" |
+
+> Tracking, thank-you pages and the full event list are documented in `docs/audit/04-measurement.md`.
