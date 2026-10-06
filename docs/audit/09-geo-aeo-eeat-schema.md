@@ -26,7 +26,9 @@ All network figures come from `src/data/stats.ts`, attributed as "Verified from 
 
 `sameAs` lists only TDM's own profiles: the TDM Facebook page (facebook.com/timesofislamabadurdu, TDM's page despite the slug) and the TDM Instagram. Times of Islamabad profiles (facebook.com/TimesofIslamabad, Instagram, X) are labelled as network properties in the footer and on `/media-network`, not claimed as TDM's identity. Add LinkedIn and the GBP URL to `SOCIALS` / `TDM_SAME_AS` when they exist.
 
-**Recommendation:** TDM's Facebook page uses the username `timesofislamabadurdu`, which tells people and machines it belongs to Times of Islamabad. If Facebook allows it, change the page username to something like `timesdigitalmedia`, then update the URL in `src/data/site.ts`. Until then, the page's name and About text should use the canonical entity description so the slug is the only mismatch. The name is always "Times Digital Media" with "TDM" as the abbreviation.
+**Recommendation:** TDM's Facebook page uses the username `timesofislamabadurdu`, which tells people and machines it belongs to Times of Islamabad. If Facebook allows it, change the page username to something like `timesdigitalmedia`, then update the URL in `src/data/site.ts`. Until then, the page's name and About text should use the canonical entity description so the slug is the only mismatch.
+
+The name is always "Times Digital Media", with "TDM" as the abbreviation.
 
 ### Crawler access: decision = allow
 
