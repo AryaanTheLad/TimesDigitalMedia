@@ -5,6 +5,9 @@
  * Rules (owner decisions, Oct 2026):
  * - Only publish figures the owner has confirmed. Confirmed: Zameen 40M+
  *   reach & views, Star Shah 1.2M+ views, Flight 98% visa approvals.
+ * - `results` may be qualitative ("what the campaign accomplished"),
+ *   drawn from the brief and work shown; never invent numbers. Zameen and
+ *   Stitch use qualitative results at the owner's request.
  * - Removed as unverified: Ibadat "highest enrollments"/"record-breaking",
  *   Zoro Broast "1.5M+ reach".
  * - Missing results are left as [[TODO]] placeholders (hidden in production).
@@ -73,7 +76,10 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Produced launch creatives for expos, top-project roundups and open houses.",
       "Amplified selected campaigns across the TDM media network.",
     ],
-    results: ["40M+ reach and views across the campaign activity"],
+    results: [
+      "Built awareness for property launches, expos and open houses in target cities",
+      "Generated developer and buyer leads through sponsored lead campaigns",
+    ],
     stats: [
       { label: "Reach & Views", value: "40 Million+" },
       { label: "Target Profile", value: "Developers & Buyers" },
@@ -108,8 +114,11 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Designed sale and collection creatives for feeds and Stories.",
       "Targeted fashion shoppers by demographic and interest, with retargeting of site visitors.",
     ],
-    results: [],
-    resultsTodo: "[[TODO: confirm Stitch campaign results (sales, ROAS or CPA) and client permission to publish]]",
+    results: [
+      "Kept the brand in front of online shoppers through the Azadi and end-of-season sales",
+      "Gave each sale and collection drop a consistent look across feeds and Stories",
+    ],
+    resultsTodo: "[[TODO: optional: add Stitch figures (sales, ROAS or CPA) if the client agrees]]",
     stats: [
       { label: "Sale Campaigns", value: "Flat 30% / 50% Off" },
       { label: "Target Segment", value: "Online Apparel Shoppers" },

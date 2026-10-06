@@ -60,7 +60,7 @@ Visible only in `npm run dev` (amber boxes and outlines); `Placeholder` and `Rev
 |---|---|
 | `src/data/site.ts` | TDM's LinkedIn and Google Business Profile URLs (for `sameAs`). Facebook is done. |
 | `src/data/tracking.ts` | Google Ads lead conversion label; Meta Pixel ID (via env vars) |
-| `src/data/caseStudies.ts` | Results + publishing permission: Stitch, Marshall Ahmad, Asma Tariq Studio, Ibadat International University, Zoro Broast. Until supplied, these pages show "What we delivered" (reel/creative/service counts) instead of a results list. |
+| `src/data/caseStudies.ts` | Results + publishing permission: Marshall Ahmad, Asma Tariq Studio, Ibadat International University, Zoro Broast (these show "What we delivered" counts until supplied). Zameen and Stitch show qualitative results; Stitch figures are optional. |
 | `src/components/About.tsx` | Founder story (2–3 sentences); team names, roles, photos, bios, LinkedIn |
 | `src/content/blog/index.ts`, `src/lib/schema.ts`, `src/app/blog/author/[slug]/page.tsx` | Named authors; switch BlogPosting author to Person |
 | `src/app/terms/page.tsx` | Registered legal entity name / registration details |
