@@ -160,6 +160,7 @@ export function offerCatalogNode(): JsonLdNode {
 }
 
 export function serviceNode(service: Service): JsonLdNode {
+  const prices = PACKAGES.filter((p) => service.includedIn.includes(p.id) && p.price !== null).map((p) => p.price as number);
   return {
     "@type": "Service",
     "@id": `${SITE_URL}/services/${service.slug}#service`,
@@ -169,14 +170,18 @@ export function serviceNode(service: Service): JsonLdNode {
     url: `${SITE_URL}/services/${service.slug}`,
     provider: { "@id": ORG_ID },
     areaServed: [{ "@type": "Country", name: "Pakistan" }],
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "PKR",
-      lowPrice: 30000,
-      highPrice: 70000,
-      offerCount: 2,
-      url: `${SITE_URL}/pricing`,
-    },
+    ...(prices.length > 0
+      ? {
+          offers: {
+            "@type": "AggregateOffer",
+            priceCurrency: "PKR",
+            lowPrice: Math.min(...prices),
+            highPrice: Math.max(...prices),
+            offerCount: prices.length,
+            url: `${SITE_URL}/pricing`,
+          },
+        }
+      : {}),
   };
 }
 

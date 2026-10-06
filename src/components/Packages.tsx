@@ -49,11 +49,14 @@ interface PackagesProps {
   /** On /pricing the page owns the H1, so the section heading drops to H2 (default) and the eyebrow changes. */
   eyebrow?: string;
   intro?: string;
+  /** Hide the "compare packages" link when already on /pricing. */
+  showCompareLink?: boolean;
 }
 
 export default function Packages({
   eyebrow = "07 / Pricing & Retainers",
   intro = "Transparent monthly packages in PKR. You see the price before you talk to us.",
+  showCompareLink = true,
 }: PackagesProps) {
   const [starter, growth, custom] = PACKAGES;
 
@@ -63,7 +66,7 @@ export default function Packages({
 
         {/* Section Header */}
         <div className="max-w-3xl mx-auto mb-10 md:mb-12 flex flex-col items-center text-center gap-4">
-          <span className="text-[9px] font-mono tracking-widest uppercase text-stone-400">
+          <span className="text-[9px] font-mono tracking-widest uppercase text-stone-500">
             {eyebrow}
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-[#09090b] leading-[1.05] mt-2">
@@ -85,7 +88,7 @@ export default function Packages({
             <div className="flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-stone-400">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-stone-500">
                     {starter.eyebrow}
                   </span>
                 </div>
@@ -109,7 +112,7 @@ export default function Packages({
                 <div className="w-full border-t border-stone-200/80 my-8" />
 
                 <div className="flex flex-col gap-4">
-                  <span className="text-[9px] font-mono font-bold tracking-wider text-stone-400 uppercase block">
+                  <span className="text-[9px] font-mono font-bold tracking-wider text-stone-500 uppercase block">
                     {starter.includesLabel}:
                   </span>
                   <ul className="flex flex-col gap-4">
@@ -171,7 +174,7 @@ export default function Packages({
                 <div className="w-full border-t border-stone-200/80 my-8" />
 
                 <div className="flex flex-col gap-4">
-                  <span className="text-[9px] font-mono font-bold tracking-wider text-stone-400 uppercase block">
+                  <span className="text-[9px] font-mono font-bold tracking-wider text-stone-500 uppercase block">
                     {growth.includesLabel}:
                   </span>
                   <ul className="flex flex-col gap-4">
@@ -206,7 +209,7 @@ export default function Packages({
             <div className="flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-stone-400">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-stone-500">
                     {custom.eyebrow}
                   </span>
                 </div>
@@ -235,7 +238,7 @@ export default function Packages({
                 </div>
 
                 <div className="flex flex-col gap-4">
-                  <span className="text-[9px] font-mono font-bold tracking-wider text-stone-400 uppercase block">
+                  <span className="text-[9px] font-mono font-bold tracking-wider text-stone-500 uppercase block">
                     {custom.includesLabel}:
                   </span>
                   <ul className="flex flex-col gap-5">
@@ -272,9 +275,11 @@ export default function Packages({
               Ask for international pricing
             </Link>
           </span>
-          <Link href="/pricing" className="font-bold text-[#09090b] underline decoration-stone-300 underline-offset-4 hover:text-[#E8000E]">
-            Compare packages in detail
-          </Link>
+          {showCompareLink && (
+            <Link href="/pricing" className="font-bold text-[#09090b] underline decoration-stone-300 underline-offset-4 hover:text-[#E8000E]">
+              Compare packages in detail
+            </Link>
+          )}
         </div>
       </div>
     </section>

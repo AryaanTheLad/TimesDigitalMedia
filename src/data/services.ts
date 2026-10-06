@@ -38,6 +38,10 @@ export interface Service {
   articles: string[];
   industries: string[];
   illustration: IllustrationKey;
+  /** Which packages include this service (must match src/data/pricing.ts contents). */
+  includedIn: ("starter" | "growth" | "custom")[];
+  /** Optional note on how the package covers it (e.g. "maintenance only"). */
+  packageNote?: string;
 }
 
 export const SERVICES: Service[] = [
@@ -82,6 +86,7 @@ export const SERVICES: Service[] = [
     articles: ["facebook-ads-cost-pakistan", "meta-ad-account-restricted", "pay-for-meta-and-google-ads-from-pakistan"],
     industries: ["ecommerce", "real-estate", "education"],
     illustration: "meta",
+    includedIn: ["starter", "growth", "custom"],
   },
   {
     slug: "google-ads",
@@ -124,6 +129,7 @@ export const SERVICES: Service[] = [
     articles: ["meta-ads-vs-google-ads", "pay-for-meta-and-google-ads-from-pakistan", "what-is-a-good-roas"],
     industries: ["education", "ecommerce"],
     illustration: "search",
+    includedIn: ["starter", "custom"],
   },
   {
     slug: "youtube-ads",
@@ -163,6 +169,7 @@ export const SERVICES: Service[] = [
     articles: ["meta-ads-vs-google-ads"],
     industries: ["education"],
     illustration: "video",
+    includedIn: ["custom"],
   },
   {
     slug: "performance-marketing-lead-generation",
@@ -203,6 +210,7 @@ export const SERVICES: Service[] = [
     articles: ["what-is-a-good-roas", "meta-ads-vs-google-ads", "how-to-choose-a-digital-marketing-agency-pakistan"],
     industries: ["real-estate", "education"],
     illustration: "campaign",
+    includedIn: ["growth", "custom"],
   },
   {
     slug: "content-creation",
@@ -242,6 +250,7 @@ export const SERVICES: Service[] = [
     articles: [],
     industries: ["artists-entertainment"],
     illustration: "video",
+    includedIn: ["growth", "custom"],
   },
   {
     slug: "social-media-management",
@@ -281,6 +290,7 @@ export const SERVICES: Service[] = [
     articles: ["how-to-choose-a-digital-marketing-agency-pakistan"],
     industries: [],
     illustration: "social",
+    includedIn: ["starter", "growth", "custom"],
   },
   {
     slug: "web-development",
@@ -320,6 +330,8 @@ export const SERVICES: Service[] = [
     articles: [],
     industries: [],
     illustration: "code",
+    includedIn: ["starter", "growth", "custom"],
+    packageNote: "Starter covers maintenance of an existing site; Growth includes website development.",
   },
   {
     slug: "seo",
@@ -359,6 +371,8 @@ export const SERVICES: Service[] = [
     articles: ["how-to-choose-a-digital-marketing-agency-pakistan"],
     industries: [],
     illustration: "seo",
+    includedIn: ["growth", "custom"],
+    packageNote: "Growth includes on-page SEO; wider SEO work is scoped as a custom package.",
   },
 ];
 
