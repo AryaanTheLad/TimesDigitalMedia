@@ -5,38 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Layers, Play } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-
-interface CreativeAsset {
-  src: string;
-  alt: string;
-  spanClass?: string;
-}
-
-interface ReelItem {
-  id: string;
-  title: string;
-  category: "bts" | "qa" | "singing" | "promo";
-  platform?: "youtube" | "instagram";
-}
-
-interface PortfolioClient {
-  id: string;
-  name: string;
-  subtitle: string;
-  description: string;
-  category: string;
-  themeColor: string;
-  borderTheme: string;
-  hoverGlow: string;
-  badgeClass: string;
-  logoPath: string;
-  logoPadding?: string;
-  logoBg?: string;
-  logoObject?: string;
-  stats: { label: string; value: string }[];
-  creatives?: CreativeAsset[];
-  reels?: ReelItem[];
-}
+import { getCaseStudy } from "@/data/caseStudies";
+import { getService } from "@/data/services";
+import Placeholder from "./Placeholder";
+import { trackCta } from "@/lib/analytics";
 
 function ReelImage({ src, alt, className, fallbackSrc }: { src: string; alt: string; className?: string; fallbackSrc: string }) {
   const [imgSrc, setImgSrc] = useState(src);
@@ -70,370 +42,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
   const [iframeLoading, setIframeLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState<"all" | "bts" | "qa" | "singing" | "promo">("all");
 
-  const clients: PortfolioClient[] = [
-    {
-      id: "zameen",
-      name: "Zameen.com",
-      subtitle: "Digital Property Campaigns",
-      description:
-        "Engineered strategic paid advertising placements and sponsored lead pipelines to scale nationwide buyer acquisition. Deployed viral real estate launch assets, driving qualified developer leads and high-impact event footprints.",
-      category: "Real Estate Portal",
-      themeColor: "text-emerald-600",
-      borderTheme: "border-l-4 border-l-emerald-600 hover:border-emerald-500",
-      hoverGlow: "radial-gradient(circle at center, rgba(16, 185, 129, 0.08) 0%, transparent 70%)",
-      badgeClass: "bg-emerald-50 border-emerald-200 text-emerald-700",
-      logoPath: "/logo_zameen.jpg",
-      stats: [
-        { label: "Reach & Views", value: "40 Million+" },
-        { label: "Target Profile", value: "Developers & Buyers" },
-        { label: "Core Channels", value: "Meta Ads & Web Portal" },
-        { label: "Campaign Focus", value: "Property Expo & Launches" },
-      ],
-      creatives: [
-        {
-          src: "/portfolio_zameen_1.jpg",
-          alt: "Zameen.com Digital Platform Banner",
-          spanClass: "md:col-span-2",
-        },
-        {
-          src: "/portfolio_zameen_2.jpg",
-          alt: "Land Star Property Expo 2024 Campaign",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_zameen_3.jpg",
-          alt: "Top 5 Projects with Best Rental Returns",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_zameen_4.jpg",
-          alt: "Zameen ARX Tallest Marvel",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_zameen_5.jpg",
-          alt: "Grand Open House DHA Phase 1",
-          spanClass: "md:col-span-1",
-        },
-      ],
-    },
-    {
-      id: "stitch",
-      name: "Stitch",
-      subtitle: "Clothing & Retail E-Commerce",
-      description:
-        "Scaled DTC lead capture, online sales volume, and retail visibility. Deployed targeted digital clearance ads and cultural campaigns capturing high-converting fashion consumers across social networks.",
-      category: "Clothing Brand",
-      themeColor: "text-indigo-650",
-      borderTheme: "border-l-4 border-l-indigo-650 hover:border-indigo-500",
-      hoverGlow: "radial-gradient(circle at center, rgba(99, 102, 241, 0.08) 0%, transparent 70%)",
-      badgeClass: "bg-indigo-50 border-indigo-200 text-indigo-700",
-      logoPath: "/logo_stitch.jpg",
-      logoPadding: "p-0",
-      logoBg: "bg-black border-black",
-      logoObject: "object-cover",
-      stats: [
-        { label: "Clearance Scaling", value: "Flat 30% / 50% Off" },
-        { label: "Target Segment", value: "DTC Apparel Shoppers" },
-        { label: "Core Channels", value: "Paid Meta & Social Stories" },
-        { label: "Campaign Focus", value: "Azadi Sale & Season Clearance" },
-      ],
-      creatives: [
-        {
-          src: "/portfolio_stitch_1.jpg",
-          alt: "Stitch Azadi Sale - Flat 30% Off Campaign",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_stitch_2.jpg",
-          alt: "Stitch End of Season Sale Campaign",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_stitch_3.jpg",
-          alt: "Stitch The Digital Garden Cambric Edition",
-          spanClass: "md:col-span-1",
-        },
-      ],
-    },
-    {
-      id: "starshah",
-      name: "Star Shah",
-      subtitle: "Viral Music Campaign & Video PR",
-      description:
-        "Orchestrated a highly successful Instagram Reels and video marketing campaign to promote the new track 'Haule Haule'. Deployed bts sequences, location singing performances, and interactive Q&A sessions, scaling artist reach.",
-      category: "Music Artist",
-      themeColor: "text-red-650",
-      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
-      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
-      badgeClass: "bg-red-50 border-red-200 text-red-700",
-      logoPath: "/logo_starshah.jpg",
-      logoPadding: "p-0",
-      logoBg: "bg-black border-black",
-      logoObject: "object-cover",
-      stats: [
-        { label: "Total Views", value: "1.2 Million+" },
-        { label: "Target Profile", value: "Music Listeners & Youth" },
-        { label: "Core Channels", value: "Instagram Reels" },
-        { label: "Engagement Style", value: "BTS, Q&A, Singing" },
-      ],
-      reels: [
-        { id: "DPEKqAwCDzE", title: "Haule Haule - Hometown Session", category: "promo" },
-        { id: "DOe77RxiBta", title: "Struggle and Hustle", category: "singing" },
-        { id: "DOYZIQdDKOd", title: "Live Acoustic Session", category: "singing" },
-        { id: "DOV0SOEiIy4", title: "Artist Q&A - Part 1: Inspiration Behind Haule Haule", category: "qa" },
-        { id: "DOQPT4FDDVs", title: "Artist Q&A - Part 2: Composition & Lyrics", category: "qa" },
-        { id: "DONnhE5jKLu", title: "Artist Q&A - Part 3: Fan Questions & Answers", category: "qa" },
-        { id: "DOLizrvivzn", title: "Singing Live - HomeTown Fans and Family", category: "singing" },
-        { id: "DOGXKS_DKwu", title: "Slow and Steady Wins The Race", category: "promo" },
-        { id: "DOD5V8eDIWA", title: "Haule Haule - Chai Wala", category: "singing" },
-        { id: "DN-xPNeDEG7", title: "Imprinted into Okara's legacy", category: "promo" },
-        { id: "DN8O1OWjIvS", title: "Location Singing - Okara Railway Station", category: "singing" },
-        { id: "DN5frrmDMdY", title: "Location Singing - Suburbs of Okara", category: "singing" },
-        { id: "DN28DoKWIbv", title: "Location Singing - Fields of Okara", category: "singing" },
-        { id: "DN0UMy12HDE", title: "Singing In The City That Made You", category: "singing" },
-        { id: "DNiv0X7sI40", title: "About Your Journey", category: "promo" },
-        { id: "DNaPgqGsATP", title: "BTS - Styling and Getting Ready", category: "bts" },
-        { id: "DNXdfNEMiwb", title: "BTS - Setting The Shot", category: "bts" },
-        { id: "DNSehiQMUje", title: "Reaction to Haule Haule", category: "promo" },
-        { id: "DNP5UxmMbnd", title: "Before / After", category: "promo" },
-        { id: "DNKi8RUsWXJ", title: "BTS - Camera vs You", category: "bts" },
-        { id: "DNIBU1cMttB", title: "Haule Haule - People Who Made It Possible.", category: "bts" },
-        { id: "DNGbKDusDeU", title: "BTS - Creating The Music Video", category: "bts" },
-      ],
-    },
-    {
-      id: "marshall",
-      name: "Marshall Ahmad",
-      subtitle: "'Lutteya' Single Launch Campaign",
-      description:
-        "Orchestrated a highly successful Instagram Reels and video marketing campaign to promote Marshall Ahmad's hit single 'Lutteya'. Deployed stylish transformation edits, transition sequences, and streetwear aesthetics, generating organic virality and stream growth.",
-      category: "Music Artist",
-      themeColor: "text-red-650",
-      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
-      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
-      badgeClass: "bg-red-50 border-red-200 text-red-700",
-      logoPath: "/logo_marshall.jpg",
-      logoPadding: "p-0",
-      logoBg: "bg-black border-black",
-      logoObject: "object-cover",
-      stats: [
-        { label: "Single Promoted", value: "Lutteya" },
-        { label: "Target Audience", value: "Music Fans & Youth" },
-        { label: "Core Channels", value: "Instagram Reels" },
-        { label: "Engagement Style", value: "Transitions, Modern Music" },
-      ],
-      reels: [
-        { id: "DNIuVOcsmOH", title: "Lutteya - Official Transition Promo Reel", category: "promo" },
-        { id: "DOJQXTLkqHO", title: "BTS - Styling & Outfits for Lutteya Music Video", category: "bts" },
-      ],
-    },
-    {
-      id: "asmatariq",
-      name: "Asma Tariq Studio",
-      subtitle: "Creative Space & Studio Booking Promo",
-      description:
-        "Designed and executed a structured Instagram Reels campaign to promote a premium rental studio space. Highlighted the studio's versatile layouts, natural lighting, and styling corners, driving bookings for brand shoots, video productions, and creative activities.",
-      category: "Creative Space",
-      themeColor: "text-red-650",
-      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
-      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
-      badgeClass: "bg-red-50 border-red-200 text-red-700",
-      logoPath: "/logo_asmatariq.png",
-      logoPadding: "p-0",
-      logoBg: "bg-black border-black",
-      logoObject: "object-contain",
-      stats: [
-        { label: "Primary Service", value: "Creative Space Rental" },
-        { label: "Target Audience", value: "Brands & Creators" },
-        { label: "Core Channels", value: "Instagram Reels" },
-        { label: "Booking Drivers", value: "Aesthetic Layouts, Gear" },
-      ],
-      reels: [
-        { id: "DRU3Y7zjAJf", title: "Studio Space Showcase - Sunlight & Aesthetic Backdrops", category: "promo" },
-        { id: "DRhfljAjGB-", title: "BTS - Behind the scenes of a catalog shoot in action", category: "bts" },
-        { id: "DRryuxiDG5H", title: "Studio Walkthrough - Layout options for events & activities", category: "promo" },
-        { id: "DSDHJPtjLKQ", title: "Q&A - How to book the studio for private brand activities", category: "qa" },
-        { id: "DSfVt1QjGwp", title: "Studio Showcase - Tour Of The Studio", category: "promo" },
-        { id: "DTFyzSTDFxO", title: "Event Promo - Booking the studio for workshops", category: "promo" },
-        { id: "DTQQSSGjJH_", title: "Q&A - What's In My Bag?", category: "qa" },
-        { id: "DTVK-UiDIlc", title: "Studio Showcase - What the best Studio in Lahore Gets You", category: "promo" },
-        { id: "DTdWoRGjOsW", title: "Last Minute Bookigns - What's Possible?", category: "promo" },
-        { id: "DTiX3vMjIA3", title: "Client Review - Host your next event or activity here", category: "qa" },
-        { id: "DTlRYjwjMHL", title: "Busting Studio Myths", category: "qa" },
-        { id: "DTnMrZCDPBo", title: "What's In My Bag ft. Lujain", category: "promo" },
-        { id: "DT25rMsDPfz", title: "What Do You Get When You Book The Studio?", category: "qa" },
-        { id: "DUqfaU3jDzK", title: "Reality Show.", category: "promo" },
-      ],
-    },
-    {
-      id: "ibadat",
-      name: "Ibadat International University",
-      subtitle: "Student Acquisition & Admissions Drive",
-      description:
-        "Designed and executed a structured student acquisition drive for Ibadat International University. Deployed search and social campaigns targeting core academic segments, resulting in a successful spring admissions campaign.",
-      category: "Higher Education",
-      themeColor: "text-red-650",
-      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
-      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
-      badgeClass: "bg-red-50 border-red-200 text-red-700",
-      logoPath: "/logo_ibadat.jpg",
-      logoPadding: "p-0",
-      logoBg: "bg-white border-zinc-200",
-      logoObject: "object-contain",
-      stats: [
-        { label: "Target Group", value: "18-35 Student Intake" },
-        { label: "Campaign Focus", value: "Spring '26 Drive" },
-        { label: "Core Channels", value: "Meta Ads & YouTube" },
-        { label: "Active Admissions", value: "Highest Enrollments" },
-      ],
-      creatives: [
-        {
-          src: "/ibadat_admissions.png",
-          alt: "Ibadat International University Admissions Campaign",
-          spanClass: "md:col-span-3",
-        },
-      ],
-      reels: [
-        { id: "x69SOCng1wc", title: "Admissions Spring 2026 Drive Promo", category: "promo", platform: "youtube" }
-      ],
-    },
-    {
-      id: "flight",
-      name: "Flight Education Consultants",
-      subtitle: "Global Student Placement & Visas",
-      description:
-        "Orchestrated a highly successful multi-channel student placement campaign for Flight Education Consultants. Deployed success stories, study guides, and Q&A sessions to showcase visa approvals and placement tracks across the UK, Australia, Canada, and Europe.",
-      category: "Education Consultant",
-      themeColor: "text-red-650",
-      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
-      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
-      badgeClass: "bg-red-50 border-red-200 text-red-700",
-      logoPath: "/logo_flight.jpg",
-      logoPadding: "p-0",
-      logoBg: "bg-white border-zinc-200",
-      logoObject: "object-contain",
-      stats: [
-        { label: "Visa Success", value: "98% Approvals" },
-        { label: "Destinations", value: "UK, CAN, AUS, EU" },
-        { label: "Core Channels", value: "Instagram Reels" },
-        { label: "Placement Reach", value: "Worldwide Placements" },
-      ],
-      reels: [
-        { id: "DRzkGOajB61", title: "Study in the UK - Requirements & Application Process", category: "promo" },
-        { id: "DR92zLBjFuD", title: "Student Visa Approval Success Story", category: "bts" },
-        { id: "DSxjZlDjIP2", title: "Why Choose Flight Education Consultants?", category: "promo" },
-        { id: "DSzjbp1jNRO", title: "Study in Australia - Intake Queries", category: "qa" },
-        { id: "DS2WLYfDCtw", title: "Canada Student Visa Updates 2026", category: "promo" },
-        { id: "DS5KtyIjH32", title: "Behind the Scenes at Flight Education Office", category: "bts" },
-        { id: "DS-JxFuDLkU", title: "Student Q&A: IELTS & English Requirements", category: "qa" },
-        { id: "DTIhzGMDBhZ", title: "Scholarship Opportunities in Europe", category: "promo" },
-        { id: "DTS080CDPdo", title: "Success Story - Visa Approved in 10 Days", category: "bts" },
-        { id: "DTX-h2VDHlZ", title: "Q&A: Cost of Living in Australia & UK", category: "qa" },
-        { id: "DTsk9O-DFbR", title: "Study in USA - Step-by-Step Guide", category: "promo" },
-        { id: "DTvLIgrjE0o", title: "Behind the scenes with our visa consultants", category: "bts" },
-        { id: "DT8BsPODMFA", title: "Q&A: Academic Gap Acceptance Rules", category: "qa" },
-        { id: "DUBLV3CjGCZ", title: "Study in Sweden & Germany - Free Education?", category: "promo" },
-        { id: "DUV4deHDBLT", title: "Student Review - Flight Education Experience", category: "bts" },
-        { id: "DUgHbrYjMPy", title: "Q&A: Blocked Account for Germany", category: "qa" },
-        { id: "DUtK9QQjJIn", title: "How to Apply for UK Dependents Visa", category: "promo" },
-        { id: "DU-69DRDc06", title: "Behind the scenes of our Pre-departure Seminar", category: "bts" },
-        { id: "DVOcLT7jEzV", title: "Q&A: Post Study Work Visa Options", category: "qa" },
-        { id: "DVTksHnjoJX", title: "Flight Education Consultants Promotional Tour", category: "promo" },
-      ],
-    },
-    {
-      id: "zorobroast",
-      name: "Zoro Broast",
-      subtitle: "Fast Food Branding & Menu Launch",
-      description:
-        "Orchestrated the digital launch and menu branding campaigns for Zoro Broast. Designed high-impact social media posters, promotional banners, and visual food assets, driving customer engagement and local foot traffic for their Faisal Town, Vehari outlet.",
-      category: "Fast Food Brand",
-      themeColor: "text-red-650",
-      borderTheme: "border-l-4 border-l-[#E8000E] hover:border-red-500",
-      hoverGlow: "radial-gradient(circle at center, rgba(232, 0, 14, 0.08) 0%, transparent 70%)",
-      badgeClass: "bg-red-50 border-red-200 text-red-700",
-      logoPath: "/logo_zorobroast.jpg",
-      logoPadding: "p-0",
-      logoBg: "bg-white border-zinc-200",
-      logoObject: "object-contain",
-      stats: [
-        { label: "Digital Reach", value: "1.5 Million+" },
-        { label: "Target Audience", value: "Fast Food Lovers" },
-        { label: "Core Channels", value: "Social Media Design" },
-        { label: "Campaign Focus", value: "Menu Launch & Branding" },
-      ],
-      creatives: [
-        {
-          src: "/portfolio_zorobroast_1.png",
-          alt: "Cheese Loaded Pizza Campaign Poster",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_zorobroast_2.png",
-          alt: "Zoro Broast Extreme Crunch Fried Chicken Poster",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_zorobroast_4.png",
-          alt: "Hot and Delicious Arabian Burger Poster",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_zorobroast_3.png",
-          alt: "Zoro Broast Wide Digital Banner Design",
-          spanClass: "md:col-span-3",
-        },
-        {
-          src: "/portfolio_zorobroast_5.png",
-          alt: "Best Pizza in Town Yellow & Black Digital Banner",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_zorobroast_6.png",
-          alt: "BOGO Large Pizza Free Small Pizza with Drink Campaign (Black Edition)",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_zorobroast_9.png",
-          alt: "One Slice Won't Be Enough Crimson Red Pizza Promotional Poster",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_zorobroast_7.png",
-          alt: "Get The Big One Red & Gold BOGO Pizza Campaign Design",
-          spanClass: "md:col-span-3",
-        },
-        {
-          src: "/portfolio_zorobroast_8.png",
-          alt: "Order One Get One Free Pizza Deal Banner (Rs 1999)",
-          spanClass: "md:col-span-3",
-        },
-        {
-          src: "/portfolio_zorobroast_10.png",
-          alt: "har slice mein ZORO BOGO Pizza Offer Poster (Vertical Edition)",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_zorobroast_11.png",
-          alt: "One Pizza Wasn't Enough BOGO Campaign Banner",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_zorobroast_13.png",
-          alt: "Best Pizza in Town Red BOGO Campaign Design",
-          spanClass: "md:col-span-1",
-        },
-        {
-          src: "/portfolio_zorobroast_12.png",
-          alt: "Big on Flavour Bigger on Value Horizontal Pizza Promotion",
-          spanClass: "md:col-span-3",
-        },
-      ],
-    },
-  ];
-
-  const client = clients.find((c) => c.id === clientId);
+  const client = getCaseStudy(clientId);
 
   if (!client) {
     return (
@@ -506,6 +115,52 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Challenge → Approach → Results */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <section className="rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8">
+          <h2 className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#E8000E] mb-3">The challenge</h2>
+          <p className="text-sm text-zinc-700 leading-relaxed font-medium">{client.challenge}</p>
+        </section>
+        <section className="rounded-3xl border border-zinc-200 bg-white p-6 sm:p-8">
+          <h2 className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#E8000E] mb-3">Our approach</h2>
+          <ul className="flex flex-col gap-2.5 text-sm text-zinc-700 leading-relaxed font-medium list-disc pl-4 marker:text-[#E8000E]">
+            {client.approach.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
+          </ul>
+        </section>
+        <section className="rounded-3xl border border-zinc-900 bg-[#09090b] text-white p-6 sm:p-8">
+          <h2 className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-400 mb-3">Results</h2>
+          {client.results.length > 0 ? (
+            <ul className="flex flex-col gap-2.5 text-sm leading-relaxed font-bold">
+              {client.results.map((r) => (
+                <li key={r}>{r}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-zinc-400 leading-relaxed font-medium">
+              Campaign creative and content are shown below.
+            </p>
+          )}
+          {client.resultsTodo && <Placeholder>{client.resultsTodo}</Placeholder>}
+          <div className="mt-6 pt-4 border-t border-zinc-800">
+            <span className="block text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500 mb-2">Services used</span>
+            <ul className="flex flex-wrap gap-2">
+              {client.services.map((slug) => {
+                const svc = getService(slug);
+                return svc ? (
+                  <li key={slug}>
+                    <Link href={`/services/${slug}`} className="inline-flex px-2.5 py-1 rounded-lg border border-zinc-700 text-[11px] font-bold hover:border-white transition-colors">
+                      {svc.shortName}
+                    </Link>
+                  </li>
+                ) : null;
+              })}
+            </ul>
+          </div>
+        </section>
       </div>
 
       {/* Campaign Reels Showcase Section */}
@@ -584,13 +239,15 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
             {client.reels
               .filter((reel) => activeFilter === "all" || reel.category === activeFilter)
               .map((reel) => (
-                <div
+                <button
+                  type="button"
                   key={reel.id}
+                  aria-label={`Play video: ${reel.title}`}
                   onClick={() => {
                     setActiveReelId(reel.id);
                     setIframeLoading(true);
                   }}
-                  className={`group relative ${reel.platform === 'youtube' ? 'aspect-video col-span-2 sm:col-span-2 md:col-span-2' : 'aspect-[9/16]'} rounded-3xl overflow-hidden bg-black border border-zinc-200 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5`}
+                  className={`group relative text-left w-full ${reel.platform === 'youtube' ? 'aspect-video col-span-2 sm:col-span-2 md:col-span-2' : 'aspect-[9/16]'} rounded-3xl overflow-hidden bg-black border border-zinc-200 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5`}
                 >
                   {/* Reel Thumbnail Backdrop */}
                   <ReelImage
@@ -622,9 +279,9 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                         ? "Live Singing"
                         : "Promo Teaser"}
                     </span>
-                    <h3 className="text-xs sm:text-sm font-bold leading-snug line-clamp-2">
+                    <span className="block text-xs sm:text-sm font-bold leading-snug line-clamp-2">
                       {reel.title}
-                    </h3>
+                    </span>
                   </div>
 
                   {/* Platform Logo overlay top right */}
@@ -643,7 +300,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                       </svg>
                     )}
                   </div>
-                </div>
+                </button>
               ))}
           </div>
         </div>
@@ -670,10 +327,12 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0 overflow-hidden rounded-3xl border border-zinc-200 shadow-xl max-w-6xl mx-auto">
             {client.creatives.map((creative, index) => (
-              <div
+              <button
+                type="button"
                 key={index}
+                aria-label={`Enlarge: ${creative.alt}`}
                 onClick={() => setLightboxImage(creative.src)}
-                className={`group relative overflow-hidden bg-black cursor-zoom-in h-64 sm:h-80 md:h-[350px] ${creative.spanClass || "md:col-span-1"}`}
+                className={`group relative block w-full text-left overflow-hidden bg-black cursor-zoom-in h-64 sm:h-80 md:h-[350px] ${creative.spanClass || "md:col-span-1"}`}
               >
                 <div className="relative w-full h-full overflow-hidden">
                   <Image
@@ -692,7 +351,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                     </span>
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -703,18 +362,19 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
         <div className="absolute inset-0 bg-dot-pattern opacity-40 pointer-events-none" />
         <div className="relative z-10">
           <h3 className="text-xl sm:text-2xl font-black text-zinc-950 tracking-tight mb-2">
-            Ready to achieve similar results?
+            Want a campaign like this?
           </h3>
           <p className="text-xs sm:text-sm text-zinc-650 max-w-md font-bold leading-relaxed">
-            Let's collaborate to build highly optimized paid campaigns, creative designs, and scale your brand reach today.
+            Tell us about your business and we&apos;ll send a free audit of where your next leads should come from.
           </p>
         </div>
-        <a
-          href="/#audit"
+        <Link
+          href="/free-growth-audit"
+          onClick={() => trackCta("free_growth_audit", `case_study_${client.id}`)}
           className="relative z-10 shrink-0 px-6 py-3.5 rounded-xl text-xs font-black uppercase tracking-wider text-white bg-[#E8000E] border border-red-700 hover:bg-red-700 transition-all hover:scale-103 shadow-md hover:shadow-red-650/20"
         >
-          Book A Strategy Call
-        </a>
+          Get My Free Growth Audit
+        </Link>
       </div>
 
       {/* =========================================================================
@@ -748,7 +408,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
             >
               <img
                 src={lightboxImage}
-                alt="Enlarged Portfolio Creative"
+                alt={client.creatives?.find((cr) => cr.src === lightboxImage)?.alt ?? `${client.name} campaign creative`}
                 className="w-auto h-auto max-w-full max-h-[82vh] object-contain bg-zinc-900"
                 loading="eager"
               />
@@ -810,6 +470,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                     </div>
                   )}
                   <iframe
+                    title={activeReel?.title ?? `${client.name} campaign video`}
                     src={embedUrl}
                     className="w-full h-full border-0 rounded-2xl bg-zinc-950"
                     frameBorder="0"
