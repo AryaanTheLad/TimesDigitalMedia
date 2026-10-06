@@ -7,6 +7,13 @@ import LenisScroll from "@/components/LenisScroll";
 import { Analytics } from "@vercel/analytics/react";
 import { MotionConfig } from "framer-motion";
 import { DEBUG_TOGGLES } from "./debug-toggles";
+import TrackingScripts from "@/components/TrackingScripts";
+import JsonLd from "@/components/JsonLd";
+import { graph, organizationNode, websiteNode } from "@/lib/schema";
+import { SITE, SITE_URL } from "@/data/site";
+import { TRACKING } from "@/data/tracking";
+import { NETWORK_STATS } from "@/data/stats";
+import { PACKAGES } from "@/data/pricing";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,58 +25,41 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const HOME_TITLE = `Performance Marketing Agency in Lahore | ${SITE.name}`;
+const HOME_DESCRIPTION = `Meta, Google & YouTube ads, lead generation and reels from a Lahore agency, plus reach on our own ${NETWORK_STATS.followers.display} follower media network. From ${PACKAGES[0].priceLabel}/month.`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://timesdigitalmedia.co"),
-  alternates: {
-    canonical: "/",
-  },
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Times Digital Media | Premium Creative Digital Marketing Agency",
-    template: "%s | Times Digital Media"
+    default: HOME_TITLE,
+    template: `%s | ${SITE.name}`,
   },
-  description:
-    "Times Digital Media helps high-end brands scale globally through paid social advertising (Meta, TikTok, Google Ads), viral short-form content, expert video production, influencer networking, and complete marketing campaign management.",
-  keywords: [
-    "Digital Marketing Agency",
-    "Creative Marketing Agency",
-    "Paid Ads Specialist",
-    "Meta Ads Agency",
-    "TikTok Marketing",
-    "Short Form Content Reels",
-    "Viral Marketing",
-    "Brand Strategy Consultant",
-    "Times Digital Media",
-    "Times Digital Media Agency",
-    "Lahore Marketing Agency"
-  ],
-  authors: [{ name: "Times Digital Media Team" }],
+  description: HOME_DESCRIPTION,
+  applicationName: SITE.name,
+  authors: [{ name: SITE.name, url: SITE_URL }],
+  creator: SITE.name,
+  publisher: SITE.name,
   openGraph: {
-    title: "Times Digital Media | Premium Creative Digital Marketing Agency",
-    description:
-      "Scale your brand through creative paid ads, viral reels, and high-performance influencer campaigns. Reach millions of prospective clients.",
-    url: "https://timesdigitalmedia.co",
-    siteName: "Times Digital Media",
-    locale: "en_US",
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE.name,
+    locale: "en_PK",
     type: "website",
-    images: [
-      {
-        url: "/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Times Digital Media logo"
-      }
-    ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Times Digital Media | Premium Digital Marketing",
-    description:
-      "Scaling high-growth brands via creative digital marketing, paid acquisitions, and viral editing.",
-    images: ["/logo.png"]
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
+  verification: {
+    ...(TRACKING.googleSiteVerification ? { google: TRACKING.googleSiteVerification } : {}),
+    ...(TRACKING.bingSiteVerification ? { other: { "msvalidate.01": TRACKING.bingSiteVerification } } : {}),
   },
 };
 
@@ -80,117 +70,12 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="en-PK"
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5J5THQ1C3E"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-
-              gtag('config', 'AW-18207064634');
-              gtag('config', 'G-5J5THQ1C3E');
-            `,
-          }}
-        />
-        {/* Event snippet for Click to call conversion page */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              function gtag_report_conversion(url) {
-                var callback = function () {
-                  if (typeof(url) != 'undefined') {
-                    window.location = url;
-                  }
-                };
-                gtag('event', 'conversion', {
-                    'send_to': 'AW-18207064634/JfykCMrn_bccELqE5-lD',
-                    'value': 1.0,
-                    'currency': 'PKR',
-                    'event_callback': callback
-                });
-                return false;
-              }
-            `,
-          }}
-        />
-      </head>
       <body className="min-h-screen flex flex-col font-sans bg-[#ffffff] text-[#09090b] overflow-x-hidden antialiased select-none md:select-auto">
-        {/* JSON-LD Structured Data / Schema Markup for SEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@graph": [
-                {
-                  "@type": "Organization",
-                  "@id": "https://timesdigitalmedia.co/#organization",
-                  "name": "Times Digital Media",
-                  "url": "https://timesdigitalmedia.co",
-                  "logo": {
-                    "@type": "ImageObject",
-                    "@id": "https://timesdigitalmedia.co/#logo",
-                    "url": "https://timesdigitalmedia.co/logo.png",
-                    "caption": "Times Digital Media Logo"
-                  },
-                  "image": {
-                    "@id": "https://timesdigitalmedia.co/#logo"
-                  },
-                  "sameAs": [
-                    "https://www.facebook.com/timesofislamabadurdu",
-                    "https://www.instagram.com/timesofislamabad/",
-                    "https://x.com/TimesofIslambad"
-                  ]
-                },
-                {
-                  "@type": "ProfessionalService",
-                  "@id": "https://timesdigitalmedia.co/#service",
-                  "name": "Times Digital Media",
-                  "url": "https://timesdigitalmedia.co",
-                  "logo": "https://timesdigitalmedia.co/logo.png",
-                  "image": "https://timesdigitalmedia.co/logo.png",
-                  "description": "Times Digital Media is a premium creative digital marketing agency helping brands scale globally through paid advertising, content creation, and web development.",
-                  "telephone": "+923298223036",
-                  "email": "thetimesdigitalmedia@gmail.com",
-                  "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "House no. 183, Street 5, Sector-V, DHA Phase 8",
-                    "addressLocality": "Lahore",
-                    "addressRegion": "Punjab",
-                    "postalCode": "54000",
-                    "addressCountry": "PK"
-                  },
-                  "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": 31.4697,
-                    "longitude": 74.4518
-                  },
-                  "priceRange": "$$$",
-                  "openingHoursSpecification": [
-                    {
-                      "@type": "OpeningHoursSpecification",
-                      "dayOfWeek": [
-                        "Monday",
-                        "Tuesday",
-                        "Wednesday",
-                        "Thursday",
-                        "Friday"
-                      ],
-                      "opens": "09:00",
-                      "closes": "18:00"
-                    }
-                  ]
-                }
-              ]
-            })
-          }}
-        />
+        {/* Site-wide entity schema; page-level nodes are added per route */}
+        <JsonLd data={graph(organizationNode(), websiteNode())} />
 
         {DEBUG_TOGGLES.disableCSSAnimations && (
           <style dangerouslySetInnerHTML={{__html: `
@@ -238,6 +123,7 @@ export default function RootLayout({
           <div className="relative z-10 w-full flex flex-col flex-1">
             {children}
             <Analytics />
+            <TrackingScripts />
           </div>
         </MotionConfig>
       </body>
