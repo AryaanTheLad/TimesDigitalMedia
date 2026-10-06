@@ -18,6 +18,31 @@ export interface CreativeAsset {
   src: string;
   alt: string;
   spanClass?: string;
+  /** "contain" shows a portrait or poster asset whole instead of cropping it. */
+  fit?: "cover" | "contain";
+}
+
+/** An Ads Manager screenshot published as proof on a case study. */
+export interface ProofShot {
+  src: string;
+  width: number;
+  height: number;
+  title: string;
+  alt: string;
+  caption: string;
+  keyNumbers: string[];
+}
+
+/** A video we produced and host ourselves (not an Instagram or YouTube embed). */
+export interface VideoItem {
+  /** File in /public/videos/<client>/. */
+  src: string;
+  /** Poster frame in /public/thumbnails/<client>/. */
+  poster: string;
+  title: string;
+  category: "bts" | "qa" | "singing" | "promo";
+  /** Shown under the title, e.g. "Caption variant B". */
+  note?: string;
 }
 
 export interface ReelItem {
@@ -33,7 +58,7 @@ export interface CaseStudy {
   subtitle: string;
   description: string;
   category: string;
-  industry: "real-estate" | "ecommerce" | "artists-entertainment" | "education" | "food" | "creative-space";
+  industry: "real-estate" | "ecommerce" | "artists-entertainment" | "education" | "food" | "creative-space" | "beauty";
   services: string[];
   challenge: string;
   approach: string[];
@@ -51,6 +76,12 @@ export interface CaseStudy {
   badgeClass: string;
   creatives?: CreativeAsset[];
   reels?: ReelItem[];
+  /** Self-hosted campaign videos (ad creatives we edited and run as ads). */
+  videos?: VideoItem[];
+  /** Ads Manager screenshots. Publish only with the client's consent. */
+  proofShots?: ProofShot[];
+  /** Reporting window the proof shots cover, e.g. "6 Sep – 5 Oct 2026". */
+  proofPeriod?: string;
 }
 
 const RED_THEME = {
@@ -353,6 +384,125 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
   },
   {
+    id: "afsana",
+    name: "Nail Art by Afsana",
+    subtitle: "Nail Studio Branding & Booking Ads",
+    description:
+      "A full brand and content build for a Lahore nail, lash and brow studio: logo and profile identity, Instagram highlight covers, a price and booking story set, and edited ad reels running as Meta conversation campaigns that send bookings straight to WhatsApp.",
+    category: "Beauty & Nail Studio",
+    industry: "beauty",
+    services: ["content-creation", "social-media-management", "meta-ads"],
+    challenge:
+      "Turn a home-based nail studio in Lahore into a bookable brand: one consistent look across the Instagram profile, clear published prices, and ads that produce real appointment conversations instead of passive likes.",
+    approach: [
+      "Built the brand identity: oxblood and blush palette, logo lockups and a pinned 1x3 profile grid banner.",
+      "Designed a highlight cover set (Book Now, Services, Portfolio, Lash & Brow, Reviews) and a six-card price and booking story set in Pakistani rupees.",
+      "Edited vertical ad reels per nail set (copper ombre coffin, red chrome swirl, mauve holo stiletto, glitter ombre, wedding season), each cut to a caption sequence ending on a booking prompt.",
+      "Ran the reels as Meta conversation campaigns to WhatsApp, testing caption and price variants of the same footage against each other.",
+    ],
+    results: [
+      "44 WhatsApp booking conversations in 30 days at Rs 213.63 each, from Rs 9,399.76 of ad spend",
+      "Meta marked the booking campaign high performing: 39,543 impressions and 23,997 people reached",
+      "Advantage+ audience beat manual targeting, bringing conversations down to Rs 177.99 each",
+      "Awareness campaigns ran alongside at Rs 0.06 per video view and Rs 0.10 per post engagement",
+    ],
+    stats: [
+      { label: "Conversations", value: "44 in 30 Days" },
+      { label: "Cost / Conversation", value: "Rs 213.63" },
+      { label: "People Reached", value: "23,997" },
+      { label: "Best Ad Set", value: "Rs 177.99 / Chat" },
+    ],
+    logoPath: "/logo_afsana.jpg",
+    logoPadding: "p-0",
+    logoBg: "bg-[#7B1F38] border-[#7B1F38]",
+    logoObject: "object-cover",
+    themeColor: "text-[#7B1F38]",
+    borderTheme: "border-l-4 border-l-[#7B1F38] hover:border-[#A33050]",
+    hoverGlow: "radial-gradient(circle at center, rgba(123, 31, 56, 0.08) 0%, transparent 70%)",
+    badgeClass: "bg-rose-50 border-rose-200 text-[#7B1F38]",
+    creatives: [
+      { src: "/portfolio_afsana_hero.jpg", alt: "Nail Art by Afsana pinned 1x3 Instagram profile grid banner", spanClass: "md:col-span-3" },
+      { src: "/portfolio_afsana_poster.jpg", alt: "'Forbidden fruit' red nail art campaign poster for Nail Art by Afsana", spanClass: "md:col-span-1", fit: "contain" },
+      { src: "/portfolio_afsana_beforeafter.jpg", alt: "Before and after creative showing a nail set redone in red gel by Afsana", spanClass: "md:col-span-1", fit: "contain" },
+      { src: "/portfolio_afsana_booking.jpg", alt: "'Send the service and the date' booking story card for Nail Art by Afsana", spanClass: "md:col-span-1", fit: "contain" },
+      { src: "/portfolio_afsana_highlights.jpg", alt: "Instagram highlight cover set for Nail Art by Afsana: Book Now, Services, Portfolio, Lash & Brow and Reviews", spanClass: "md:col-span-3" },
+      { src: "/portfolio_afsana_pricecards.jpg", alt: "Six-card Instagram story price set for Nail Art by Afsana covering nails, lashes, brows and booking, priced in Pakistani rupees", spanClass: "md:col-span-3" },
+    ],
+    proofPeriod: "Last 30 days: 6 September – 5 October 2026",
+    proofShots: [
+      {
+        src: "/proof_afsana_campaigns.jpg",
+        width: 1750,
+        height: 344,
+        title: "The booking campaign, marked high performing",
+        alt: "Meta Ads Manager campaign table for the Nail Art by Afsana ad account: the booking campaign shows 44 messaging conversations at Rs213.63 per conversation on Rs9,399.76 spent, labelled high performing.",
+        caption:
+          "The WhatsApp booking campaign produced 44 messaging conversations at Rs 213.63 each. Meta labelled it high performing. The two awareness campaigns above it ran on much smaller budgets.",
+        keyNumbers: ["44 messaging conversations", "Rs 213.63 per conversation", "Rs 9,399.76 spent"],
+      },
+      {
+        src: "/proof_afsana_adsets.jpg",
+        width: 1700,
+        height: 240,
+        title: "Three audiences tested against each other",
+        alt: "Meta Ads Manager ad set table: Detailed Ad Set 18 conversations at Rs232.82, ADV+ Ad Set 23 conversations at Rs177.99, Broad Ad Set 3 conversations at Rs371.80.",
+        caption:
+          "The same creatives ran against three audiences. Advantage+ won at Rs 177.99 per conversation, detailed targeting followed at Rs 232.82, and the broad set was switched off at Rs 371.80.",
+        keyNumbers: ["Advantage+: 23 chats at Rs 177.99", "Detailed: 18 chats at Rs 232.82", "Broad: 3 chats at Rs 371.80"],
+      },
+      {
+        src: "/proof_afsana_reach.jpg",
+        width: 1690,
+        height: 344,
+        title: "Reach and delivery cost",
+        alt: "Meta Ads Manager campaign table showing impressions, reach, CPM, CTR and CPC: the booking campaign has 39,543 impressions, 23,997 reach, Rs237.71 CPM, 0.92% CTR and Rs25.75 CPC.",
+        caption:
+          "The booking campaign reached 23,997 people with 39,543 impressions at a Rs 237.71 CPM, with a 0.92% link click-through rate and Rs 25.75 per link click.",
+        keyNumbers: ["39,543 impressions", "23,997 reached", "CPM Rs 237.71", "CTR 0.92%"],
+      },
+      {
+        src: "/proof_afsana_ads.jpg",
+        width: 1750,
+        height: 500,
+        title: "Which creatives produced the chats",
+        alt: "Meta Ads Manager ad table for the booking ad set: Creative Image 1 with 11 messaging conversations at Rs196.02, Creative Video 3 with 7 at Rs171.12, Wedding Bow with 3 at Rs45.16.",
+        caption:
+          "Ad-level results inside the winning ad set. One static set carried the volume at 11 conversations, the reels added 7 more, and the wedding-season cut produced the cheapest chats of the month.",
+        keyNumbers: ["Creative Image 1: 11 chats", "Creative Video 3: 7 chats at Rs 171.12", "Wedding Bow: Rs 45.16 per chat"],
+      },
+      {
+        src: "/proof_afsana_videoviews.jpg",
+        width: 1680,
+        height: 300,
+        title: "Reels views at Rs 0.06 each",
+        alt: "Meta Ads Manager ad table for the video views campaign: Aqua 8,884 two-second views at Rs0.06, Pomegranate 5,437 at Rs0.06, Creative 2 3,518 at Rs0.08.",
+        caption:
+          "The awareness campaign bought two-second video views at Rs 0.06 to Rs 0.08, with the strongest reel reaching 16,962 people on Rs 494.45 of spend.",
+        keyNumbers: ["17,839 video views in total", "Rs 0.06 per view", "Rs 1,117.01 spent"],
+      },
+      {
+        src: "/proof_afsana_engagement.jpg",
+        width: 1680,
+        height: 300,
+        title: "Post engagement at Rs 0.10",
+        alt: "Meta Ads Manager ad table for the post engagement campaign: Aqua 5,409 post engagements at Rs0.09, Creative 2 2,929 at Rs0.12, Pomegranate 2,658 at Rs0.09.",
+        caption:
+          "A parallel engagement campaign kept the profile active between booking pushes, buying 10,996 post engagements at Rs 0.09 to Rs 0.12 each.",
+        keyNumbers: ["10,996 post engagements", "Rs 0.10 per engagement", "Rs 1,105.87 spent"],
+      },
+    ],
+    videos: [
+      { src: "/videos/afsana/wedding-season.mp4", poster: "/thumbnails/afsana/wedding-season.jpg", title: "Wedding season set - 'Sort your wedding season look'", category: "promo" },
+      { src: "/videos/afsana/glitter-ombre-water.mp4", poster: "/thumbnails/afsana/glitter-ombre-water.jpg", title: "Glitter ombre set - water drop edit", category: "promo" },
+      { src: "/videos/afsana/mauve-holo-stiletto.mp4", poster: "/thumbnails/afsana/mauve-holo-stiletto.jpg", title: "Mauve holographic stiletto extensions", category: "promo" },
+      { src: "/videos/afsana/red-chrome-swirl-v1.mp4", poster: "/thumbnails/afsana/red-chrome-swirl-v1.jpg", title: "Red chrome swirl almond set", category: "promo", note: "Caption variant A - service led" },
+      { src: "/videos/afsana/red-chrome-swirl-v2.mp4", poster: "/thumbnails/afsana/red-chrome-swirl-v2.jpg", title: "Red chrome swirl almond set", category: "promo", note: "Caption variant B - price led" },
+      { src: "/videos/afsana/copper-ombre-coffin-v1.mp4", poster: "/thumbnails/afsana/copper-ombre-coffin-v1.jpg", title: "Copper ombre coffin set", category: "promo", note: "Caption variant A - look led" },
+      { src: "/videos/afsana/copper-ombre-coffin-v2.mp4", poster: "/thumbnails/afsana/copper-ombre-coffin-v2.jpg", title: "Copper ombre coffin set", category: "promo", note: "Caption variant B - price led" },
+      { src: "/videos/afsana/copper-ombre-coffin-v3.mp4", poster: "/thumbnails/afsana/copper-ombre-coffin-v3.jpg", title: "Copper ombre coffin set", category: "promo", note: "Caption variant C - brand led" },
+    ],
+  },
+  {
     id: "zorobroast",
     name: "Zoro Broast",
     subtitle: "Fast Food Branding & Menu Launch",
@@ -419,5 +569,6 @@ export const CLIENT_LOGOS = [
   { name: "Star Shah", path: "/logo_starshah.jpg", role: "Music Artist Campaign", desc: "Multi-week Reels campaign for the single 'Haule Haule'.", caseStudy: "starshah" },
   { name: "Marshall Ahmad", path: "/logo_marshall.jpg", role: "Single Launch Campaign", desc: "Transition reels and behind-the-scenes content for the single 'Lutteya'.", caseStudy: "marshall" },
   { name: "Asma Tariq Studio", path: "/logo_asmatariq.png", role: "Studio Space Campaign", desc: "Reels driving bookings for shoots, productions and creative events.", caseStudy: "asmatariq" },
+  { name: "Nail Art by Afsana", path: "/logo_afsana.jpg", role: "Beauty Studio Branding", desc: "Brand identity, price and booking content, and WhatsApp booking ads.", caseStudy: "afsana" },
   { name: "Flight Education Consultants", path: "/logo_flight.jpg", role: "Global Student Placement", desc: "Country guides, success stories and visa Q&A content.", caseStudy: "flight" },
 ];

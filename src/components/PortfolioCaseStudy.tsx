@@ -38,6 +38,7 @@ interface PortfolioCaseStudyProps {
 export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps) {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [activeReelId, setActiveReelId] = useState<string | null>(null);
+  const [activeVideoSrc, setActiveVideoSrc] = useState<string | null>(null);
   const [iframeLoading, setIframeLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState<"all" | "bts" | "qa" | "singing" | "promo">("all");
 
@@ -148,6 +149,11 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                 {client.reels && client.reels.length > 0 && (
                   <li>
                     {client.reels.length} campaign {client.reels.length === 1 ? "video" : "reels and videos"}
+                  </li>
+                )}
+                {client.videos && client.videos.length > 0 && (
+                  <li>
+                    {client.videos.length} edited ad {client.videos.length === 1 ? "video" : "videos"}
                   </li>
                 )}
                 {client.creatives && client.creatives.length > 0 && (
@@ -322,6 +328,125 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
         </div>
       )}
 
+      {/* Ads Manager proof screenshots */}
+      {client.proofShots && client.proofShots.length > 0 && (
+        <div className="space-y-8 mb-16">
+          <div className="flex items-center gap-3 mb-2 pt-12 border-t border-zinc-200">
+            <Layers className="w-5 h-5 text-red-500" />
+            <h2 className="text-lg font-black text-zinc-950 uppercase tracking-wider">
+              Campaign Results
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-zinc-600 font-medium leading-relaxed max-w-3xl -mt-4">
+            Screenshots from Meta Ads Manager for this client&apos;s account, published with their permission.
+            {client.proofPeriod ? ` ${client.proofPeriod}.` : ""}
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {client.proofShots.map((shot) => (
+              <figure
+                key={shot.src}
+                className="flex flex-col gap-4 rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-sm"
+              >
+                <figcaption className="flex items-start justify-between gap-3">
+                  <h3 className="text-sm sm:text-base font-black text-zinc-950 leading-snug">{shot.title}</h3>
+                  <span className="shrink-0 text-[9px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg border bg-red-50 border-red-200 text-[#E8000E]">
+                    Meta Ads Manager
+                  </span>
+                </figcaption>
+
+                <button
+                  type="button"
+                  aria-label={`Enlarge screenshot: ${shot.title}`}
+                  onClick={() => setLightboxImage(shot.src)}
+                  className="group relative block w-full overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 cursor-zoom-in"
+                >
+                  <span className="flex items-center gap-1.5 px-3 py-2 border-b border-zinc-200/70 bg-zinc-100/70">
+                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-300" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-300" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-300" />
+                  </span>
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt}
+                    width={shot.width}
+                    height={shot.height}
+                    sizes="(max-width: 1024px) 90vw, 45vw"
+                    className="w-full h-auto"
+                    quality={90}
+                    unoptimized
+                  />
+                </button>
+
+                <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed font-medium">{shot.caption}</p>
+                <ul className="flex flex-wrap gap-2">
+                  {shot.keyNumbers.map((n) => (
+                    <li
+                      key={n}
+                      className="text-[11px] font-bold text-zinc-700 bg-zinc-100 border border-zinc-200 rounded-lg px-2.5 py-1"
+                    >
+                      {n}
+                    </li>
+                  ))}
+                </ul>
+              </figure>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Self-hosted Campaign Video Showcase */}
+      {client.videos && client.videos.length > 0 && (
+        <div className="space-y-8 mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <Layers className="w-5 h-5 text-red-500" />
+            <h2 className="text-lg font-black text-zinc-950 uppercase tracking-wider">
+              Ad Creative Showcase
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {client.videos.map((video) => (
+              <button
+                type="button"
+                key={video.src}
+                aria-label={`Play video: ${video.title}`}
+                onClick={() => setActiveVideoSrc(video.src)}
+                className="group relative text-left w-full aspect-[9/16] rounded-3xl overflow-hidden bg-black border border-zinc-200 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5"
+              >
+                <Image
+                  src={video.poster}
+                  alt={video.title}
+                  fill
+                  sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, 22vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-[#E8000E]/10 opacity-90 group-hover:opacity-100 transition-opacity" />
+
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-red-650 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Play className="w-5 h-5 fill-current ml-0.5" />
+                  </div>
+                </div>
+
+                <div className="absolute bottom-0 inset-x-0 p-4 flex flex-col gap-1.5 z-10 text-white">
+                  <span className="text-[9px] font-extrabold uppercase tracking-widest bg-white/10 px-2 py-0.5 rounded-lg border border-white/10 w-fit">
+                    Ad Creative
+                  </span>
+                  <span className="block text-xs sm:text-sm font-bold leading-snug line-clamp-2">
+                    {video.title}
+                  </span>
+                  {video.note && (
+                    <span className="block text-[10px] font-bold text-white/70 leading-snug">{video.note}</span>
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Campaign Creative Assets Showcase Section */}
       {client.creatives && client.creatives.length > 0 && (
         <div className="space-y-8">
@@ -356,7 +481,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                     alt={creative.alt}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className={`${creative.fit === "contain" ? "object-contain p-3" : "object-cover"} transition-transform duration-700 group-hover:scale-105`}
                     quality={80}
                     unoptimized
                   />
@@ -424,16 +549,65 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
             >
               <img
                 src={lightboxImage}
-                alt={client.creatives?.find((cr) => cr.src === lightboxImage)?.alt ?? `${client.name} campaign creative`}
+                alt={
+                  client.creatives?.find((cr) => cr.src === lightboxImage)?.alt ??
+                  client.proofShots?.find((ps) => ps.src === lightboxImage)?.alt ??
+                  `${client.name} campaign creative`
+                }
                 className="w-auto h-auto max-w-full max-h-[82vh] object-contain bg-zinc-900"
                 loading="eager"
               />
               <div className="p-4 bg-zinc-900 border-t border-white/10 text-center">
                 <p className="text-xs font-bold text-white/80">
-                  {client.creatives?.find((cr) => cr.src === lightboxImage)?.alt}
+                  {client.creatives?.find((cr) => cr.src === lightboxImage)?.alt ??
+                    client.proofShots?.find((ps) => ps.src === lightboxImage)?.alt}
                 </p>
               </div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* =========================================================================
+         Ad Creative Lightbox (self-hosted video)
+         ========================================================================= */}
+      <AnimatePresence>
+        {activeVideoSrc && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setActiveVideoSrc(null)}
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg flex items-center justify-center p-4 cursor-pointer"
+          >
+            <button
+              onClick={() => setActiveVideoSrc(null)}
+              className="absolute top-6 right-6 w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white text-lg font-bold transition-all shadow-md z-50"
+              aria-label="Close Lightbox"
+            >
+              ✕
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-[380px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-zinc-950"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <video
+                key={activeVideoSrc}
+                src={activeVideoSrc}
+                poster={client.videos?.find((v) => v.src === activeVideoSrc)?.poster}
+                controls
+                autoPlay
+                playsInline
+                className="w-full h-full object-contain bg-black"
+              />
+            </motion.div>
+            <p className="sr-only">{client.videos?.find((v) => v.src === activeVideoSrc)?.title}</p>
           </motion.div>
         )}
       </AnimatePresence>

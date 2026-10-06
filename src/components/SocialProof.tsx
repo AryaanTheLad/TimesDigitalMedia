@@ -415,7 +415,7 @@ export default function SocialProof() {
               Meta Ads & Growth Metrics
             </span>
             <p className="text-xs text-[#57534E] font-medium font-body leading-relaxed max-w-xl">
-              Meta Ads Manager screenshots from client campaigns we manage. Client names are hidden; each card lists the key numbers shown in the screenshot.
+              Meta Ads Manager screenshots from client campaigns we manage. Client names are hidden unless the client agreed to be named; each card lists the key numbers shown in the screenshot.
             </p>
           </div>
 

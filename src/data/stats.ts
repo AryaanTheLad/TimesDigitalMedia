@@ -147,8 +147,9 @@ export const INSIGHT_SCREENSHOTS: InsightScreenshot[] = [
 ];
 
 /**
- * Meta Ads Manager screenshots from client campaigns. Client names are not
- * visible in the images. [[REVIEW]] confirm client consent to publish.
+ * Meta Ads Manager screenshots from client campaigns. Client names are hidden
+ * unless the client has a published case study and agreed to be named
+ * (Nail Art by Afsana). [[REVIEW]] confirm client consent to publish.
  */
 export interface AdsProof {
   title: string;
@@ -177,6 +178,38 @@ export const ADS_PROOF: AdsProof[] = [
       { label: "Conversion value", value: "Rs 288.6K", note: "9.39x ROAS" },
       { label: "Amount spent", value: "Rs 30.7K", note: "Ad budget" },
       { label: "Purchases", value: "63", note: "Website" },
+    ],
+  },
+  {
+    title: "44 WhatsApp bookings at Rs 213.63 each",
+    badge: "Meta Ads Manager",
+    src: "/proof_afsana_campaigns.jpg",
+    width: 1750,
+    height: 344,
+    period: "6 Sep – 5 Oct 2026",
+    alt: "Meta Ads Manager campaign table for Nail Art by Afsana: the booking campaign shows 44 messaging conversations at Rs213.63 per conversation on Rs9,399.76 spent, flagged by Meta as high performing.",
+    description:
+      "A conversation campaign for Lahore nail studio Nail Art by Afsana booked 44 WhatsApp conversations in 30 days at Rs 213.63 each, on Rs 9,399.76 of spend. Meta flagged the campaign as high performing.",
+    keyNumbers: [
+      { label: "Conversations", value: "44", note: "WhatsApp" },
+      { label: "Cost per conversation", value: "Rs 213.63" },
+      { label: "Amount spent", value: "Rs 9,399.76" },
+    ],
+  },
+  {
+    title: "Advantage+ cut cost per chat to Rs 177.99",
+    badge: "Meta Ads Manager",
+    src: "/proof_afsana_adsets.jpg",
+    width: 1700,
+    height: 240,
+    period: "6 Sep – 5 Oct 2026",
+    alt: "Meta Ads Manager ad set table: Detailed Ad Set 18 conversations at Rs232.82, ADV+ Ad Set 23 conversations at Rs177.99, Broad Ad Set 3 conversations at Rs371.80.",
+    description:
+      "The same creatives tested against three audiences on the same campaign. Advantage+ won at Rs 177.99 per conversation against Rs 232.82 for detailed targeting, and the broad set was switched off.",
+    keyNumbers: [
+      { label: "Advantage+", value: "Rs 177.99", note: "23 chats" },
+      { label: "Detailed", value: "Rs 232.82", note: "18 chats" },
+      { label: "Broad", value: "Rs 371.80", note: "Paused" },
     ],
   },
   {
