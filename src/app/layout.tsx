@@ -4,7 +4,7 @@ import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import Sidebars from "@/components/Sidebars";
 import LenisScroll from "@/components/LenisScroll";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import { MotionConfig } from "framer-motion";
 import { DEBUG_TOGGLES } from "./debug-toggles";
 import TrackingScripts from "@/components/TrackingScripts";
