@@ -3,8 +3,9 @@
  * client list, industry pages and service-page "related work" modules.
  *
  * Rules (owner decisions, Oct 2026):
- * - Only publish figures the owner has confirmed. Confirmed: Zameen 40M+
- *   reach & views, Star Shah 1.2M+ views, Flight 98% visa approvals.
+ * - Only publish figures the owner has confirmed. Confirmed: Star Shah
+ *   1.2M+ views, Flight 98% visa approvals. (Zameen's 40M+ figure removed
+ *   at the owner's request.)
  * - `results` may be qualitative ("what the campaign accomplished"),
  *   drawn from the brief and work shown; never invent numbers. Zameen and
  *   Stitch use qualitative results at the owner's request.
@@ -81,7 +82,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Generated developer and buyer leads through sponsored lead campaigns",
     ],
     stats: [
-      { label: "Reach & Views", value: "40 Million+" },
+      { label: "Coverage", value: "Nationwide" },
       { label: "Target Profile", value: "Developers & Buyers" },
       { label: "Core Channels", value: "Meta Ads & Web Portal" },
       { label: "Campaign Focus", value: "Property Expo & Launches" },
