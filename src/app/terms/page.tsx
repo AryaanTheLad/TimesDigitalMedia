@@ -1,183 +1,115 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Link from "next/link";
+import LegalPage, { LegalSection } from "@/components/LegalPage";
+import Placeholder from "@/components/Placeholder";
+import { SITE } from "@/data/site";
+import { AD_SPEND_NOTE, PRICING_NOTES } from "@/data/pricing";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Terms of Service | Times Digital Media",
-  description: "Review the governing terms of service, intellectual property guidelines, and campaign delivery conditions at Times Digital Media.",
-  alternates: {
-    canonical: "/terms",
-  },
-};
+export const metadata = buildMetadata({
+  title: "Terms of Service",
+  description: "Terms for using timesdigitalmedia.co and for Times Digital Media's marketing services, pricing, ad spend and media network placements.",
+  path: "/terms",
+});
+
+const ul = "list-disc pl-6 flex flex-col gap-2";
 
 export default function TermsOfServicePage() {
   return (
-    <>
-      <Navbar />
+    <LegalPage
+      title="Terms of Service"
+      path="/terms"
+      updated="6 October 2026"
+      intro={
+        <>
+          <p>
+            These terms cover your use of {SITE.url.replace("https://", "")} and the basis on which Times Digital Media (&quot;TDM&quot;,
+            &quot;we&quot;), a performance marketing agency based in Lahore, Pakistan, provides its services. By using this website you agree to them.
+          </p>
+          <Placeholder>[[TODO: confirm TDM&apos;s registered legal entity name and registration details, if any, and add them here]]</Placeholder>
+        </>
+      }
+    >
+      <LegalSection title="1. Using this website">
+        <p>
+          You may browse and share this website for lawful purposes. Articles and guides are general information, not legal, tax or
+          financial advice. Platform rules, prices and taxes change, so check current details before acting on them.
+        </p>
+      </LegalSection>
 
-      <main className="flex-1 w-full bg-transparent pt-32 pb-20">
-        <div className="max-w-4xl mx-auto px-6 md:px-12">
-          
-          {/* Header Block */}
-          <div className="border-b border-zinc-200 pb-8 mb-12">
-            <span className="text-[11px] font-extrabold uppercase tracking-widest bg-red-50 text-[#E8000E] px-3 py-1.5 rounded-lg border border-red-200/60 inline-block mb-4">
-              Legal Framework
-            </span>
-            <h1 className="text-4xl md:text-5xl font-black text-zinc-950 tracking-tight leading-tight">
-              Terms of Service
-            </h1>
-            <p className="text-zinc-500 font-bold text-sm mt-3 uppercase tracking-wider">
-              Effective Date: May 29, 2026
-            </p>
-          </div>
+      <LegalSection title="2. Our services and pricing">
+        <ul className={ul}>
+          <li>The scope of any engagement is set out in the proposal or agreement we send you, which takes priority over this website.</li>
+          <li>Package prices on our <Link href="/pricing" className="font-bold underline">pricing page</Link> are monthly management fees in PKR. {PRICING_NOTES.taxInclusive}</li>
+          <li>{AD_SPEND_NOTE}</li>
+          <li>{PRICING_NOTES.addOns} {PRICING_NOTES.international}</li>
+          <li>We may update published prices; changes don&apos;t affect an agreement already in place for its current term.</li>
+        </ul>
+      </LegalSection>
 
-          {/* Content Block */}
-          <div className="prose prose-zinc max-w-none text-zinc-800 leading-relaxed font-bold text-sm md:text-base flex flex-col gap-8">
-            
-            <section className="flex flex-col gap-4">
-              <p>
-                Welcome to <span className="text-zinc-950 font-black">Times Digital Media</span>. By accessing, browsing, or utilizing timesdigitalmedia.co, our client portals, performance dashboards, or integrated campaign tools, you agree to be legally bound by these Terms of Service, which take effect immediately upon your first use. 
-              </p>
-              <p>
-                If you do not agree to be bound by all of the following terms, you are advised not to use, register for, or contribute creative assets to the Times Digital Media platform or our agency networks.
-              </p>
-              <p>
-                Times Digital Media reserves full authority to modify or bring changes to these Terms of Service from time to time. As an active user or strategic partner, you are advised to review these terms regularly to ensure compliance with the latest framework.
-              </p>
-            </section>
+      <LegalSection title="3. Results">
+        <p>
+          We work toward the goals we agree with you, including our commitment to more qualified leads within 30 days. Advertising
+          results also depend on things outside our control, such as platform auctions and policies, your offer and pricing, your
+          follow-up, and market conditions, so we don&apos;t promise any specific number of leads, sales or return on ad spend.
+        </p>
+      </LegalSection>
 
-            <section className="flex flex-col gap-4 p-6 rounded-2xl bg-zinc-50 border border-zinc-200">
-              <h2 className="text-xl font-black text-zinc-950 tracking-tight border-l-4 border-l-[#E8000E] pl-3 py-0.5">
-                1. Acceptable Use of Our Platform & Portals
-              </h2>
-              <p>
-                As a user or client of Times Digital Media, you are bound to abide by our professional code of ethics. You agree to utilize this site and our related services strictly for legitimate business, creative, and marketing ends.
-              </p>
-              <p>
-                You must take extra care while utilizing our resources to ensure that your actions do not disrupt, overload, or shrink availability for other clients to utilize our dashboards, access active campaigns, or collaborate with our agency teams.
-              </p>
-              <p className="text-red-700">
-                Users are strictly prohibited from:
-              </p>
-              <ul className="list-disc pl-6 flex flex-col gap-2">
-                <li>Harassing, causing distress, or causing inconvenience to any staff member, strategic partner, or fellow user.</li>
-                <li>Transmitting obscene, offensive, or defamatory content through any agency channels or active ad creatives.</li>
-                <li>Disrupting interactive campaign workspaces, performance logs, or communications going among users through any uncalled attitude or malicious automated scripts.</li>
-              </ul>
-            </section>
+      <LegalSection title="4. Ad accounts and platform policies">
+        <ul className={ul}>
+          <li>Campaigns run in ad accounts you own. You can remove our access at any time.</li>
+          <li>You are responsible for paying Meta, Google and other platforms for ad spend, and for keeping a working payment method on file.</li>
+          <li>All ads must follow the platforms&apos; advertising policies. Platforms can reject ads or restrict accounts independently of us; we&apos;ll help you respond, but we can&apos;t control their decisions.</li>
+        </ul>
+      </LegalSection>
 
-            <section className="flex flex-col gap-4">
-              <h2 className="text-xl font-black text-zinc-950 tracking-tight border-l-4 border-l-[#E8000E] pl-3 py-0.5">
-                2. Intellectual Property Rights
-              </h2>
-              <p>
-                All copyright, trademarks, design rights, patents, source code, visual interfaces, and other intellectual property rights (registered or unregistered) in and on this website, and all content (including all web applications, custom animations, databases, and dashboard layouts) shall remain strictly vested in <span className="text-zinc-950 font-black">Times Digital Media (Pvt) Ltd</span> or its licensors.
-              </p>
-              <p>
-                You shall not copy, reproduce, republish, disassemble, decompile, reverse engineer, download, post, broadcast, transmit, make available to the public, or otherwise utilize the proprietary assets or code of this website in any way except for your own personal, non-commercial use, or as explicitly authorized under a signed corporate campaign contract with us.
-              </p>
-              <p>
-                Any other use of the proprietary content of this website requires the prior, explicit written permission of Times Digital Media.
-              </p>
-              <p>
-                The names, images, and logos identifying Times Digital Media or third parties, and their respective products and marketing services, are subject to the copyright, design rights, and trademarks of Times Digital Media and/or the respective third-party owners. Nothing contained in these terms shall be construed as conferring any license or right to use any intellectual property of Times Digital Media or any other third party.
-              </p>
-            </section>
+      <LegalSection title="5. Materials you provide">
+        <p>
+          You keep ownership of the logos, images, videos, copy and other materials you give us. You give us permission to use and
+          adapt them to deliver your campaigns, and you confirm you have the rights to do so and that they don&apos;t break any law.
+        </p>
+      </LegalSection>
 
-            <section className="flex flex-col gap-4">
-              <h2 className="text-xl font-black text-zinc-950 tracking-tight border-l-4 border-l-[#E8000E] pl-3 py-0.5">
-                3. Creative Submissions & Campaign Deliverables
-              </h2>
-              <p>
-                As a contributor or client submitting creative materials to Times Digital Media, including but not limited to copy, photographs, ad graphics, video reels, or audio files for marketing placements, you grant Times Digital Media a non-exclusive, royalty-free, global license to host, adapt, modify, and run the materials across our digital media channels and ad networks to fulfill your campaign objectives.
-              </p>
-              <p>
-                Copyright in your submitted materials will remain fully with you. This permission is non-exclusive, so you can continue to use your assets in any other way, including allowing others to use them.
-              </p>
-              <p>
-                By submitting materials, you warrant that:
-              </p>
-              <ul className="list-disc pl-6 flex flex-col gap-2">
-                <li>Your submission is your original work, or you hold all necessary copyright licenses to deploy the assets for paid digital advertising.</li>
-                <li>Your materials are not defamatory and do not breach any international or local laws.</li>
-                <li>You permit Times Digital Media to display, configure, and optimize these materials for the purposes highlighted under your campaign briefs.</li>
-              </ul>
-              <p>
-                Times Digital Media will attribute credit for major client campaigns or case studies where appropriate, unless you request otherwise. We caution our creative partners and clients not to endanger themselves or others, take unnecessary risks, or break any laws in order to generate advertising content.
-              </p>
-            </section>
+      <LegalSection title="6. Case studies">
+        <p>
+          With a client&apos;s agreement, we may show their name, logo, creative and results as examples of our work. Tell us if you&apos;d
+          prefer we didn&apos;t.
+        </p>
+      </LegalSection>
 
-            <section className="flex flex-col gap-4">
-              <h2 className="text-xl font-black text-zinc-950 tracking-tight border-l-4 border-l-[#E8000E] pl-3 py-0.5">
-                4. Times Digital Media Portal Community Rules
-              </h2>
-              <p>
-                Accessing client dashboards or entering our community spaces requires registering a valid corporate account at <span className="text-zinc-950 font-black">timesdigitalmedia.co</span>. All personal information supplied during registration will be handled strictly in accordance with our Privacy Policy.
-              </p>
-              <p>
-                To maintain a secure and professional environment on our dashboards and shared workspaces, all registered partners must strictly observe the following rules:
-              </p>
-              <ol className="list-decimal pl-6 flex flex-col gap-2">
-                <li>Abstain from showing abusive behavior or sharing offensive material.</li>
-                <li>Refrain from disseminating unlawful or objectionable content.</li>
-                <li>Avoid spamming, multi-posting, or uploading off-topic files.</li>
-                <li>Abstain from unauthorized third-party advertising or self-promotion outside specific client scopes.</li>
-                <li>Select appropriate, professional user and portal organization names.</li>
-                <li>Never misuse the portal complaint, verification, or customer support ticketing systems.</li>
-                <li>Contribute only authentic, verified assets and original campaigns.</li>
-                <li>Register exclusively with a valid, active business email address.</li>
-                <li>Maintain a single, secure login per user to protect sensitive conversion data.</li>
-                <li>Avoid pretending to be an authorized country representative or attempting to disrupt our API feeds in any way.</li>
-              </ol>
-            </section>
+      <LegalSection title="7. Media network placements">
+        <p>
+          Sponsored posts and placements on the TDM media network are subject to availability and to the network&apos;s content
+          standards. We may decline or ask for changes to content that is misleading, unlawful or unsuitable for the audience.
+        </p>
+      </LegalSection>
 
-            <section className="flex flex-col gap-4">
-              <h2 className="text-xl font-black text-zinc-950 tracking-tight border-l-4 border-l-[#E8000E] pl-3 py-0.5">
-                5. Enforcement & Breach of Protocol
-              </h2>
-              <p>
-                If Times Digital Media determines a breach of these community rules or acceptable use policies has occurred on your part, we will take immediate cognizance and reserves the right to take every step necessary to protect our infrastructure. 
-              </p>
-              <p>
-                We reserve the absolute right to delete any client submissions, suspend campaign trackers, or permanently terminate your portal access without prior notice, explanation, or liability.
-              </p>
-              <p>
-                <span className="text-zinc-950 font-black">Minors (Under 18):</span> Minors must obtain the explicit permission of a parent or guardian before registering with our corporate platforms, client portals, or initiating ad services.
-              </p>
-            </section>
+      <LegalSection title="8. Our content">
+        <p>
+          The design, text and code of this website belong to Times Digital Media. Client names, logos and creative belong to their
+          owners. Don&apos;t copy or republish our content for commercial use without permission.
+        </p>
+      </LegalSection>
 
-            <section className="flex flex-col gap-4">
-              <h2 className="text-xl font-black text-zinc-950 tracking-tight border-l-4 border-l-[#E8000E] pl-3 py-0.5">
-                6. Disclaimers & Limitation of Liability
-              </h2>
-              <p>
-                A major portion of performance comments, click responses, and conversion signals comes from public interactions on social networks. Times Digital Media is not responsible or liable for any public responses, external comments, or conversion behaviors posted by members of the public across client landing pages or our dashboard links.
-              </p>
-              <p>
-                Times Digital Media posts all performance dashboards, creative assets, and conversion feeds as is and as available. While we take pride in ensuring all conversion tracking setups and campaign assets are functional and correct at the time of deployment, no responsibility is accepted for third-party ad network API changes, server omissions, or temporary feed inaccuracies.
-              </p>
-              <p className="text-red-700">
-                Times Digital Media shall not be liable for any of the following losses or damages (whether such losses were foreseen, foreseeable, known, or otherwise):
-              </p>
-              <ul className="list-disc pl-6 flex flex-col gap-2">
-                <li>Loss of conversion tracking or marketing audience data.</li>
-                <li>Loss of client revenue or anticipated campaign profits.</li>
-                <li>Loss of prospective business, clients, or DTC sales.</li>
-                <li>Loss of opportunity (including third-party ad network suspensions).</li>
-                <li>Loss of digital goodwill or injury to corporate reputation.</li>
-                <li>Losses suffered by third parties (including sub-contracted influencers).</li>
-                <li>Any indirect, consequential, special, or exemplary damages arising from the use of our services or this website, regardless of the form of action.</li>
-              </ul>
-              <p>
-                Times Digital Media does not warrant or guarantee that functions available on this website will be uninterrupted or error-free, that defects will be corrected, or that the servers making timesdigitalmedia.co available are free of viruses or backend bugs.
-              </p>
-            </section>
+      <LegalSection title="9. Liability">
+        <p>
+          We provide this website as it is and can&apos;t promise it will always be available or error-free. To the extent the law allows,
+          we aren&apos;t liable for indirect or consequential losses arising from use of this website. Liability for services is set out
+          in your agreement with us.
+        </p>
+      </LegalSection>
 
-          </div>
+      <LegalSection title="10. Governing law">
+        <p>These terms are governed by the laws of Pakistan.</p>
+        <Placeholder>[[REVIEW: confirm governing law and jurisdiction (e.g. courts of Lahore)]]</Placeholder>
+      </LegalSection>
 
-        </div>
-      </main>
-
-      <Footer />
-    </>
+      <LegalSection title="11. Changes and contact">
+        <p>
+          We may update these terms and will change the date above when we do. Questions:{" "}
+          <a href={`mailto:${SITE.email}`} className="font-bold underline">{SITE.email}</a>. See also our{" "}
+          <Link href="/privacy" className="font-bold underline">Privacy Policy</Link>.
+        </p>
+      </LegalSection>
+    </LegalPage>
   );
 }

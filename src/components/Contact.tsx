@@ -1,12 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, Phone } from "lucide-react";
+import { SITE, whatsappHref } from "@/data/site";
+import { PACKAGES } from "@/data/pricing";
+import { getAttribution, handlePhoneClick, trackEmailClick, trackLead, trackWhatsAppClick } from "@/lib/analytics";
+
+const PACKAGE_LABELS: Record<string, string> = {
+  ...Object.fromEntries(PACKAGES.map((p) => [p.id, p.name])),
+  international: "International pricing",
+};
 
 export default function Contact() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const packageParam = searchParams.get("package") ?? "";
+  const selectedPackage = PACKAGE_LABELS[packageParam] ?? "";
+  const [submitError, setSubmitError] = useState(false);
 
   // Form State
   const [name, setName] = useState("");
@@ -22,6 +34,7 @@ export default function Contact() {
     if (!name || !email) return;
 
     setIsSubmitting(true);
+    setSubmitError(false);
 
     try {
       const response = await fetch("https://formspree.io/f/xgobwwyj", {
@@ -37,21 +50,24 @@ export default function Contact() {
           adSpend: adSpend || "Not Provided",
           hurdles,
           message: message || "No details provided",
+          package: selectedPackage || "Not specified",
+          _subject: selectedPackage ? `New inquiry (${selectedPackage}) from ${name}` : `New inquiry from ${name}`,
+          ...getAttribution(),
         }),
       });
 
       if (response.ok) {
+        trackLead({ form: "contact", email, phone: phone || undefined, extra: { package: packageParam || "none" } });
         // Redirect to success page with a clean URL (no parameters)
         router.push("/contact/success");
-      } else {
-        alert("Something went wrong. Please email us at thetimesdigitalmedia@gmail.com directly.");
+        return;
       }
+      setSubmitError(true);
     } catch (error) {
       console.error("Submission error:", error);
-      alert("Network error. Please try emailing us instead.");
-    } finally {
-      setIsSubmitting(false);
+      setSubmitError(true);
     }
+    setIsSubmitting(false);
   };
 
   return (
@@ -73,57 +89,52 @@ export default function Contact() {
               </span>
             </div>
             
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight text-[#09090b] leading-[1.1] mb-6">
-              Ready to Scale Your Brand? <span className="text-[#E8000E]">Let's Talk.</span>
-            </h2>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight text-[#09090b] leading-[1.1] mb-6">
+              Ready to Scale Your Brand? <span className="text-[#E8000E]">Let&apos;s Talk.</span>
+            </h1>
             
             <p className="text-sm sm:text-base text-zinc-500 max-w-lg leading-relaxed font-body font-medium mb-8">
-              Send us a campaign inquiry, or reach out directly to scale your brand. Our marketing specialists are available to review your targets.
+              Send a campaign inquiry or reach us directly by phone, WhatsApp or email. We&apos;re based in Lahore and work with clients across Pakistan and abroad.
             </p>
 
             {/* Direct Contact Cards */}
             <div className="flex flex-col gap-4 w-full max-w-md">
               {/* Email Card */}
               <a 
-                href="mailto:thetimesdigitalmedia@gmail.com" 
+                href={`mailto:${SITE.email}`}
+                onClick={() => trackEmailClick("contact_page")}
                 className="flex items-center gap-4 p-4 rounded-2xl border border-zinc-200/80 bg-zinc-50/50 hover:bg-zinc-100/50 hover:border-zinc-300 transition-all duration-300 group shadow-sm hover:shadow"
               >
                 <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-600 group-hover:scale-105 transition-transform duration-300">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <span className="block text-[9px] text-zinc-400 font-bold uppercase tracking-wider font-mono">Email Us Directly</span>
-                  <span className="text-xs sm:text-sm font-bold text-zinc-800 break-all">thetimesdigitalmedia@gmail.com</span>
+                  <span className="block text-[9px] text-zinc-500 font-bold uppercase tracking-wider font-mono">Email Us Directly</span>
+                  <span className="text-xs sm:text-sm font-bold text-zinc-800 break-all">{SITE.email}</span>
                 </div>
               </a>
 
               {/* Phone Card */}
               <a 
-                href="tel:+923298223036" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (typeof window !== "undefined" && (window as any).gtag_report_conversion) {
-                    (window as any).gtag_report_conversion("tel:+923298223036");
-                  } else {
-                    window.location.href = "tel:+923298223036";
-                  }
-                }}
+                href={`tel:${SITE.phone.e164}`}
+                onClick={(e) => handlePhoneClick(e, "contact_page", SITE.phone.e164)}
                 className="flex items-center gap-4 p-4 rounded-2xl border border-zinc-200/80 bg-zinc-50/50 hover:bg-zinc-100/50 hover:border-zinc-300 transition-all duration-300 group shadow-sm hover:shadow"
               >
                 <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-600 group-hover:scale-105 transition-transform duration-300">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <span className="block text-[9px] text-zinc-400 font-bold uppercase tracking-wider font-mono">Call Our Team</span>
-                  <span className="text-xs sm:text-sm font-bold text-zinc-800">+92 329 8223036</span>
+                  <span className="block text-[9px] text-zinc-500 font-bold uppercase tracking-wider font-mono">Call Our Team</span>
+                  <span className="text-xs sm:text-sm font-bold text-zinc-800">{SITE.phone.display}</span>
                 </div>
               </a>
 
               {/* WhatsApp Card */}
               <a 
-                href="https://wa.me/923298223036?text=Hey%2C%20I%20am%20interested%20in%20your%20digital%20marketing%20services"
+                href={whatsappHref("Hey, I am interested in your digital marketing services")}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick("contact_page")}
                 className="flex items-center gap-4 p-4 rounded-2xl border border-emerald-100 bg-emerald-50/20 hover:bg-emerald-50/40 hover:border-emerald-200 transition-all duration-300 group shadow-sm hover:shadow"
               >
                 <div className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white group-hover:scale-105 transition-transform duration-300">
@@ -165,7 +176,7 @@ export default function Contact() {
                 <div className="flex items-center gap-3 border-b border-zinc-200 pb-4 mb-6">
                   <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                   <div>
-                    <span className="block text-[10px] text-zinc-400 font-mono tracking-widest uppercase">
+                    <span className="block text-[10px] text-zinc-500 font-mono tracking-widest uppercase">
                       INQUIRY SYSTEM SECURE
                     </span>
                     <span className="text-sm font-bold text-zinc-900">Send a Direct Inquiry</span>
@@ -173,9 +184,14 @@ export default function Contact() {
                 </div>
                 
                 <form onSubmit={handleFormSubmit} className="flex flex-col gap-5">
+                  {selectedPackage && (
+                    <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs font-bold text-[#E8000E]">
+                      Inquiring about: {selectedPackage}
+                    </p>
+                  )}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <label htmlFor="name" className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+                      <label htmlFor="name" className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
                         Your Name
                       </label>
                       <input
@@ -190,7 +206,7 @@ export default function Contact() {
                     </div>
 
                     <div className="flex flex-col gap-1.5">
-                      <label htmlFor="email" className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+                      <label htmlFor="email" className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
                         Work Email
                       </label>
                       <input
@@ -206,7 +222,7 @@ export default function Contact() {
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="phone" className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+                    <label htmlFor="phone" className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
                       Phone Number (Optional)
                     </label>
                     <input
@@ -220,12 +236,12 @@ export default function Contact() {
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="adSpend" className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+                    <label htmlFor="adSpend" className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
                       What is your current monthly ad spend?
                     </label>
                     <div className="relative w-full">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-extrabold text-zinc-400 select-none">
-                        $
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-extrabold text-zinc-500 select-none" aria-hidden="true">
+                        Rs
                       </span>
                       <input
                         required
@@ -233,14 +249,14 @@ export default function Contact() {
                         id="adSpend"
                         value={adSpend}
                         onChange={(e) => setAdSpend(e.target.value)}
-                        placeholder="e.g. 10,000 / mo"
-                        className="w-full bg-white border border-zinc-200 rounded-xl pl-8 pr-4 py-3.5 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all font-medium shadow-sm"
+                        placeholder="e.g. 100,000 / month (PKR)"
+                        className="w-full bg-white border border-zinc-200 rounded-xl pl-10 pr-4 py-3.5 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all font-medium shadow-sm"
                       />
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="hurdles" className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+                    <label htmlFor="hurdles" className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
                       What are your primary scaling hurdles?
                     </label>
                     <input
@@ -255,7 +271,7 @@ export default function Contact() {
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="message" className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+                    <label htmlFor="message" className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
                       Campaign Details & Target Goals
                     </label>
                     <textarea
@@ -267,6 +283,14 @@ export default function Contact() {
                       className="w-full bg-white border border-zinc-200 rounded-xl px-4 py-3.5 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all font-medium resize-none shadow-sm"
                     />
                   </div>
+
+                  {submitError && (
+                    <p role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800 font-medium">
+                      Sorry, your message didn&apos;t send. Please try again, or email{" "}
+                      <a href={`mailto:${SITE.email}`} className="font-bold underline">{SITE.email}</a> or{" "}
+                      <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="font-bold underline">WhatsApp us</a>.
+                    </p>
+                  )}
 
                   <button
                     disabled={isSubmitting}
@@ -292,7 +316,7 @@ export default function Contact() {
               </div>
 
               {/* Verification assurance label */}
-              <div className="mt-8 pt-4 border-t border-zinc-200 flex items-center text-[9px] text-zinc-400 font-bold uppercase tracking-wider">
+              <div className="mt-8 pt-4 border-t border-zinc-200 flex items-center text-[9px] text-zinc-500 font-bold uppercase tracking-wider">
                 <span>Secure Server Encryption</span>
               </div>
             </div>
