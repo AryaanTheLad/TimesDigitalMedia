@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, TrendingUp, Users, Globe } from "lucide-react";
+import { NETWORK_STATS } from "@/data/stats";
+import { trackCta } from "@/lib/analytics";
 
 export default function Hero() {
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -84,7 +86,7 @@ export default function Hero() {
             className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-[#E8000E]"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#E8000E] animate-pulse" />
-            <span>Performance Marketing</span>
+            <span>Performance Marketing Agency · Lahore, Pakistan</span>
           </motion.div>
 
           {/* Heading */}
@@ -94,7 +96,7 @@ export default function Hero() {
               in 30 days.
             </h1>
             <span className="text-4xl sm:text-5xl lg:text-[54px] font-black font-body tracking-tight text-[#E8000E] leading-[1.1] underline decoration-[#E8000E] decoration-4 underline-offset-8 mt-2">
-              1 Million Daily Impressions.
+              {NETWORK_STATS.dailyImpressions.short} Daily Impressions.
             </span>
           </motion.div>
 
@@ -103,7 +105,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-xs sm:text-sm text-[#57534E] max-w-xl leading-relaxed font-body font-medium mt-2"
           >
-            We&apos;re Pakistan&apos;s only growth agency that runs your paid ads AND distributes your brand across our own 1M+ follower media network. Performance marketing plus a built-in audience, all under one roof.
+            We run your Meta, Google and YouTube ads, then amplify your brand across our own media network of {NETWORK_STATS.followers.display} followers. Performance marketing plus a built-in audience, under one roof.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -117,7 +119,7 @@ export default function Hero() {
             >
               <a
                 href="#audit"
-                onClick={handleSmoothScroll}
+                onClick={(e) => { trackCta("free_growth_audit", "hero"); handleSmoothScroll(e); }}
                 className="flex items-center justify-between gap-4 px-6 py-4 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors shadow-sm min-w-[240px]"
               >
                 <span>Get My Free Growth Audit</span>
@@ -131,7 +133,7 @@ export default function Hero() {
             >
               <a
                 href="#clients"
-                onClick={handleSmoothScroll}
+                onClick={(e) => { trackCta("see_client_results", "hero"); handleSmoothScroll(e); }}
                 className="flex items-center justify-between gap-4 px-6 py-4 rounded-xl text-xs sm:text-sm font-bold text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors min-w-[240px]"
               >
                 <span>See Client Results</span>
@@ -179,11 +181,11 @@ export default function Hero() {
               <div className="relative p-5 sm:p-6 rounded-[24px] bg-zinc-900/60 border border-zinc-800/80 shadow-sm flex flex-col justify-between overflow-hidden aspect-[4/3] sm:aspect-auto">
                 <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#E8000E]" />
                 <div className="flex items-start justify-between w-full">
-                  <span className="text-[9px] sm:text-[10px] text-zinc-400 font-bold uppercase tracking-wider leading-none">Impressions</span>
+                  <span className="text-[9px] sm:text-[10px] text-zinc-400 font-bold uppercase tracking-wider leading-none">Reach</span>
                   <Users className="w-4 h-4 text-[#E8000E] shrink-0" />
                 </div>
                 <div className="flex flex-col mt-4">
-                  <span className="text-2xl sm:text-3xl lg:text-4xl font-serif lining-nums font-bold tracking-tight text-white leading-none">30M+</span>
+                  <span className="text-2xl sm:text-3xl lg:text-4xl font-serif lining-nums font-bold tracking-tight text-white leading-none">{NETWORK_STATS.monthlyReach.display}</span>
                   <span className="block text-[9px] sm:text-[10px] text-zinc-400 font-medium tracking-tight mt-2">
                     Avg Monthly Reach
                   </span>
@@ -198,7 +200,7 @@ export default function Hero() {
                   <TrendingUp className="w-4 h-4 text-[#E8000E] shrink-0" />
                 </div>
                 <div className="flex flex-col mt-4">
-                  <span className="text-2xl sm:text-3xl lg:text-4xl font-serif lining-nums font-bold tracking-tight text-white leading-none">70%</span>
+                  <span className="text-2xl sm:text-3xl lg:text-4xl font-serif lining-nums font-bold tracking-tight text-white leading-none">{NETWORK_STATS.ageCore.display}</span>
                   <span className="block text-[9px] sm:text-[10px] text-zinc-400 font-medium tracking-tight mt-2">
                     Ages 18-35 Segment
                   </span>
@@ -240,7 +242,7 @@ export default function Hero() {
             {/* Bottom Section indicator */}
             <div className="flex items-center justify-center gap-1.5 text-[8px] font-mono text-zinc-400 font-bold uppercase tracking-widest w-full">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Audience Depth
+              {NETWORK_STATS.views28d.display} views per 28 days
             </div>
           </div>
 
@@ -257,7 +259,7 @@ export default function Hero() {
               <span className="block text-[8px] text-zinc-400 font-extrabold uppercase tracking-widest">
                 Targeting Split
               </span>
-              <span className="text-xs font-black text-white block mt-0.5">80% M / 20% F</span>
+              <span className="text-xs font-black text-white block mt-0.5">{NETWORK_STATS.genderSplit.short}</span>
             </div>
           </motion.div>
 

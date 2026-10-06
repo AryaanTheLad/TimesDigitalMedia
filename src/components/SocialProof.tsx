@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
+import { ADS_PROOF, INSIGHT_SCREENSHOTS, STATS_SOURCE } from "@/data/stats";
 
 interface MetricCardItem {
   title: string;
@@ -10,6 +11,11 @@ interface MetricCardItem {
   badgeClass: string;
   description: string;
   imagePath: string;
+  /** Descriptive alt text stating what the screenshot shows. */
+  alt: string;
+  /** Text equivalent of the key numbers in the screenshot. */
+  keyNumbers?: string[];
+  period?: string;
   aspectClass?: string; // custom styling helper for asymmetric grid heights
   accentColor?: string; // "emerald" | "red" | "zinc"
   themeColor?: {
@@ -27,7 +33,7 @@ interface MetricCardItem {
   }[];
 }
 
-function MetricCard({ item, index, itemVariants }: { item: MetricCardItem; index: number; itemVariants: any }) {
+function MetricCard({ item, index, itemVariants }: { item: MetricCardItem; index: number; itemVariants: Variants }) {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
@@ -84,7 +90,7 @@ function MetricCard({ item, index, itemVariants }: { item: MetricCardItem; index
             </div>
             <div className="px-3 py-0.5 rounded-md bg-stone-200/40 text-[9px] text-stone-500/80 font-mono flex items-center gap-1 select-none max-w-[180px] truncate">
               <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
-              {item.accentColor === "emerald" ? "shopify.com/analytics" : "adsmanager.facebook.com"}
+              adsmanager.facebook.com
             </div>
             <div className="w-6" />
           </div>
@@ -94,7 +100,7 @@ function MetricCard({ item, index, itemVariants }: { item: MetricCardItem; index
             <div className="relative w-full h-full rounded-lg overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[1.02]">
               <Image
                 src={item.imagePath}
-                alt={item.title}
+                alt={item.alt}
                 fill
                 sizes="(max-width: 768px) 95vw, 30vw"
                 className="object-contain p-1"
@@ -109,12 +115,25 @@ function MetricCard({ item, index, itemVariants }: { item: MetricCardItem; index
         <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed font-body font-medium">
           {item.description}
         </p>
+        <KeyNumbers items={item.keyNumbers} />
       </div>
     </motion.div>
   );
 }
 
-function HeroMetricCard({ item, itemVariants }: { item: MetricCardItem; itemVariants: any }) {
+/** Text equivalent of a screenshot's key figures (readable without the image). */
+function KeyNumbers({ items }: { items?: string[] }) {
+  if (!items || items.length === 0) return null;
+  return (
+    <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] font-mono font-bold text-stone-600" aria-label="Key numbers in this screenshot">
+      {items.map((n) => (
+        <li key={n}>{n}</li>
+      ))}
+    </ul>
+  );
+}
+
+function HeroMetricCard({ item, itemVariants }: { item: MetricCardItem; itemVariants: Variants }) {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
@@ -158,7 +177,7 @@ function HeroMetricCard({ item, itemVariants }: { item: MetricCardItem; itemVari
                 {item.badge}
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8000E] animate-pulse" />
-              <span className="text-[8px] font-mono text-stone-400 uppercase tracking-widest font-bold">Verified Account</span>
+              <span className="text-[8px] font-mono text-stone-400 uppercase tracking-widest font-bold">{item.period ? `Ads Manager · ${item.period}` : "Ads Manager screenshot"}</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-black font-display text-[#09090b] tracking-tight mb-4 leading-none">
               {item.title}
@@ -212,7 +231,7 @@ function HeroMetricCard({ item, itemVariants }: { item: MetricCardItem; itemVari
               <div className="relative w-full h-full rounded-lg overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[1.02]">
                 <Image
                   src={item.imagePath}
-                  alt={item.title}
+                  alt={item.alt}
                   fill
                   sizes="(max-width: 768px) 95vw, 45vw"
                   className="object-contain p-1"
@@ -229,120 +248,51 @@ function HeroMetricCard({ item, itemVariants }: { item: MetricCardItem; itemVari
 }
 
 export default function SocialProof() {
-  const demographics: MetricCardItem[] = [
-    {
-      title: "Audience Depth",
-      badge: "Demographics",
-      badgeClass: "bg-stone-100 border-stone-200 text-stone-800",
-      description:
-        "Knowing the audience. Audited, deep-dive channel analytics that reveal exactly how and where people are finding your brand.",
-      imagePath: "/demographics_age_gender.jpg",
-    },
-    {
-      title: "Urban Hub Density",
-      badge: "National Reach",
-      badgeClass: "bg-stone-100 border-stone-200 text-stone-800",
-      description:
-        "Massive audience saturation within Pakistan's primary commercial centers, led by Karachi and Lahore, representing over 48% of total reach.",
-      imagePath: "/demographics_cities.jpg",
-    },
-    {
-      title: "Content Distribution",
-      badge: "Media Channels",
-      badgeClass: "bg-stone-100 border-stone-200 text-stone-800",
-      description:
-        "Connect with a highly influential profile, dominated by the active 25-44 age bracket and a robust 80%+ male audience split.",
-      imagePath: "/demographics_countries.jpg",
-    },
-    {
-      title: "Reach & Views",
-      badge: "Engagement Surge",
-      badgeClass: "bg-stone-100 border-stone-200 text-stone-800",
-      description:
-        "Exceptional audience visibility and content scaling, delivering a massive 40 Million+ views over 28 days.",
-      imagePath: "/demographics_views.jpg",
-    },
-  ];
+  const demographics: MetricCardItem[] = INSIGHT_SCREENSHOTS.map((shot) => ({
+    title: shot.title,
+    badge: shot.badge,
+    badgeClass: "bg-stone-100 border-stone-200 text-stone-800",
+    description: shot.caption,
+    imagePath: shot.src,
+    alt: shot.alt,
+    keyNumbers: shot.keyNumbers,
+  }));
 
-  const adsMetrics: MetricCardItem[] = [
-    {
-      title: "Consolidated Purchase ROAS",
-      badge: "Meta Ads Manager",
-      badgeClass: "bg-red-50 border-red-200 text-[#E8000E]",
-      description:
-        "Campaign summary showing 63 website purchases generating Rs 288,607.26 in conversion value from Rs 30,719.61 spent, scaling at 9.39x ROAS.",
-      imagePath: "/media__1782593048389.jpg",
-      aspectClass: "h-[200px] sm:h-[240px]",
-      accentColor: "red",
-      themeColor: {
-        bg: "hover:bg-red-50/10",
-        border: "hover:border-[#E8000E]/20",
-        text: "text-[#E8000E]",
-        glow: "rgba(232,0,14,0.03)",
-        badgeBg: "bg-red-50 border-red-100",
-        badgeBorder: "border-red-200/50",
-      },
-      heroStats: [
-        { label: "Conversion Value", value: "Rs 288.6K", badge: "9.39x ROAS" },
-        { label: "Amount Spent", value: "Rs 30.7K", badge: "Budget" },
-        { label: "Purchases", value: "63 Sales", badge: "Website" },
-      ],
-    },
-    {
-      title: "Optimized Purchase Stream ROAS",
-      badge: "Meta Ads Manager",
-      badgeClass: "bg-red-50 border-red-200 text-[#E8000E]",
-      description:
-        "Individual ad set scale verification highlighting Rs 157,650.20 generated on Rs 17,837.22 ad spend at a consistent 8.84x ROAS.",
-      imagePath: "/media__1782592495176.jpg",
-      aspectClass: "h-[120px] sm:h-[140px]",
-      accentColor: "red",
-      themeColor: {
-        bg: "hover:bg-red-50/10",
-        border: "hover:border-[#E8000E]/20",
-        text: "text-[#E8000E]",
-        glow: "rgba(232,0,14,0.03)",
-        badgeBg: "bg-red-50 border-red-100",
-        badgeBorder: "border-red-200/50",
-      },
-    },
-    {
-      title: "High-Volume Customer Acquisition",
-      badge: "Conversion Audit",
-      badgeClass: "bg-red-50 border-red-200 text-[#E8000E]",
-      description:
-        "Scaling optimization validating 977 website purchases achieved at a highly efficient 9.15x campaign ROAS.",
-      imagePath: "/media__1782592500159.jpg",
-      aspectClass: "h-[120px] sm:h-[140px]",
-      accentColor: "red",
-      themeColor: {
-        bg: "hover:bg-red-50/10",
-        border: "hover:border-[#E8000E]/20",
-        text: "text-[#E8000E]",
-        glow: "rgba(232,0,14,0.03)",
-        badgeBg: "bg-red-50 border-red-100",
-        badgeBorder: "border-red-200/50",
-      },
-    },
-    {
-      title: "CPM & Impressions Efficiency",
-      badge: "Performance Audit",
-      badgeClass: "bg-[#09090b]/5 border-zinc-200 text-[#09090b]",
-      description:
-        "Reach metrics demonstrating optimal cost structure: 34K impressions and 30K reach delivered at an extremely low CPM of Rs 16.39.",
-      imagePath: "/media__1782593054445.png",
-      aspectClass: "h-[120px] sm:h-[140px]",
-      accentColor: "zinc",
-      themeColor: {
-        bg: "hover:bg-stone-50/10",
-        border: "hover:border-stone-500/20",
-        text: "text-stone-700",
-        glow: "rgba(120,113,108,0.03)",
-        badgeBg: "bg-stone-50 border-stone-200",
-        badgeBorder: "border-stone-200/50",
-      },
-    },
-  ];
+  const redTheme = {
+    bg: "hover:bg-red-50/10",
+    border: "hover:border-[#E8000E]/20",
+    text: "text-[#E8000E]",
+    glow: "rgba(232,0,14,0.03)",
+    badgeBg: "bg-red-50 border-red-100",
+    badgeBorder: "border-red-200/50",
+  };
+  const stoneTheme = {
+    bg: "hover:bg-stone-50/10",
+    border: "hover:border-stone-500/20",
+    text: "text-stone-700",
+    glow: "rgba(120,113,108,0.03)",
+    badgeBg: "bg-stone-50 border-stone-200",
+    badgeBorder: "border-stone-200/50",
+  };
+
+  const adsMetrics: MetricCardItem[] = ADS_PROOF.map((proof, i) => {
+    const isLast = i === ADS_PROOF.length - 1;
+    return {
+      title: proof.title,
+      badge: proof.badge,
+      badgeClass: isLast ? "bg-[#09090b]/5 border-zinc-200 text-[#09090b]" : "bg-red-50 border-red-200 text-[#E8000E]",
+      description: proof.description,
+      imagePath: proof.src,
+      alt: proof.alt,
+      period: proof.period,
+      aspectClass: i === 0 ? "h-[200px] sm:h-[240px]" : "h-[120px] sm:h-[140px]",
+      accentColor: isLast ? "zinc" : "red",
+      themeColor: isLast ? stoneTheme : redTheme,
+      // Hero card shows numbers in its stat grid; others list them as text.
+      heroStats: i === 0 ? proof.keyNumbers.map((k) => ({ label: k.label, value: k.value, badge: k.note ?? "" })) : undefined,
+      keyNumbers: i === 0 ? undefined : proof.keyNumbers.map((k) => `${k.label}: ${k.value}`),
+    };
+  });
 
   const containerVariants = {
     hidden: {},
@@ -377,7 +327,7 @@ export default function SocialProof() {
         {/* Section eyebrow */}
         <div className="mb-12 flex flex-col items-start">
           <span className="text-[9px] font-mono tracking-widest uppercase text-stone-400">
-            06 / Audited Statistics
+            06 / Verified from platform insights
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-[#09090b] leading-[1.05] mt-4">
             Audience Demographics & <br />
@@ -392,7 +342,7 @@ export default function SocialProof() {
               Our Social Metrics
             </span>
             <p className="text-xs text-[#57534E] font-medium font-body leading-relaxed max-w-xl">
-              Audited channel analytics showing the distribution, geographic density, and reach of our primary media network handles.
+              Screenshots from Meta platform insights for our media network accounts, showing how people find the content, where they are and how many views it gets. {STATS_SOURCE.label}; not a third-party audit.
             </p>
           </div>
 
@@ -425,7 +375,7 @@ export default function SocialProof() {
                     <div className="flex-1 w-full h-full flex items-center justify-center p-4 relative">
                       <Image
                         src={item.imagePath}
-                        alt={item.title}
+                        alt={item.alt}
                         fill
                         sizes="(max-width: 768px) 90vw, 45vw"
                         className="object-contain rounded-lg p-2"
@@ -439,6 +389,7 @@ export default function SocialProof() {
                   <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed font-body font-medium">
                     {item.description}
                   </p>
+                  <KeyNumbers items={item.keyNumbers} />
                 </div>
               </div>
             ))}
@@ -464,7 +415,7 @@ export default function SocialProof() {
               Meta Ads & Growth Metrics
             </span>
             <p className="text-xs text-[#57534E] font-medium font-body leading-relaxed max-w-xl">
-              Verified ad set efficiency parameters, conversion returns, and sales dashboards showing exact proof of return on scale.
+              Meta Ads Manager screenshots from client campaigns we manage. Client names are hidden; each card lists the key numbers shown in the screenshot.
             </p>
           </div>
 

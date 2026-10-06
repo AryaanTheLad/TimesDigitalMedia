@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export default function ShowcaseBanner() {
   const containerVariants = {
@@ -44,7 +46,7 @@ export default function ShowcaseBanner() {
             </h2>
  
             <p className="text-sm sm:text-base text-[#57534E] leading-relaxed font-body font-medium max-w-md">
-              A bespoke showcase of our student acquisition engine. We deployed targeted placements across high-intent networks, driving record-breaking admissions scaling for the Spring 2026 academic drive.
+              Our student-acquisition work for the Spring 2026 intake: Meta and YouTube campaigns reaching prospective students aged 18–35, plus search campaigns capturing students already looking for programmes.
             </p>
  
             {/* Inline Editorial Stats (No cards, just clean whitespace and typography) */}
@@ -73,6 +75,9 @@ export default function ShowcaseBanner() {
                 </span>
               </div>
             </div>
+            <Link href="/portfolio/ibadat" className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#09090b] hover:text-[#E8000E] transition-colors min-h-[44px]">
+              Read the Ibadat case study <ArrowUpRight className="w-4 h-4" />
+            </Link>
           </motion.div>
  
           {/* Right Column: Massive Full-Bleed Image Frame */}
@@ -81,8 +86,8 @@ export default function ShowcaseBanner() {
             className="lg:col-span-7 relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[32px] overflow-hidden border border-stone-200/50 bg-stone-50 shadow-sm"
           >
             <Image
-              src="/ibadat_admissions.png"
-              alt="Ibadat International University Admissions Campaign"
+              src="/ibadat_admissions.jpg"
+              alt="Ibadat International University 'Admissions Open Spring 2026' campaign banner"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 60vw, 58vw"
               className="object-cover object-center transition-transform duration-1000 hover:scale-102"

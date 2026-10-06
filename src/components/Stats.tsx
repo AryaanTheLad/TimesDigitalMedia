@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { DEBUG_TOGGLES } from "../app/debug-toggles";
+import { NETWORK_STATS, STATS_SOURCE } from "@/data/stats";
 
 interface StatItemProps {
   value: number;
@@ -120,32 +121,29 @@ function Counter({
 export default function Stats() {
   const statsData: StatItemProps[] = [
     {
-      value: 1,
-      suffix: "M+",
+      value: NETWORK_STATS.dailyImpressions.value,
+      suffix: NETWORK_STATS.dailyImpressions.suffix,
       label: "Daily Impressions",
       description:
-        "High-impact visibility delivering active reach to a dynamic, buying audience daily.",
+        "Average daily impressions across the network's Facebook and Instagram accounts.",
     },
     {
-      value: 30,
-      suffix: "M+",
-      label: "Monthly Footprint",
-      description:
-        "Extensive brand exposure and engagement scaling across all digital campaign assets.",
+      value: NETWORK_STATS.monthlyReach.value,
+      suffix: NETWORK_STATS.monthlyReach.suffix,
+      label: "Monthly Reach",
+      description: `Accounts reached every month, with ${NETWORK_STATS.views28d.display} views in a 28-day window.`,
     },
     {
-      value: 2,
-      suffix: "M+",
-      label: "Platform Followers",
-      description:
-        "An organic, active community nurtured across official Facebook, Instagram, and X channels.",
+      value: NETWORK_STATS.followers.value,
+      suffix: NETWORK_STATS.followers.suffix,
+      label: "Network Followers",
+      description: NETWORK_STATS.followers.detail,
     },
     {
-      value: 70,
-      suffix: "%",
+      value: NETWORK_STATS.ageCore.value,
+      suffix: NETWORK_STATS.ageCore.suffix,
       label: "18-35 Core Demographic",
-      description:
-        "Precision targeted reach focusing on high-purchasing youth segments (80% M / 20% F).",
+      description: `Most of the network audience is aged 18 to 35 (${NETWORK_STATS.genderSplit.display}).`,
     },
   ];
 
@@ -184,10 +182,10 @@ export default function Stats() {
         {/* Section eyebrow */}
         <div className="mb-8 md:mb-10 flex flex-col items-start">
           <span className="text-[9px] font-mono tracking-widest uppercase text-stone-400">
-            02 / Key Metrics
+            02 / Media Network
           </span>
           <h2 className="text-xl md:text-2xl font-black font-display tracking-tight text-[#09090b] mt-3">
-            Performance at Scale
+            The audience we own
           </h2>
         </div>
 
@@ -231,6 +229,9 @@ export default function Stats() {
           ))}
         </motion.div>
 
+        <p className="mt-10 text-[11px] text-stone-500 font-medium font-body max-w-2xl">
+          <span className="font-bold text-stone-600">{STATS_SOURCE.label}.</span> {STATS_SOURCE.long}
+        </p>
       </div>
     </section>
   );

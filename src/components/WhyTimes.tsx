@@ -1,20 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { TrendingUp, Users, Globe } from "lucide-react";
+import { NETWORK_STATS } from "@/data/stats";
 
 const pillars = [
   {
     icon: TrendingUp,
     title: "Performance",
     description:
-      "Paid ads on Meta & Google, optimised daily for leads and ROAS.",
+      "Paid ads on Meta, Google & YouTube, optimised for leads and ROAS.",
   },
   {
     icon: Users,
     title: "Owned Reach",
     description:
-      "1M+ followers, 30M+ monthly impressions on our own media channels.",
+      `${NETWORK_STATS.followers.display} followers and ${NETWORK_STATS.monthlyReach.display} monthly reach on our own media channels.`,
   },
   {
     icon: Globe,
@@ -78,11 +80,14 @@ export default function WhyTimes() {
             variants={itemVariants}
             className="text-sm sm:text-base text-[#57534E] leading-relaxed font-body font-medium mt-5 max-w-2xl"
           >
-            Other agencies rent attention on Meta and Google. We do that too,
-            then we amplify your brand across the Times Digital Media network:
-            1M+ followers, 30M+ monthly reach, 40M+ views every 28 days, plus
-            placement on the Times of Islamabad news portal. Distribution your
-            competitors literally cannot buy.
+            Most agencies rent attention on Meta and Google. We do that too,
+            then amplify your brand across the TDM media network:{" "}
+            {NETWORK_STATS.followers.display} followers, {NETWORK_STATS.monthlyReach.display} monthly reach and{" "}
+            {NETWORK_STATS.views28d.display} views every 28 days, plus placement on the Times of Islamabad
+            news portal. It&apos;s distribution most agencies can&apos;t offer.{" "}
+            <Link href="/media-network" className="font-bold text-[#09090b] underline decoration-[#E8000E] underline-offset-4 hover:text-[#E8000E]">
+              How the media network works
+            </Link>
           </motion.p>
         </motion.div>
 

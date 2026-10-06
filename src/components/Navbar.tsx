@@ -2,53 +2,46 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { trackCta } from "@/lib/analytics";
 
 const NAV_LINKS = [
-  { label: "About", href: "/about", targetId: "" },
-  { label: "Services", href: "/#services", targetId: "services" },
-  { label: "Metrics", href: "/#proof", targetId: "proof" },
-  { label: "Packages", href: "/#packages", targetId: "packages" },
-  { label: "Portfolio", href: "/portfolio", targetId: "" },
-  { label: "Contact Us", href: "/contact", targetId: "" },
+  { label: "Services", href: "/services" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Case Studies", href: "/portfolio" },
+  { label: "Media Network", href: "/media-network" },
+  { label: "Blog", href: "/blog" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, targetId: string) => {
-    const target = document.getElementById(targetId);
-    if (!target) return;
-    e.preventDefault();
+  // Close the mobile menu on Escape
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setIsMobileMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isMobileMenuOpen]);
 
-    const targetPosition = target.getBoundingClientRect().top + window.scrollY - 80;
-    if (typeof window !== "undefined" && (window as any).lenis) {
-      (window as any).lenis.scrollTo(targetPosition);
-    } else {
-      window.scrollTo({
-        top: targetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <>
       <motion.nav
+        aria-label="Main"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
@@ -58,63 +51,58 @@ export default function Navbar() {
             : "py-5 bg-white/90 backdrop-blur-xl border-b border-zinc-200"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between gap-6">
           {/* Logo */}
           <Link
             href="/"
             prefetch={false}
+            aria-label="Times Digital Media home"
             onClick={(e) => {
               if (window.location.pathname === "/") {
                 e.preventDefault();
-                if (typeof window !== "undefined" && (window as any).lenis) {
-                  (window as any).lenis.scrollTo(0);
-                } else {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }
+                const lenis = (window as unknown as { lenis?: { scrollTo: (y: number) => void } }).lenis;
+                if (lenis) lenis.scrollTo(0);
+                else window.scrollTo({ top: 0, behavior: "smooth" });
               }
             }}
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-2 group shrink-0"
           >
-            <span className="text-3xl sm:text-4xl font-black tracking-tighter text-zinc-950 flex items-center gap-1.5">
+            <span className="text-3xl sm:text-4xl lg:text-3xl xl:text-4xl font-black tracking-tighter text-zinc-950 flex items-center gap-1.5">
               TIMES <span className="text-[#E8000E]">DIGITAL MEDIA</span>
             </span>
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map((link) => {
-              if (link.targetId) {
-                return (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    onClick={(e) => handleScrollToSection(e, link.targetId)}
-                    className="relative text-sm font-semibold text-zinc-600 hover:text-black transition-colors duration-300 py-1 px-1 group"
-                  >
-                    {link.label}
-                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 transition-all duration-300 group-hover:w-full" />
-                  </a>
-                );
-              }
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  prefetch={false}
-                  className="relative text-sm font-semibold text-zinc-600 hover:text-black transition-colors duration-300 py-1 px-1 group"
-                >
-                  {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-red-500 transition-all duration-300 group-hover:w-full" />
-                </Link>
-              );
-            })}
+          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                prefetch={false}
+                aria-current={isActive(link.href) ? "page" : undefined}
+                className={`relative text-sm font-semibold transition-colors duration-300 py-1 px-1 group ${isActive(link.href) ? "text-black" : "text-zinc-600 hover:text-black"}`}
+              >
+                {link.label}
+                <span className={`absolute bottom-0 left-0 h-[2px] bg-red-500 transition-all duration-300 ${isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"}`} />
+              </Link>
+            ))}
+            <Link
+              href="/free-growth-audit"
+              onClick={() => trackCta("free_growth_audit", "navbar")}
+              className="ml-1 inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors whitespace-nowrap"
+            >
+              Free Audit <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
+            type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex md:hidden p-2 rounded-full text-zinc-500 hover:text-black hover:bg-black/5 transition-all"
-            aria-label="Toggle menu"
+            className="flex lg:hidden p-2.5 rounded-full text-zinc-600 hover:text-black hover:bg-black/5 transition-all min-w-[44px] min-h-[44px] items-center justify-center"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -125,51 +113,47 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 top-[70px] z-40 md:hidden bg-white/95 backdrop-blur-2xl border-t border-black/5 px-8 py-12 flex flex-col justify-between overflow-y-auto"
+            className="fixed inset-0 top-[70px] z-40 lg:hidden bg-white/95 backdrop-blur-2xl border-t border-black/5 px-8 py-10 flex flex-col justify-between overflow-y-auto"
           >
-            <div className="flex flex-col gap-6">
+            <nav aria-label="Mobile" className="flex flex-col gap-4">
               {NAV_LINKS.map((link, idx) => (
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.05, duration: 0.4 }}
-                  key={link.label}
+                  transition={{ delay: idx * 0.04, duration: 0.4 }}
+                  key={link.href}
                   className="w-full"
                 >
-                  {link.targetId ? (
-                    <a
-                      href={link.href}
-                      onClick={(e) => {
-                        setIsMobileMenuOpen(false);
-                        handleScrollToSection(e, link.targetId);
-                      }}
-                      className="text-2xl font-bold text-zinc-800 hover:text-black flex items-center justify-between group py-2"
-                    >
-                      {link.label}
-                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-red-500">
-                        →
-                      </span>
-                    </a>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      prefetch={false}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-2xl font-bold text-zinc-800 hover:text-black flex items-center justify-between group py-2"
-                    >
-                      {link.label}
-                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-red-500">
-                        →
-                      </span>
-                    </Link>
-                  )}
+                  <Link
+                    href={link.href}
+                    prefetch={false}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    aria-current={isActive(link.href) ? "page" : undefined}
+                    className="text-2xl font-bold text-zinc-800 hover:text-black flex items-center justify-between group py-2"
+                  >
+                    {link.label}
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-red-500" aria-hidden="true">
+                      →
+                    </span>
+                  </Link>
                 </motion.div>
               ))}
-            </div>
+            </nav>
+            <Link
+              href="/free-growth-audit"
+              onClick={() => {
+                trackCta("free_growth_audit", "mobile_menu");
+                setIsMobileMenuOpen(false);
+              }}
+              className="mt-8 w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-sm font-bold text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors"
+            >
+              Get My Free Growth Audit <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

@@ -8,17 +8,26 @@ import Clients from "@/components/Clients";
 import SocialProof from "@/components/SocialProof";
 import Packages from "@/components/Packages";
 import AuditForm from "@/components/AuditForm";
-import GuaranteeFAQ from "@/components/GuaranteeFAQ";
+import CommitmentFAQ from "@/components/CommitmentFAQ";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
+import Link from "next/link";
+import { buildMetadata } from "@/lib/seo";
+import { graph, webPageNode } from "@/lib/schema";
+import { HOME_FAQS } from "@/data/faqs";
+import { SITE } from "@/data/site";
+import { NETWORK_STATS } from "@/data/stats";
+import { PACKAGES } from "@/data/pricing";
 
-export const metadata = {
-  title: "Times Digital Media | Digital Marketing Agency",
-  description: "Google Ads, Meta Ads & Social Media Marketing Agency in Pakistan. Get more leads and sales in 30 days. Free strategy call, talk to our team today.",
-};
+const TITLE = `Performance Marketing Agency in Lahore | ${SITE.name}`;
+const DESCRIPTION = `Meta, Google & YouTube ads, lead generation and reels from a Lahore agency, plus reach on our own ${NETWORK_STATS.followers.display} follower media network. From ${PACKAGES[0].priceLabel}/month.`;
+
+export const metadata = buildMetadata({ title: TITLE, description: DESCRIPTION, path: "/", absoluteTitle: true });
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={graph(webPageNode("/", TITLE, DESCRIPTION))} />
       {/* Premium Sticky Navigation */}
       <Navbar />
 
@@ -60,8 +69,19 @@ export default function Home() {
         <AuditForm />
         <div className="w-full border-t border-zinc-200" />
 
-        {/* Guarantee & FAQ (CRO Change 9) */}
-        <GuaranteeFAQ />
+        {/* Commitment & FAQ (answers server-rendered for crawlers) */}
+        <CommitmentFAQ
+          faqs={HOME_FAQS}
+          footer={
+            <p className="mt-8 text-sm text-[#57534E] font-medium">
+              More answers on pricing, the media network and how we work:{" "}
+              <Link href="/faq" className="font-bold text-[#09090b] underline decoration-[#E8000E] underline-offset-4 hover:text-[#E8000E]">
+                read the full FAQ
+              </Link>
+              .
+            </p>
+          }
+        />
       </main>
 
       {/* Premium Light Sitemap Footer */}

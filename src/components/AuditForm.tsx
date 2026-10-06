@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle, Lightbulb, MessageCircle, ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
-import Link from "next/link";
+import { MessageCircle, ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
+import { SITE, whatsappHref } from "@/data/site";
+import { getAttribution, trackAuditStep, trackLead, trackWhatsAppClick } from "@/lib/analytics";
 
 /* ── Types ─────────────────────────────────────────────────────── */
 interface FormData {
@@ -17,7 +19,9 @@ interface FormData {
   whatsapp: string;
 }
 
-type SubmitResult = "high" | "low" | null;
+/** Budget options in PKR (monthly marketing budget incl. ad spend). The first is the "standard" tier; the rest route to the priority follow-up. */
+export const BUDGET_OPTIONS = ["Under Rs 150k", "Rs 150k–500k", "Rs 500k–1.5M", "Rs 1.5M+"] as const;
+const STEP_NAMES = ["website", "business", "running_ads", "budget", "goal", "contact"];
 
 /* ─────────────────────────────────────────────────────────────────
  *  CONFIGURATION - set these two URLs to receive audit submissions
@@ -116,8 +120,9 @@ function OptionButton({
 export default function AuditForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = back
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitResult, setSubmitResult] = useState<SubmitResult>(null);
+  const [submitError, setSubmitError] = useState(false);
   const [touchedFields, setTouchedFields] = useState<Record<string, boolean>>({});
 
   const [formData, setFormData] = useState<FormData>({
@@ -198,6 +203,7 @@ export default function AuditForm() {
       return;
     }
     if (currentStep < TOTAL_STEPS) {
+      trackAuditStep(currentStep, STEP_NAMES[currentStep - 1], "complete");
       setDirection(1);
       setCurrentStep((s) => s + 1);
       setTouchedFields({});
@@ -220,6 +226,7 @@ export default function AuditForm() {
     if (!isStepValid(6)) return;
 
     setIsSubmitting(true);
+    setSubmitError(false);
 
     const payload = {
       website: formData.website.trim(),
@@ -231,9 +238,12 @@ export default function AuditForm() {
       email: formData.email.trim(),
       whatsapp: formData.whatsapp.trim() || "Not provided",
       _subject: `New Growth Audit Request from ${formData.name.trim()}`,
+      ...getAttribution(),
     };
 
-    // Fire both endpoints in parallel - one failing won't block the other
+    // Fire both endpoints in parallel - one failing won't block the other.
+    // Formspree is the source of truth for "did we receive this lead".
+    let formspreeOk = !FORMSPREE_URL || FORMSPREE_URL.includes("YOUR_FORM_ID");
     const promises: Promise<void>[] = [];
 
     // 1. Formspree (email notification)
@@ -248,7 +258,8 @@ export default function AuditForm() {
           body: JSON.stringify(payload),
         })
           .then((res) => {
-            if (!res.ok) console.error("[AuditForm] Formspree error:", res.status);
+            if (res.ok) formspreeOk = true;
+            else console.error("[AuditForm] Formspree error:", res.status);
           })
           .catch((err) => console.error("[AuditForm] Formspree network error:", err)),
       );
@@ -275,11 +286,28 @@ export default function AuditForm() {
 
     await Promise.allSettled(promises);
 
-    // Determine branch
-    const highBudgets = ["$500-2k", "$2k-5k", "$5k+"];
-    setSubmitResult(highBudgets.includes(formData.budget) ? "high" : "low");
-    setIsSubmitting(false);
-  }, [formData, isStepValid, markTouched]);
+    if (!formspreeOk) {
+      // Don't show "success" when the lead didn't arrive; offer direct channels instead.
+      setSubmitError(true);
+      setIsSubmitting(false);
+      return;
+    }
+
+    const tier = formData.budget === BUDGET_OPTIONS[0] ? "standard" : "priority";
+    trackAuditStep(6, "contact", "complete");
+    trackLead({
+      form: "audit",
+      email: formData.email.trim(),
+      phone: formData.whatsapp.trim() || undefined,
+      extra: { budget: formData.budget, goal: formData.goal, running_ads: formData.runningAds, tier },
+    });
+    router.push(`/free-growth-audit/thank-you?tier=${tier}`);
+  }, [formData, isStepValid, markTouched, router]);
+
+  /* ── Step view tracking ── */
+  useEffect(() => {
+    trackAuditStep(currentStep, STEP_NAMES[currentStep - 1], "view");
+  }, [currentStep]);
 
   /* ── Shared input class ── */
   const inputClass =
@@ -293,12 +321,13 @@ export default function AuditForm() {
   };
 
   /* ── Progress bar width ── */
-  const progressPercent = submitResult ? 100 : ((currentStep) / TOTAL_STEPS) * 100;
+  const progressPercent = (currentStep / TOTAL_STEPS) * 100;
 
   /* ── Auto-advance for selectable option steps ── */
   const selectOption = useCallback(
     (field: keyof FormData, value: string) => {
       updateField(field, value);
+      trackAuditStep(currentStep, STEP_NAMES[currentStep - 1], "complete");
       // Auto-advance after a brief pause so the user sees the selection
       setTimeout(() => {
         setDirection(1);
@@ -306,7 +335,7 @@ export default function AuditForm() {
         setTouchedFields({});
       }, 250);
     },
-    [updateField],
+    [updateField, currentStep],
   );
 
   /* ── Step content renderer ── */
@@ -363,7 +392,7 @@ export default function AuditForm() {
             <p className="text-lg sm:text-xl font-bold font-display text-[#09090b]">
               Are you running paid ads right now?
             </p>
-            <div className="grid grid-cols-3 gap-3" role="radiogroup" aria-label="Paid ads status">
+            <div className="grid grid-cols-3 gap-3" role="group" aria-label="Paid ads status">
               {["Yes", "No", "Stopped"].map((opt) => (
                 <OptionButton
                   key={opt}
@@ -382,10 +411,10 @@ export default function AuditForm() {
         return (
           <div className="flex flex-col gap-4">
             <p className="text-lg sm:text-xl font-bold font-display text-[#09090b]">
-              Monthly marketing budget?
+              Monthly marketing budget, including ad spend?
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3" role="radiogroup" aria-label="Monthly budget range">
-              {["<$500", "$500-2k", "$2k-5k", "$5k+"].map((opt) => (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3" role="group" aria-label="Monthly budget range in PKR">
+              {BUDGET_OPTIONS.map((opt) => (
                 <OptionButton
                   key={opt}
                   label={opt}
@@ -405,7 +434,7 @@ export default function AuditForm() {
             <p className="text-lg sm:text-xl font-bold font-display text-[#09090b]">
               Your #1 goal in 90 days?
             </p>
-            <div className="grid grid-cols-2 gap-3" role="radiogroup" aria-label="Primary goal">
+            <div className="grid grid-cols-2 gap-3" role="group" aria-label="Primary goal">
               {["More leads", "More sales", "Brand awareness", "Launch"].map((opt) => (
                 <OptionButton
                   key={opt}
@@ -486,103 +515,6 @@ export default function AuditForm() {
     }
   };
 
-  /* ── WhatsApp fallback CTA (shared) ── */
-  const WhatsAppFallback = () => (
-    <a
-      href="https://wa.me/923298223036"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 text-sm font-bold text-emerald-700 hover:text-emerald-800 transition-colors mt-4"
-    >
-      <MessageCircle className="w-4 h-4" />
-      <span>Or message us on WhatsApp</span>
-    </a>
-  );
-
-  /* ── SUCCESS SCREENS ─────────────────────────────────────────── */
-  if (submitResult) {
-    return (
-      <section id="audit" className="relative py-8 md:py-12 bg-transparent border-t border-stone-100">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="max-w-2xl mx-auto"
-          >
-            {/* Progress bar - completed */}
-            <motion.div variants={itemVariants} className="mb-8">
-              <div className="h-1 w-full rounded-full bg-stone-200 overflow-hidden">
-                <div className="h-full bg-[#E8000E] rounded-full transition-all duration-500 ease-out" style={{ width: "100%" }} />
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariants}
-              className="rounded-[32px] bg-white border border-stone-200 p-8 sm:p-12 shadow-sm text-center flex flex-col items-center gap-6"
-            >
-              {submitResult === "high" ? (
-                /* ── HIGH budget success ── */
-                <>
-                  <div className="w-14 h-14 rounded-full bg-emerald-50 flex items-center justify-center">
-                    <CheckCircle className="w-7 h-7 text-emerald-500" />
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-[#09090b] leading-tight">
-                    We&apos;ll send your audit within 24 hours.
-                  </h3>
-                  <p className="text-sm sm:text-base text-[#57534E] leading-relaxed font-body font-medium max-w-md">
-                    One of our growth strategists will review your answers and prepare a personalised audit.
-                  </p>
-
-                  {/* Calendar embed placeholder */}
-                  <div
-                    id="calendar-embed"
-                    className="w-full rounded-2xl border-2 border-dashed border-stone-300 p-8 text-center text-sm text-stone-400 min-h-[300px] flex items-center justify-center"
-                  >
-                    [Calendar Embed - paste Cal.com or Calendly iframe here]
-                  </div>
-
-                  <WhatsAppFallback />
-                </>
-              ) : (
-                /* ── LOW budget success ── */
-                <>
-                  <div className="w-14 h-14 rounded-full bg-emerald-50 flex items-center justify-center">
-                    <CheckCircle className="w-7 h-7 text-emerald-500" />
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-[#09090b] leading-tight">
-                    Thanks! We&apos;ve received your details.
-                  </h3>
-                  <p className="text-sm sm:text-base text-[#57534E] leading-relaxed font-body font-medium max-w-md">
-                    Our team will review your answers and get back to you shortly. In the meantime, feel free to reach out or explore our packages.
-                  </p>
-
-                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-                    <a
-                      href="https://wa.me/923298223036"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:w-auto px-6 py-4 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#09090b] hover:bg-[#E8000E] transition-colors shadow-sm text-center inline-flex items-center justify-center gap-2"
-                    >
-                      <MessageCircle className="w-4 h-4" />
-                      <span>Message us on WhatsApp</span>
-                    </a>
-                    <Link
-                      href="/#packages"
-                      className="w-full sm:w-auto px-6 py-4 rounded-xl text-xs sm:text-sm font-bold text-[#09090b] border border-stone-300 hover:bg-[#09090b] hover:text-white transition-colors text-center"
-                    >
-                      View Starter Package
-                    </Link>
-                  </div>
-                </>
-              )}
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-    );
-  }
-
   /* ── FORM ─────────────────────────────────────────────────────── */
   return (
     <section id="audit" className="relative py-8 md:py-12 bg-transparent border-t border-stone-100">
@@ -639,6 +571,23 @@ export default function AuditForm() {
               </AnimatePresence>
             </div>
 
+            {submitError && (
+              <div role="alert" className="mt-6 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800 font-medium">
+                Sorry, your answers didn&apos;t reach us. Please try again, or send them on{" "}
+                <a
+                  href={whatsappHref("Hi, I tried to request a free growth audit on your website.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppClick("audit_form_error")}
+                  className="font-bold underline"
+                >
+                  WhatsApp
+                </a>{" "}
+                or email{" "}
+                <a href={`mailto:${SITE.email}`} className="font-bold underline">{SITE.email}</a>.
+              </div>
+            )}
+
             {/* Navigation buttons */}
             <div className="flex items-center justify-between mt-8 pt-6 border-t border-stone-100">
               {/* Back button */}
@@ -688,6 +637,18 @@ export default function AuditForm() {
               )}
             </div>
           </div>
+          <p className="mt-5 text-center text-xs text-stone-500 font-medium">
+            Prefer to talk?{" "}
+            <a
+              href={whatsappHref("Hi, I'd like a free growth audit.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick("audit_form")}
+              className="inline-flex items-center gap-1 font-bold text-emerald-700 hover:text-emerald-800"
+            >
+              <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" /> Message us on WhatsApp
+            </a>
+          </p>
         </div>
       </div>
     </section>
