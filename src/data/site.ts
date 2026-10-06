@@ -78,8 +78,19 @@ export interface SocialProfile {
   handle: string;
 }
 
-/** Footer links confirmed correct by the owner. */
+/**
+ * Social profiles (owner-confirmed, Oct 2026).
+ * Note: TDM's own Facebook page lives at /timesofislamabadurdu despite the
+ * slug; Times of Islamabad's Facebook page is /TimesofIslamabad.
+ */
 export const SOCIALS: SocialProfile[] = [
+  {
+    platform: "facebook",
+    label: "Times Digital Media on Facebook",
+    href: "https://www.facebook.com/timesofislamabadurdu",
+    owner: "tdm",
+    handle: "Times Digital Media",
+  },
   {
     platform: "instagram",
     label: "Times Digital Media on Instagram",
@@ -90,7 +101,7 @@ export const SOCIALS: SocialProfile[] = [
   {
     platform: "facebook",
     label: "Times of Islamabad on Facebook (TDM media network)",
-    href: "https://www.facebook.com/timesofislamabadurdu",
+    href: "https://www.facebook.com/TimesofIslamabad",
     owner: "network",
     handle: "Times of Islamabad",
   },
@@ -107,12 +118,12 @@ export const SOCIALS: SocialProfile[] = [
 export const NETWORK_PROPERTIES = {
   newsPortal: { name: "Times of Islamabad", url: "https://timesofislamabad.com" },
   instagram: "https://www.instagram.com/timesofislamabad/",
-  facebook: "https://www.facebook.com/timesofislamabadurdu",
+  facebook: "https://www.facebook.com/TimesofIslamabad",
 } as const;
 
 /**
  * Profiles that belong to TDM itself and therefore go in Organization.sameAs.
- * [[TODO: add TDM's own Facebook page URL, LinkedIn and Google Business Profile URL once confirmed]]
+ * [[TODO: add TDM's LinkedIn and Google Business Profile URL once they exist]]
  */
 export const TDM_SAME_AS: string[] = SOCIALS.filter((s) => s.owner === "tdm").map((s) => s.href);
 

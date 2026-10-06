@@ -4,7 +4,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
 import JsonLd from "@/components/JsonLd";
-import Placeholder from "@/components/Placeholder";
 import MediaNetworkForm from "@/components/MediaNetworkForm";
 import { FAQList } from "@/components/CommitmentFAQ";
 import { ENTITY, NETWORK_PROPERTIES, SOCIALS } from "@/data/site";
@@ -117,7 +116,6 @@ export default function MediaNetworkPage() {
                   </a>
                 </li>
               ))}
-              <li className="py-3"><Placeholder>[[TODO: add TDM&apos;s own Facebook page URL to src/data/site.ts]]</Placeholder></li>
             </ul>
           </div>
         </section>

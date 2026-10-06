@@ -58,8 +58,7 @@ Visible only in `npm run dev` (amber boxes and outlines); `Placeholder` and `Rev
 
 | File | Item |
 |---|---|
-| `src/data/site.ts` | TDM's own Facebook page, LinkedIn and Google Business Profile URLs (for `sameAs`) |
-| `src/app/media-network/page.tsx` | TDM's Facebook page URL (network list) |
+| `src/data/site.ts` | TDM's LinkedIn and Google Business Profile URLs (for `sameAs`). Facebook is done. |
 | `src/data/tracking.ts` | Google Ads lead conversion label; Meta Pixel ID (via env vars) |
 | `src/data/caseStudies.ts` | Results + publishing permission: Stitch, Marshall Ahmad, Asma Tariq Studio, Ibadat International University, Zoro Broast |
 | `src/components/About.tsx` | Founder story (2–3 sentences); team names, roles, photos, bios, LinkedIn |
@@ -91,7 +90,7 @@ Visible only in `npm run dev` (amber boxes and outlines); `Placeholder` and `Rev
 
 1. Review the branch locally: `npm run dev`, then look for the amber placeholder boxes.
 2. Answer the 10 approval items above.
-3. Supply the TODO information (team, results, URLs, entity name).
+3. Supply the TODO information (team, results, LinkedIn/GBP URLs, entity name). Consider renaming TDM's Facebook username away from `timesofislamabadurdu` (doc 09).
 4. Get the privacy policy and terms reviewed.
 5. Push and deploy, then set the environment variables in doc 04 and redeploy.
 6. Search Console: verify, submit the sitemap, and request indexing for `/pricing`, `/services/*` and `/media-network`. Bing: import from GSC.
