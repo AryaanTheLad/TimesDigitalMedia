@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ShieldCheck, BarChart, HardDrive, Mail, Phone, MapPin } from "lucide-react";
-import Placeholder from "./Placeholder";
 import PhoneLink from "./PhoneLink";
 import { ENTITY, SITE, SOCIALS, NETWORK_PROPERTIES } from "@/data/site";
 import { NETWORK_STATS, STATS_SOURCE } from "@/data/stats";
@@ -74,7 +73,6 @@ export default function About() {
               We run campaigns for brands, institutions and businesses reaching audiences across Pakistan&apos;s main commercial
               hubs (Islamabad, Rawalpindi, Karachi, Lahore, Quetta and Peshawar) and in international markets.
             </p>
-            <Placeholder>[[TODO: founder story: when and why TDM started, in 2–3 sentences]]</Placeholder>
           </div>
 
           <div className="lg:col-span-6 flex flex-col gap-6">
@@ -112,19 +110,7 @@ export default function About() {
               and its social accounts, plus TDM&apos;s own profiles. Advertisers can buy placements on it directly:{" "}
               <Link href="/media-network" className="font-bold text-[#09090b] underline decoration-[#E8000E] underline-offset-4">advertise on the media network</Link>.
             </p>
-            <Placeholder>[[REVIEW: confirm the formal relationship (same group / sister brand) and whether to publish: &quot;{ENTITY.disambiguation}&quot;]]</Placeholder>
           </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="py-10 md:py-14 border-t border-stone-100">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-[#09090b]">The team</h2>
-          <p className="mt-3 text-sm text-zinc-600 font-medium max-w-2xl">
-            Campaign strategists, media buyers, editors and developers working from Lahore.
-          </p>
-          <Placeholder>[[TODO: founder and team: name, role, photo, 2-line bio and LinkedIn for each person (owner to supply)]]</Placeholder>
         </div>
       </section>
 

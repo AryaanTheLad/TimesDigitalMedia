@@ -81,7 +81,6 @@ export const FAQS: FAQ[] = [
     id: "tdm-vs-toi",
     q: "Are Times Digital Media and Times of Islamabad the same company?",
     a: ENTITY.networkRelationship,
-    review: "[[REVIEW]] Confirm the formal corporate relationship (same group, sister brand, etc.) so this answer can state it precisely.",
   },
   {
     id: "contract",

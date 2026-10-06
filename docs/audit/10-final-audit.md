@@ -23,7 +23,7 @@
 | Content | ✅ 8 service pages, 4 industry pages, 6 guides. 🟡 [[REVIEW]] blocks |
 | Core Web Vitals | 🟡 images fixed; hero fade-in may delay LCP (needs approval to change) |
 | Design | ✅ brand preserved. ⛔ Geist fonts load but aren't applied (decision needed) |
-| E-E-A-T | 🟡 team, founder story and named authors needed |
+| E-E-A-T | ✅ entity, relationship, facts. Team/founder sections removed by owner decision. 🟡 named article authors optional |
 | Forms | ✅ real error states, PKR fields, attribution. Endpoints unchanged |
 | GBP / local | 🟡 owner action (doc 03) |
 | Headers / security | ✅ basics. ⛔ CSP not added (needs a tested allow-list) |
@@ -46,9 +46,8 @@
 5. **FAQ claims carried over:** "measurable lead flow within 14–21 days … day 30–45", and "clients across the Middle East, UK, US and Canada". Confirm these are still accurate.
 6. **"Most popular"** label on the Growth package: confirm it's true (it's an implied claim).
 7. **Media network formats** listed on `/media-network` (sponsored social posts, reels, news-portal placements): confirm, and whether sponsored posts are labelled as sponsored.
-8. **Disambiguation line** about Media Times Limited (doc 09).
-9. **Delete** the unused `public/media__*` screenshots.
-10. **Image optimisation**: enable Next/Vercel image optimisation (cost decision).
+8. **Delete** the unused `public/media__*` screenshots.
+9. **Image optimisation**: enable Next/Vercel image optimisation (cost decision).
 
 ## Every placeholder
 
@@ -61,7 +60,6 @@ Visible only in `npm run dev` (amber boxes and outlines); `Placeholder` and `Rev
 | `src/data/site.ts` | TDM's LinkedIn and Google Business Profile URLs (for `sameAs`). Facebook is done. |
 | `src/data/tracking.ts` | Google Ads lead conversion label; Meta Pixel ID (via env vars) |
 | `src/data/caseStudies.ts` | Results + publishing permission: Marshall Ahmad, Asma Tariq Studio, Ibadat International University, Zoro Broast (these show "What we delivered" counts until supplied). Zameen and Stitch show qualitative results; Stitch figures are optional. |
-| `src/components/About.tsx` | Founder story (2–3 sentences); team names, roles, photos, bios, LinkedIn |
 | `src/content/blog/index.ts`, `src/lib/schema.ts`, `src/app/blog/author/[slug]/page.tsx` | Named authors; switch BlogPosting author to Person |
 | `src/app/terms/page.tsx` | Registered legal entity name / registration details |
 
@@ -69,8 +67,7 @@ Visible only in `npm run dev` (amber boxes and outlines); `Placeholder` and `Rev
 
 | File | Item |
 |---|---|
-| `src/data/site.ts` | Disambiguation line vs Media Times Limited |
-| `src/data/faqs.ts` | 14–21 day / 30–45 day timings; international client regions; TDM ↔ Times of Islamabad formal relationship |
+| `src/data/faqs.ts` | 14–21 day / 30–45 day timings; international client regions |
 | `src/data/services.ts` | Process steps and deliverables match how TDM works |
 | `src/data/industries.ts` | Industry approach bullets |
 | `src/data/stats.ts` | Client consent for the Ads Manager screenshots (names already hidden) |
@@ -89,8 +86,8 @@ Visible only in `npm run dev` (amber boxes and outlines); `Placeholder` and `Rev
 ## Owner action checklist
 
 1. Review the branch locally: `npm run dev`, then look for the amber placeholder boxes.
-2. Answer the 10 approval items above.
-3. Supply the TODO information (team, results, LinkedIn/GBP URLs, entity name). Consider renaming TDM's Facebook username away from `timesofislamabadurdu` (doc 09).
+2. Answer the 9 approval items above.
+3. Supply the TODO information (results, LinkedIn/GBP URLs, entity name). Consider renaming TDM's Facebook username away from `timesofislamabadurdu` (doc 09).
 4. Get the privacy policy and terms reviewed.
 5. Push and deploy, then set the environment variables in doc 04 and redeploy.
 6. Search Console: verify, submit the sitemap, and request indexing for `/pricing`, `/services/*` and `/media-network`. Bing: import from GSC.

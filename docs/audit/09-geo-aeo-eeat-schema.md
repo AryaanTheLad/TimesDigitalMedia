@@ -10,9 +10,9 @@ Source of truth: `ENTITY.description` in `src/data/site.ts`. It's used by the Ab
 
 ### Network relationship (prevents AI merging the two brands)
 
-> Times Digital Media is the marketing agency; Times of Islamabad is a news publisher. Times of Islamabad's news portal and its Facebook and Instagram accounts are part of the media network TDM uses to amplify client brands. Editorial news coverage is produced by Times of Islamabad, not by TDM.
+> Times Digital Media and Times of Islamabad are part of the same group. TDM is the group's marketing agency; Times of Islamabad is its news publisher. Times of Islamabad's news portal and its Facebook and Instagram accounts are part of the media network TDM uses to amplify client brands. Editorial news coverage is produced by Times of Islamabad, not by TDM.
 
-[[REVIEW]] Confirm the formal relationship (same group, sister brand, etc.) so this can be stated precisely. Also decide whether to publish the disambiguation line *"Times Digital Media is not the same company as Media Times Limited, the Lahore-based publisher of Daily Times."* Searches for "Times Digital Media Lahore" currently return Media Times Limited.
+Owner confirmed (Oct 2026): same group. The optional disambiguation line *"Times Digital Media is not the same company as Media Times Limited, the Lahore-based publisher of Daily Times."* is **not** published on the site. Searches for "Times Digital Media Lahore" currently return Media Times Limited, so consider using that line on directory profiles.
 
 ### Citable facts
 
@@ -64,8 +64,8 @@ Every service page opens with a 40–60 word definition (`service.answer`). Ever
 
 | Signal | Status |
 |---|---|
-| About page and company story | ✅ entity, relationship, facts. 🟡 founder story placeholder |
-| Founder/team bios and photos | 🟡 placeholder (owner to supply name, role, photo, 2-line bio, LinkedIn) |
+| About page and company story | ✅ entity, same-group relationship, facts block (team and founder-story sections removed at owner's request) |
+| Founder/team bios and photos | Not used (owner decision). Named article authors remain an optional E-E-A-T upgrade |
 | Case studies with method | ✅ challenge → approach → results. 🟡 results figures needed for 5 clients |
 | Testimonials | ⛔ none on the site. Collect with written permission; don't paraphrase or invent |
 | Certifications | None claimed. Add "Meta Business Partner" / "Google Partner" badges only if TDM actually holds them |

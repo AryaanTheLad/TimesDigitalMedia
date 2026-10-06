@@ -26,7 +26,7 @@
 ├─ /blog                            Grouped by category (Meta Ads / Google & YouTube / Strategy)
 │  ├─ /blog/[slug]                  6 pillar guides
 │  └─ /blog/author/tdm-editorial-team
-├─ /about                           Entity description, network relationship, facts block, team
+├─ /about                           Entity description, same-group relationship, facts block
 ├─ /faq
 ├─ /contact → /contact/success (noindex)
 ├─ /privacy, /terms

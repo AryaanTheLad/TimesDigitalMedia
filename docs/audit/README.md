@@ -32,4 +32,4 @@ Audit date: 6 October 2026 · Site: https://timesdigitalmedia.co · Stack: Next.
 - Measurement: audit-funnel step events, lead events, WhatsApp/phone/email/CTA/package clicks, UTM + click-ID attribution on every form, Consent Mode v2 defaults, thank-you pages, opt-in Meta Pixel + Conversions API.
 - Performance and safety: portfolio images cut from ~37 MB to ~3.2 MB, security headers, click-to-call no longer breaks when gtag is blocked, forms show a real error with WhatsApp/email fallback instead of fake success.
 
-**What needs you.** See [10-final-audit.md](10-final-audit.md): environment variables (Meta Pixel, Google Ads lead label, Search Console/Bing tokens), Google Business Profile, founder/team bios, case-study results and client consent, a legal review, and a short list of claims that need your approval.
+**What needs you.** See [10-final-audit.md](10-final-audit.md): environment variables (Meta Pixel, Google Ads lead label, Search Console/Bing tokens), Google Business Profile, case-study results and client consent, a legal review, and a short list of claims that need your approval.

@@ -55,7 +55,7 @@ export const ENTITY = {
     "Times Digital Media (TDM) is a performance marketing agency based in Lahore, Pakistan. TDM plans and manages Meta (Facebook and Instagram), Google and YouTube ad campaigns, lead generation and short-form content for businesses in Pakistan and abroad. Alongside paid ads, TDM can amplify client brands across its owned media network, which includes the Times of Islamabad news portal and the Facebook and Instagram accounts of Times of Islamabad and Times Digital Media.",
   /** Explicit relationship statement so AI systems don't merge the two brands. */
   networkRelationship:
-    "Times Digital Media is the marketing agency; Times of Islamabad is a news publisher. Times of Islamabad's news portal and its Facebook and Instagram accounts are part of the media network TDM uses to amplify client brands. Editorial news coverage is produced by Times of Islamabad, not by TDM.",
+    "Times Digital Media and Times of Islamabad are part of the same group. TDM is the group's marketing agency; Times of Islamabad is its news publisher. Times of Islamabad's news portal and its Facebook and Instagram accounts are part of the media network TDM uses to amplify client brands. Editorial news coverage is produced by Times of Islamabad, not by TDM.",
   /**
    * Disambiguation: searches for "Times Digital Media Lahore" also surface
    * Media Times Limited (publisher of Daily Times). [[REVIEW]] confirm TDM has
