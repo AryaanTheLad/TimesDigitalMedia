@@ -69,7 +69,7 @@ export default function ROICalculator() {
         >
           <motion.span
             variants={itemVariants}
-            className="text-[9px] font-mono tracking-widest uppercase text-stone-400"
+            className="text-[9px] font-mono tracking-widest uppercase text-stone-500"
           >
             ROI CALCULATOR
           </motion.span>
@@ -101,7 +101,7 @@ export default function ROICalculator() {
             variants={itemVariants}
             className="rounded-[32px] bg-white border border-stone-200 p-6 shadow-sm"
           >
-            <label className="block text-xs font-mono tracking-wider uppercase text-stone-400 mb-4">
+            <label className="block text-xs font-mono tracking-wider uppercase text-stone-500 mb-4">
               Monthly Ad Budget
             </label>
             <p className="text-2xl sm:text-3xl font-black font-display text-[#09090b] mb-4">
@@ -117,7 +117,7 @@ export default function ROICalculator() {
               className="w-full h-2 rounded-full appearance-none cursor-pointer bg-stone-200 accent-[#E8000E]"
               aria-label="Monthly ad budget in PKR"
             />
-            <div className="flex justify-between mt-2 text-[10px] font-mono text-stone-400">
+            <div className="flex justify-between mt-2 text-[10px] font-mono text-stone-500">
               <span>PKR 10,000</span>
               <span>PKR 500,000</span>
             </div>
@@ -128,7 +128,7 @@ export default function ROICalculator() {
             variants={itemVariants}
             className="rounded-[32px] bg-white border border-stone-200 p-6 shadow-sm"
           >
-            <label className="block text-xs font-mono tracking-wider uppercase text-stone-400 mb-4">
+            <label className="block text-xs font-mono tracking-wider uppercase text-stone-500 mb-4">
               Avg. Customer Value
             </label>
             <p className="text-2xl sm:text-3xl font-black font-display text-[#09090b] mb-4">
@@ -144,7 +144,7 @@ export default function ROICalculator() {
               className="w-full h-2 rounded-full appearance-none cursor-pointer bg-stone-200 accent-[#E8000E]"
               aria-label="Average customer value in PKR"
             />
-            <div className="flex justify-between mt-2 text-[10px] font-mono text-stone-400">
+            <div className="flex justify-between mt-2 text-[10px] font-mono text-stone-500">
               <span>PKR 1,000</span>
               <span>PKR 200,000</span>
             </div>
@@ -155,7 +155,7 @@ export default function ROICalculator() {
             variants={itemVariants}
             className="rounded-[32px] bg-white border border-stone-200 p-6 shadow-sm"
           >
-            <label className="block text-xs font-mono tracking-wider uppercase text-stone-400 mb-4">
+            <label className="block text-xs font-mono tracking-wider uppercase text-stone-500 mb-4">
               Current Close Rate
             </label>
             <p className="text-2xl sm:text-3xl font-black font-display text-[#09090b] mb-4">
@@ -171,7 +171,7 @@ export default function ROICalculator() {
               className="w-full h-2 rounded-full appearance-none cursor-pointer bg-stone-200 accent-[#E8000E]"
               aria-label="Current close rate percentage"
             />
-            <div className="flex justify-between mt-2 text-[10px] font-mono text-stone-400">
+            <div className="flex justify-between mt-2 text-[10px] font-mono text-stone-500">
               <span>1%</span>
               <span>50%</span>
             </div>

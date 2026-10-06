@@ -311,7 +311,7 @@ export default function AuditForm() {
 
   /* ── Shared input class ── */
   const inputClass =
-    "w-full px-4 py-3.5 rounded-xl border border-stone-200 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-[#E8000E]/20 focus:border-[#E8000E] transition-colors placeholder:text-stone-400";
+    "w-full px-4 py-3.5 rounded-xl border border-stone-200 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-[#E8000E]/20 focus:border-[#E8000E] transition-colors placeholder:text-stone-500";
 
   /* ── Error renderer ── */
   const FieldError = ({ field }: { field: string }) => {
@@ -457,7 +457,7 @@ export default function AuditForm() {
             </p>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="audit-name" className="text-[10px] font-bold text-stone-400 uppercase tracking-wider font-mono">
+              <label htmlFor="audit-name" className="text-[10px] font-bold text-stone-500 uppercase tracking-wider font-mono">
                 Name
               </label>
               <input
@@ -475,7 +475,7 @@ export default function AuditForm() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="audit-email" className="text-[10px] font-bold text-stone-400 uppercase tracking-wider font-mono">
+              <label htmlFor="audit-email" className="text-[10px] font-bold text-stone-500 uppercase tracking-wider font-mono">
                 Email
               </label>
               <input
@@ -493,8 +493,8 @@ export default function AuditForm() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="audit-whatsapp" className="text-[10px] font-bold text-stone-400 uppercase tracking-wider font-mono">
-                WhatsApp <span className="text-stone-300">(optional)</span>
+              <label htmlFor="audit-whatsapp" className="text-[10px] font-bold text-stone-500 uppercase tracking-wider font-mono">
+                WhatsApp <span className="text-stone-500">(optional)</span>
               </label>
               <input
                 id="audit-whatsapp"
@@ -526,7 +526,7 @@ export default function AuditForm() {
           viewport={{ once: true, amount: 0.2 }}
           className="max-w-2xl mx-auto flex flex-col items-center text-center gap-4 mb-10 md:mb-12"
         >
-          <motion.span variants={itemVariants} className="text-[9px] font-mono tracking-widest uppercase text-stone-400">
+          <motion.span variants={itemVariants} className="text-[9px] font-mono tracking-widest uppercase text-stone-500">
             FREE GROWTH AUDIT
           </motion.span>
           <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-[#09090b] leading-[1.05] mt-4">
@@ -550,7 +550,7 @@ export default function AuditForm() {
                   transition={{ duration: 0.4, ease }}
                 />
               </div>
-              <p className="text-xs font-mono text-stone-400 mt-2">
+              <p className="text-xs font-mono text-stone-500 mt-2">
                 Step {currentStep} of {TOTAL_STEPS}
               </p>
             </div>

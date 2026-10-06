@@ -37,7 +37,7 @@ export default function ShowcaseBanner() {
         >
           {/* Left Column: Narrative & Inline Stats */}
           <motion.div variants={itemVariants} className="lg:col-span-5 flex flex-col items-start gap-4">
-            <span className="text-[9px] font-mono tracking-widest uppercase text-stone-400">
+            <span className="text-[9px] font-mono tracking-widest uppercase text-stone-500">
               04 / Campaign Spotlight
             </span>
             
@@ -52,7 +52,7 @@ export default function ShowcaseBanner() {
             {/* Inline Editorial Stats (No cards, just clean whitespace and typography) */}
             <div className="grid grid-cols-2 gap-6 w-full mt-5 pt-5 border-t border-stone-200/60">
               <div>
-                <span className="block text-[8px] font-mono tracking-widest uppercase text-stone-400 mb-2">
+                <span className="block text-[8px] font-mono tracking-widest uppercase text-stone-500 mb-2">
                   Target Group
                 </span>
                 <span className="text-3xl sm:text-4xl font-black font-body text-[#E8000E] block leading-none">
@@ -64,7 +64,7 @@ export default function ShowcaseBanner() {
               </div>
  
               <div>
-                <span className="block text-[8px] font-mono tracking-widest uppercase text-stone-400 mb-2">
+                <span className="block text-[8px] font-mono tracking-widest uppercase text-stone-500 mb-2">
                   Campaign Window
                 </span>
                 <span className="text-3xl sm:text-4xl font-black font-body text-[#09090b] block leading-none">

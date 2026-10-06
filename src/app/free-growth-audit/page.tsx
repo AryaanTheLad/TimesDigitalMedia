@@ -56,7 +56,7 @@ export default function FreeGrowthAuditPage() {
         <section className="py-10 md:py-14 border-t border-stone-100">
           <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10">
             <div className="lg:col-span-5">
-              <span className="text-[9px] font-mono tracking-widest uppercase text-stone-400">What you get</span>
+              <span className="text-[9px] font-mono tracking-widest uppercase text-stone-500">What you get</span>
               <h2 className="mt-4 text-3xl sm:text-4xl font-black font-display tracking-tight text-[#09090b] leading-[1.05]">
                 A short, specific audit. Not a sales deck.
               </h2>

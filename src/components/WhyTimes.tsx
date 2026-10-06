@@ -63,7 +63,7 @@ export default function WhyTimes() {
         >
           <motion.span
             variants={itemVariants}
-            className="text-[9px] font-mono tracking-widest uppercase text-stone-400"
+            className="text-[9px] font-mono tracking-widest uppercase text-stone-500"
           >
             WHY TIMES
           </motion.span>

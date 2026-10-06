@@ -52,7 +52,7 @@ export default function CaseStudies() {
         >
           <motion.span
             variants={itemVariants}
-            className="text-[9px] font-mono tracking-widest uppercase text-stone-400"
+            className="text-[9px] font-mono tracking-widest uppercase text-stone-500"
           >
             CLIENT RESULTS
           </motion.span>
@@ -80,7 +80,7 @@ export default function CaseStudies() {
               className="rounded-[32px] bg-white border border-stone-200 p-8 shadow-sm hover:border-[#E8000E]/20 hover:shadow-[0_20px_40px_rgba(232,0,14,0.02)] transition-all duration-300 flex flex-col gap-4"
             >
               {/* Client label */}
-              <span className="text-[10px] font-mono tracking-widest uppercase text-stone-400">
+              <span className="text-[10px] font-mono tracking-widest uppercase text-stone-500">
                 {study.client}
               </span>
 

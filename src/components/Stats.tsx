@@ -181,7 +181,7 @@ export default function Stats() {
         
         {/* Section eyebrow */}
         <div className="mb-8 md:mb-10 flex flex-col items-start">
-          <span className="text-[9px] font-mono tracking-widest uppercase text-stone-400">
+          <span className="text-[9px] font-mono tracking-widest uppercase text-stone-500">
             02 / Media Network
           </span>
           <h2 className="text-xl md:text-2xl font-black font-display tracking-tight text-[#09090b] mt-3">

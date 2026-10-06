@@ -145,7 +145,7 @@ export default function Hero() {
           {/* Micro-trust line */}
           <motion.p
             variants={itemVariants}
-            className="text-[10px] sm:text-xs text-stone-400 font-medium font-body mt-1"
+            className="text-[10px] sm:text-xs text-stone-500 font-medium font-body mt-1"
           >
             Trusted by WWF Pakistan, Zameen.com, Ibadat University &amp; more.
           </motion.p>
@@ -284,7 +284,7 @@ export default function Hero() {
 
       {/* Editorial Scroll Cue */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">
-        <span className="text-[8px] font-mono tracking-widest uppercase text-stone-400">Scroll</span>
+        <span className="text-[8px] font-mono tracking-widest uppercase text-stone-500">Scroll</span>
         <div className="w-[1px] h-12 bg-stone-300 relative overflow-hidden">
           <motion.div
             animate={{ y: ["-100%", "100%"] }}

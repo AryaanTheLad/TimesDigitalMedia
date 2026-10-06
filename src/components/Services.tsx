@@ -149,7 +149,7 @@ export default function Services() {
         {/* Header section with clean, descriptive text */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-10 md:mb-12">
           <div className="lg:col-span-6 flex flex-col items-start">
-            <span className="text-[9px] font-mono tracking-widest uppercase text-stone-400">
+            <span className="text-[9px] font-mono tracking-widest uppercase text-stone-500">
               03 / Services
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-[#09090b] leading-[1.05] mt-4">
@@ -188,7 +188,7 @@ export default function Services() {
                       aria-controls={panelId}
                     >
                       <span className="flex items-center gap-4 md:gap-6">
-                        <span className="text-xs font-mono text-stone-400 font-bold tracking-wider">
+                        <span className="text-xs font-mono text-stone-500 font-bold tracking-wider">
                           {String(index + 1).padStart(2, "0")}
                         </span>
                         <span className={`text-xl sm:text-2xl md:text-3xl font-black font-display tracking-tight transition-colors duration-300 ${isOpen ? "text-[#E8000E]" : "text-[#09090b]"}`}>

@@ -177,7 +177,7 @@ function HeroMetricCard({ item, itemVariants }: { item: MetricCardItem; itemVari
                 {item.badge}
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8000E] animate-pulse" />
-              <span className="text-[8px] font-mono text-stone-400 uppercase tracking-widest font-bold">{item.period ? `Ads Manager · ${item.period}` : "Ads Manager screenshot"}</span>
+              <span className="text-[8px] font-mono text-stone-500 uppercase tracking-widest font-bold">{item.period ? `Ads Manager · ${item.period}` : "Ads Manager screenshot"}</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-black font-display text-[#09090b] tracking-tight mb-4 leading-none">
               {item.title}
@@ -192,7 +192,7 @@ function HeroMetricCard({ item, itemVariants }: { item: MetricCardItem; itemVari
             <div className="grid grid-cols-3 gap-4 pt-6 border-t border-stone-100">
               {item.heroStats.map((stat, idx) => (
                 <div key={idx}>
-                  <p className="text-[9px] font-mono font-bold uppercase tracking-wider text-stone-400">{stat.label}</p>
+                  <p className="text-[9px] font-mono font-bold uppercase tracking-wider text-stone-500">{stat.label}</p>
                   <p className="text-xl sm:text-2xl font-black text-[#09090b] font-display mt-1">{stat.value}</p>
                   <span className={`inline-flex items-center gap-0.5 text-[10px] font-bold px-1.5 py-0.5 rounded-md mt-1 ${
                     item.accentColor === "emerald" 
@@ -326,7 +326,7 @@ export default function SocialProof() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         {/* Section eyebrow */}
         <div className="mb-12 flex flex-col items-start">
-          <span className="text-[9px] font-mono tracking-widest uppercase text-stone-400">
+          <span className="text-[9px] font-mono tracking-widest uppercase text-stone-500">
             06 / Verified from platform insights
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-[#09090b] leading-[1.05] mt-4">
@@ -338,7 +338,7 @@ export default function SocialProof() {
         {/* ── SUBSECTION 1: OUR SOCIAL METRICS ── */}
         <div className="mb-16">
           <div className="flex flex-col gap-2 mb-8">
-            <span className="inline-block self-start text-[9px] font-mono font-bold tracking-wider uppercase text-stone-400 border border-stone-200 rounded-full px-3 py-1">
+            <span className="inline-block self-start text-[9px] font-mono font-bold tracking-wider uppercase text-stone-500 border border-stone-200 rounded-full px-3 py-1">
               Our Social Metrics
             </span>
             <p className="text-xs text-[#57534E] font-medium font-body leading-relaxed max-w-xl">
@@ -402,7 +402,7 @@ export default function SocialProof() {
             <div className="w-full border-t border-stone-200/70" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-[#ffffff] px-6 font-mono text-[9px] tracking-widest text-stone-400 font-bold">
+            <span className="bg-[#ffffff] px-6 font-mono text-[9px] tracking-widest text-stone-500 font-bold">
               Marketing Performance
             </span>
           </div>
@@ -411,7 +411,7 @@ export default function SocialProof() {
         {/* ── SUBSECTION 2: META ADS & GROWTH METRICS ── */}
         <div>
           <div className="flex flex-col gap-2 mb-12">
-            <span className="inline-block self-start text-[9px] font-mono font-bold tracking-wider uppercase text-stone-400 border border-stone-200 rounded-full px-3 py-1">
+            <span className="inline-block self-start text-[9px] font-mono font-bold tracking-wider uppercase text-stone-500 border border-stone-200 rounded-full px-3 py-1">
               Meta Ads & Growth Metrics
             </span>
             <p className="text-xs text-[#57534E] font-medium font-body leading-relaxed max-w-xl">

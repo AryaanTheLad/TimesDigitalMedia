@@ -57,7 +57,7 @@ export default function CommitmentFAQ({ faqs, showStrip = true, heading = "Commo
           </div>
         )}
 
-        <span className="text-[9px] font-mono tracking-widest uppercase text-stone-400">FAQ</span>
+        <span className="text-[9px] font-mono tracking-widest uppercase text-stone-500">FAQ</span>
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-[#09090b] leading-[1.05] mt-4 mb-10 md:mb-12">
           {heading}
         </h2>
