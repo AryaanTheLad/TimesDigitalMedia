@@ -57,9 +57,9 @@ export const ENTITY = {
   networkRelationship:
     "Times Digital Media and Times of Islamabad are part of the same group. TDM is the group's marketing agency; Times of Islamabad is its news publisher. Times of Islamabad's news portal and its Facebook and Instagram accounts are part of the media network TDM uses to amplify client brands. Editorial news coverage is produced by Times of Islamabad, not by TDM.",
   /**
-   * Disambiguation: searches for "Times Digital Media Lahore" also surface
-   * Media Times Limited (publisher of Daily Times). [[REVIEW]] confirm TDM has
-   * no connection before publishing this line on external profiles.
+   * Disambiguation (owner-approved, Oct 2026): searches for "Times Digital
+   * Media Lahore" also surface Media Times Limited (publisher of Daily Times).
+   * Published on About, FAQ and llms.txt; reuse on directory profiles.
    */
   disambiguation:
     "Times Digital Media is not the same company as Media Times Limited, the Lahore-based publisher of Daily Times.",

@@ -83,6 +83,11 @@ export const FAQS: FAQ[] = [
     a: ENTITY.networkRelationship,
   },
   {
+    id: "tdm-vs-media-times",
+    q: "Is Times Digital Media related to Media Times Limited or Daily Times?",
+    a: `No. ${ENTITY.disambiguation} Times Digital Media is a performance marketing agency in Lahore and part of the same group as Times of Islamabad.`,
+  },
+  {
     id: "contract",
     q: "How do I pay, and what's included in the price?",
     a: `${PRICING_NOTES.taxInclusive} ${PRICING_NOTES.payment} Ad spend is always separate and paid to Meta or Google from your own account.`,

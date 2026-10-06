@@ -12,7 +12,7 @@ Source of truth: `ENTITY.description` in `src/data/site.ts`. It's used by the Ab
 
 > Times Digital Media and Times of Islamabad are part of the same group. TDM is the group's marketing agency; Times of Islamabad is its news publisher. Times of Islamabad's news portal and its Facebook and Instagram accounts are part of the media network TDM uses to amplify client brands. Editorial news coverage is produced by Times of Islamabad, not by TDM.
 
-Owner confirmed (Oct 2026): same group. The optional disambiguation line *"Times Digital Media is not the same company as Media Times Limited, the Lahore-based publisher of Daily Times."* is **not** published on the site. Searches for "Times Digital Media Lahore" currently return Media Times Limited, so consider using that line on directory profiles.
+Owner confirmed (Oct 2026): same group. The optional disambiguation line *"Times Digital Media is not the same company as Media Times Limited, the Lahore-based publisher of Daily Times."* is published on `/about`, as a `/faq` question ("Is Times Digital Media related to Media Times Limited or Daily Times?", included in FAQPage schema) and in `/llms.txt`. Searches for "Times Digital Media Lahore" currently return Media Times Limited, so reuse the same line on Google Business Profile and directory profiles.
 
 ### Citable facts
 

@@ -27,6 +27,7 @@ export function GET() {
     `- ${PRICING_NOTES.international}`,
     `- Media network: ${s.followers.display} followers, ${s.monthlyReach.display} monthly reach, ${s.views28d.display} views per 28 days, ${s.dailyImpressions.display} daily impressions; audience ${s.ageCore.display} aged 18–35, ${s.genderSplit.display}; Karachi + Lahore ${s.topCities.display} of reach. ${STATS_SOURCE.label}.`,
     `- Relationship to Times of Islamabad: ${ENTITY.networkRelationship}`,
+    `- Not to be confused with: ${ENTITY.disambiguation}`,
     `- Contact: ${SITE.email}, ${SITE.phone.display} (phone and WhatsApp)`,
     `- Profiles: ${SOCIALS.map((x) => `${x.label} ${x.href}`).join("; ")}`,
     "",

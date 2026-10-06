@@ -102,6 +102,7 @@ export default function About() {
           </div>
           <div className="lg:col-span-7 flex flex-col gap-4 text-sm sm:text-base text-zinc-700 font-medium leading-relaxed">
             <p>{ENTITY.networkRelationship}</p>
+            <p>{ENTITY.disambiguation}</p>
             <p>
               The network includes the{" "}
               <a href={NETWORK_PROPERTIES.newsPortal.url} target="_blank" rel="noopener noreferrer" className="font-bold text-[#09090b] underline decoration-[#E8000E] underline-offset-4">
