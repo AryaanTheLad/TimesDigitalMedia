@@ -10,7 +10,7 @@ import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
 
 const TITLE = "About Times Digital Media, Lahore";
 const DESCRIPTION =
-  "Times Digital Media is a Lahore-based performance marketing agency running Meta, Google and YouTube ads and content, with its own media network including Times of Islamabad.";
+  "Times Digital Media is a Lahore performance marketing agency for Meta, Google and YouTube ads and content, with its own media network including Times of Islamabad.";
 
 export const metadata = buildMetadata({ title: TITLE, description: DESCRIPTION, path: "/about" });
 

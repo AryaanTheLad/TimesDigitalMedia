@@ -27,9 +27,27 @@ declare global {
 
 const isBrowser = () => typeof window !== "undefined";
 
+/**
+ * Returns gtag, or a stand-in that queues onto dataLayer if the gtag init
+ * script hasn't run yet (e.g. a form mounting before afterInteractive
+ * scripts). gtag.js replays queued Arguments objects once it loads.
+ */
+// gtag.js only replays queued Arguments objects, so this must push `arguments`.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function queueGtag(..._args: unknown[]) {
+  window.dataLayer = window.dataLayer || [];
+  // eslint-disable-next-line prefer-rest-params
+  window.dataLayer.push(arguments);
+}
+
+function gtag(...args: unknown[]) {
+  if (window.gtag) return window.gtag(...args);
+  queueGtag(...args);
+}
+
 export function track(event: string, params: Params = {}) {
   if (!isBrowser()) return;
-  window.gtag?.("event", event, params);
+  gtag("event", event, params);
 }
 
 const newEventId = () =>
@@ -94,7 +112,7 @@ export function trackLead({ form, email, phone, value, extra = {} }: LeadInput) 
   track("generate_lead", { form, currency: "PKR", value: value ?? 1, ...extra });
 
   if (TRACKING.googleAdsLeadLabel) {
-    window.gtag?.("event", "conversion", {
+    gtag("event", "conversion", {
       send_to: `${TRACKING.googleAdsId}/${TRACKING.googleAdsLeadLabel}`,
       value: value ?? 1,
       currency: "PKR",

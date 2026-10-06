@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useSyncExternalStore } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, Phone } from "lucide-react";
 import { SITE, whatsappHref } from "@/data/site";
 import { PACKAGES } from "@/data/pricing";
 import { getAttribution, handlePhoneClick, trackEmailClick, trackLead, trackWhatsAppClick } from "@/lib/analytics";
+
+const noopSubscribe = () => () => {};
 
 const PACKAGE_LABELS: Record<string, string> = {
   ...Object.fromEntries(PACKAGES.map((p) => [p.id, p.name])),
@@ -15,8 +17,12 @@ const PACKAGE_LABELS: Record<string, string> = {
 
 export default function Contact() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const packageParam = searchParams.get("package") ?? "";
+  // Read ?package= on the client only (not useSearchParams) so the page stays fully server-rendered.
+  const packageParam = useSyncExternalStore(
+    noopSubscribe,
+    () => new URLSearchParams(window.location.search).get("package") ?? "",
+    () => "",
+  );
   const selectedPackage = PACKAGE_LABELS[packageParam] ?? "";
   const [submitError, setSubmitError] = useState(false);
 

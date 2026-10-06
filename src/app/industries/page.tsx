@@ -10,7 +10,7 @@ import { getCaseStudy } from "@/data/caseStudies";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
 
-const TITLE = "Industries: Education, Real Estate, E-commerce & Music";
+const TITLE = "Industries We Market For";
 const DESCRIPTION =
   "Marketing for the industries we have real client work in: university admissions, real estate lead generation, e-commerce and artist promotion in Pakistan.";
 

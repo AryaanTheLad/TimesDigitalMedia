@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const c = getCaseStudy(id);
   if (!c) return {};
   return buildMetadata({
-    title: `${c.name} Case Study: ${c.subtitle}`,
+    title: `${c.name} Case Study`,
     description: c.description.length > 158 ? `${c.description.slice(0, 155).trimEnd()}…` : c.description,
     path: `/portfolio/${c.id}`,
   });

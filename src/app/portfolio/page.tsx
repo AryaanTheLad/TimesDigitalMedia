@@ -8,7 +8,7 @@ import { breadcrumbNode, graph, webPageNode } from "@/lib/schema";
 import { SITE_URL } from "@/data/site";
 import { CASE_STUDIES } from "@/data/caseStudies";
 
-const TITLE = "Case Studies: Meta Ads, Reels & Lead Generation";
+const TITLE = "Case Studies & Campaign Results";
 const DESCRIPTION =
   "Campaigns for Zameen.com, Stitch, Ibadat University, Flight Education Consultants, Star Shah and more: the brief, our approach and the creative we ran.";
 

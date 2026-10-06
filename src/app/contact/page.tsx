@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
@@ -27,10 +26,7 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 pt-6">
           <Breadcrumbs crumbs={crumbs} />
         </div>
-        {/* useSearchParams (package pre-selection) needs a Suspense boundary for static rendering */}
-        <Suspense>
-          <Contact />
-        </Suspense>
+        <Contact />
       </main>
       <Footer />
     </>

@@ -68,7 +68,7 @@ export default function ShowcaseBanner() {
                   Campaign Window
                 </span>
                 <span className="text-3xl sm:text-4xl font-black font-body text-[#09090b] block leading-none">
-                  Spring '26
+                  Spring &apos;26
                 </span>
                 <span className="block text-[10px] text-[#57534E] font-bold uppercase tracking-wider mt-2">
                   Active admissions

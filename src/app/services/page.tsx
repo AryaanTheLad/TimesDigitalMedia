@@ -10,7 +10,7 @@ import { NETWORK_STATS } from "@/data/stats";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbNode, graph, servicesListNode, webPageNode } from "@/lib/schema";
 
-const TITLE = "Digital Marketing Services in Lahore & Pakistan";
+const TITLE = "Digital Marketing Services in Pakistan";
 const DESCRIPTION =
   "Meta Ads, Google Ads, YouTube Ads, lead generation, reels, social media, web development and SEO from Times Digital Media, a Lahore performance marketing agency.";
 

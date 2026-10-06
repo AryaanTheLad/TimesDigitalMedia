@@ -67,20 +67,20 @@ export default function Navbar() {
             }}
             className="flex items-center gap-2 group shrink-0"
           >
-            <span className="text-3xl sm:text-4xl lg:text-3xl xl:text-4xl font-black tracking-tighter text-zinc-950 flex items-center gap-1.5">
+            <span className="text-3xl sm:text-4xl xl:text-3xl 2xl:text-4xl font-black whitespace-nowrap tracking-tighter text-zinc-950 flex items-center gap-1.5">
               TIMES <span className="text-[#E8000E]">DIGITAL MEDIA</span>
             </span>
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
+          <div className="hidden xl:flex items-center gap-6 2xl:gap-7">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 prefetch={false}
                 aria-current={isActive(link.href) ? "page" : undefined}
-                className={`relative text-sm font-semibold transition-colors duration-300 py-1 px-1 group ${isActive(link.href) ? "text-black" : "text-zinc-600 hover:text-black"}`}
+                className={`relative text-sm font-semibold whitespace-nowrap transition-colors duration-300 py-1 px-1 group ${isActive(link.href) ? "text-black" : "text-zinc-600 hover:text-black"}`}
               >
                 {link.label}
                 <span className={`absolute bottom-0 left-0 h-[2px] bg-red-500 transition-all duration-300 ${isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"}`} />
@@ -99,7 +99,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex lg:hidden p-2.5 rounded-full text-zinc-600 hover:text-black hover:bg-black/5 transition-all min-w-[44px] min-h-[44px] items-center justify-center"
+            className="flex xl:hidden p-2.5 rounded-full text-zinc-600 hover:text-black hover:bg-black/5 transition-all min-w-[44px] min-h-[44px] items-center justify-center"
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
@@ -118,7 +118,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 top-[70px] z-40 lg:hidden bg-white/95 backdrop-blur-2xl border-t border-black/5 px-8 py-10 flex flex-col justify-between overflow-y-auto"
+            className="fixed inset-0 top-[70px] z-40 xl:hidden bg-white/95 backdrop-blur-2xl border-t border-black/5 px-8 py-10 flex flex-col justify-between overflow-y-auto"
           >
             <nav aria-label="Mobile" className="flex flex-col gap-4">
               {NAV_LINKS.map((link, idx) => (

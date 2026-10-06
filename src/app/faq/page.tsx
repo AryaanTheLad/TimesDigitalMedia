@@ -9,9 +9,9 @@ import { FAQS } from "@/data/faqs";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbNode, faqNode, graph, webPageNode } from "@/lib/schema";
 
-const TITLE = "FAQ: Pricing, Ad Spend, Results & the Media Network";
+const TITLE = "FAQ: Pricing, Ad Spend & Results";
 const DESCRIPTION =
-  "Answers about Times Digital Media: what we do, where we're based, pricing in PKR, ad spend, results timelines, international clients and advertising on Times of Islamabad.";
+  "Answers about Times Digital Media: what we do, pricing in PKR, ad spend, results timelines, international clients and advertising on Times of Islamabad.";
 
 export const metadata = buildMetadata({ title: TITLE, description: DESCRIPTION, path: "/faq" });
 

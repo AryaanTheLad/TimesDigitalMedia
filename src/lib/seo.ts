@@ -34,7 +34,8 @@ export function buildMetadata({
   modifiedTime,
   noindex,
 }: PageSEO): Metadata {
-  const resolvedTitle = absoluteTitle ? title : fullTitle(title);
+  // Keep titles readable in results: drop the brand suffix if it would push past ~65 chars.
+  const resolvedTitle = absoluteTitle || fullTitle(title).length > 65 ? title : fullTitle(title);
   const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`;
 
   return {
