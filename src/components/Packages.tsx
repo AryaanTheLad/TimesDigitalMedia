@@ -78,6 +78,9 @@ export default function Packages({
           <p className="text-[11px] font-mono font-bold uppercase tracking-wider text-stone-500">
             {PRICING_NOTES.taxInclusive}
           </p>
+          <p className="text-sm font-bold text-[#09090b] max-w-xl">
+            {PRICING_NOTES.flexible}
+          </p>
         </div>
 
         {/* Packages Grid */}
@@ -102,6 +105,7 @@ export default function Packages({
 
                 {/* Price block */}
                 <div className="mt-8">
+                  <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-stone-500 mb-2">Starting at</span>
                   <div className="flex items-baseline gap-1 flex-wrap">
                     <span className="text-4xl sm:text-5xl font-black font-body text-[#E8000E] leading-none">{starter.priceLabel}</span>
                     <span className="text-[#57534E] text-[10px] font-mono font-bold uppercase tracking-wider">/ month</span>
@@ -164,6 +168,7 @@ export default function Packages({
                 </p>
 
                 <div className="mt-8">
+                  <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-stone-500 mb-2">Starting at</span>
                   <div className="flex items-baseline gap-1 flex-wrap">
                     <span className="text-4xl sm:text-5xl font-black font-body text-[#E8000E] leading-none">{growth.priceLabel}</span>
                     <span className="text-[#57534E] text-[10px] font-mono font-bold uppercase tracking-wider">/mo management</span>

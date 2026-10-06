@@ -135,7 +135,7 @@ export default async function ServicePage({ params }: PageProps) {
                     {pricedPackages.map((p, i) => (
                       <span key={p.id}>
                         {i > 0 && " and "}
-                        <strong className="text-[#09090b]">{p.name}</strong> ({p.priceLabel}/month)
+                        <strong className="text-[#09090b]">{p.name}</strong> (from {p.priceLabel}/month)
                       </span>
                     ))}
                     , and can also be scoped as a custom package.
@@ -144,7 +144,7 @@ export default async function ServicePage({ params }: PageProps) {
                   <>{service.shortName} is scoped as a custom package after a discovery consultation.</>
                 )}{" "}
                 {service.packageNote && `${service.packageNote} `}
-                {PRICING_NOTES.taxInclusive} {AD_SPEND_NOTE}
+                {PRICING_NOTES.flexible} {PRICING_NOTES.taxInclusive} {AD_SPEND_NOTE}
               </p>
             </div>
             <div className="lg:col-span-5 lg:text-right">

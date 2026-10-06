@@ -129,7 +129,7 @@ export const SERVICES: Service[] = [
     articles: ["meta-ads-vs-google-ads", "pay-for-meta-and-google-ads-from-pakistan", "what-is-a-good-roas"],
     industries: ["education", "ecommerce"],
     illustration: "search",
-    includedIn: ["starter", "custom"],
+    includedIn: ["starter", "growth", "custom"],
   },
   {
     slug: "youtube-ads",
@@ -169,7 +169,7 @@ export const SERVICES: Service[] = [
     articles: ["meta-ads-vs-google-ads"],
     industries: ["education"],
     illustration: "video",
-    includedIn: ["custom"],
+    includedIn: ["starter", "growth", "custom"],
   },
   {
     slug: "performance-marketing-lead-generation",
@@ -210,7 +210,7 @@ export const SERVICES: Service[] = [
     articles: ["what-is-a-good-roas", "meta-ads-vs-google-ads", "how-to-choose-a-digital-marketing-agency-pakistan"],
     industries: ["real-estate", "education"],
     illustration: "campaign",
-    includedIn: ["growth", "custom"],
+    includedIn: ["starter", "growth", "custom"],
   },
   {
     slug: "content-creation",
@@ -283,7 +283,7 @@ export const SERVICES: Service[] = [
       { title: "Review", desc: "Report results and adjust." },
     ],
     faqs: [
-      { q: "How much does social media management cost in Pakistan?", a: "TDM's Starter & Maintenance package is Rs 30,000 per month and the Growth Campaign is Rs 70,000 per month, both tax-inclusive. Ad spend is separate and billed to your own account." },
+      { q: "How much does social media management cost in Pakistan?", a: "TDM's Starter & Maintenance package starts at Rs 30,000 per month and the Growth Campaign at Rs 70,000 per month, both tax-inclusive. These are starting prices that can be adjusted to your requirements. Ad spend is separate and billed to your own account." },
       { q: "Do you create the posts or do I?", a: "On Starter you provide creatives and we manage the accounts. On Growth our team creates the content." },
     ],
     caseStudies: ["zorobroast", "asmatariq"],
@@ -315,7 +315,7 @@ export const SERVICES: Service[] = [
       { title: "Lead capture", desc: "Forms, WhatsApp and call buttons wired to your inbox or CRM." },
       { title: "Tracking", desc: "GA4, Google Ads and Meta Pixel events for every conversion." },
       { title: "On-page SEO", desc: "Titles, descriptions, headings, schema and a sitemap." },
-      { title: "Maintenance", desc: "Uptime management and updates, included in the Starter package." },
+      { title: "Maintenance", desc: "Uptime management and updates after launch." },
     ],
     process: [
       { title: "Scope", desc: "Pages, content and integrations." },
@@ -324,14 +324,14 @@ export const SERVICES: Service[] = [
       { title: "Launch", desc: "Test on mobile and desktop, then go live." },
     ],
     faqs: [
-      { q: "Is web development included in your packages?", a: "Website development is included in the Growth Campaign. Starter includes maintenance of an existing site. Larger builds are scoped as a custom package." },
+      { q: "Is web development included in your packages?", a: "Website development is included in the Growth Campaign. Larger builds are scoped as a custom package, and every package can be adjusted to your requirements." },
     ],
     caseStudies: [],
     articles: [],
     industries: [],
     illustration: "code",
-    includedIn: ["starter", "growth", "custom"],
-    packageNote: "Starter covers maintenance of an existing site; Growth includes website development.",
+    includedIn: ["growth", "custom"],
+    packageNote: "Website development is included in the Growth Campaign.",
   },
   {
     slug: "seo",

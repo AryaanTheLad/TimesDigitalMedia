@@ -39,7 +39,7 @@ export default function TermsOfServicePage() {
       <LegalSection title="2. Our services and pricing">
         <ul className={ul}>
           <li>The scope of any engagement is set out in the proposal or agreement we send you, which takes priority over this website.</li>
-          <li>Package prices on our <Link href="/pricing" className="font-bold underline">pricing page</Link> are monthly management fees in PKR. {PRICING_NOTES.taxInclusive}</li>
+          <li>Package prices on our <Link href="/pricing" className="font-bold underline">pricing page</Link> are monthly management fees in PKR. They are starting prices, not final, and are adjusted to each client&apos;s requirements in your proposal. {PRICING_NOTES.taxInclusive}</li>
           <li>{AD_SPEND_NOTE}</li>
           <li>{PRICING_NOTES.addOns} {PRICING_NOTES.international}</li>
           <li>We may update published prices; changes don&apos;t affect an agreement already in place for its current term.</li>

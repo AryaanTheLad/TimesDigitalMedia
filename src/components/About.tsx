@@ -42,7 +42,7 @@ export default function About() {
     { label: "Services", value: SERVICES.map((x) => x.shortName).join(", ") },
     {
       label: "Pricing",
-      value: `${PACKAGES.filter((p) => p.price).map((p) => `${p.name} ${p.priceLabel}/month`).join("; ")}; custom packages on request. Tax-inclusive, ad spend excluded.`,
+      value: `${PACKAGES.filter((p) => p.price).map((p) => `${p.name} from ${p.priceLabel}/month`).join("; ")}; custom packages on request. Starting prices, adjustable to requirements. Tax-inclusive, ad spend excluded.`,
     },
     { label: "International", value: PRICING_NOTES.international },
     {

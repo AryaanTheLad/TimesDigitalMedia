@@ -7,7 +7,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { getCaseStudy } from "@/data/caseStudies";
 import { getService } from "@/data/services";
-import Placeholder from "./Placeholder";
 import { trackCta } from "@/lib/analytics";
 
 function ReelImage({ src, alt, className, fallbackSrc }: { src: string; alt: string; className?: string; fallbackSrc: string }) {
@@ -132,19 +131,36 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
           </ul>
         </section>
         <section className="rounded-3xl border border-zinc-900 bg-[#09090b] text-white p-6 sm:p-8">
-          <h2 className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-400 mb-3">Results</h2>
           {client.results.length > 0 ? (
-            <ul className="flex flex-col gap-2.5 text-sm leading-relaxed font-bold">
-              {client.results.map((r) => (
-                <li key={r}>{r}</li>
-              ))}
-            </ul>
+            <>
+              <h2 className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-400 mb-3">Results</h2>
+              <ul className="flex flex-col gap-2.5 text-sm leading-relaxed font-bold">
+                {client.results.map((r) => (
+                  <li key={r}>{r}</li>
+                ))}
+              </ul>
+            </>
           ) : (
-            <p className="text-sm text-zinc-400 leading-relaxed font-medium">
-              Campaign creative and content are shown below.
-            </p>
+            // No confirmed outcome figures yet: show what was delivered, counted from the work on this page.
+            <>
+              <h2 className="text-[10px] font-mono font-bold uppercase tracking-widest text-red-400 mb-3">What we delivered</h2>
+              <ul className="flex flex-col gap-2.5 text-sm leading-relaxed font-bold">
+                {client.reels && client.reels.length > 0 && (
+                  <li>
+                    {client.reels.length} campaign {client.reels.length === 1 ? "video" : "reels and videos"}
+                  </li>
+                )}
+                {client.creatives && client.creatives.length > 0 && (
+                  <li>
+                    {client.creatives.length} campaign {client.creatives.length === 1 ? "creative" : "creatives"}
+                  </li>
+                )}
+                <li>
+                  {client.services.length} {client.services.length === 1 ? "service" : "services"} working together
+                </li>
+              </ul>
+            </>
           )}
-          {client.resultsTodo && <Placeholder>{client.resultsTodo}</Placeholder>}
           <div className="mt-6 pt-4 border-t border-zinc-800">
             <span className="block text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500 mb-2">Services used</span>
             <ul className="flex flex-wrap gap-2">

@@ -14,7 +14,7 @@ import { breadcrumbNode, faqNode, graph, offerCatalogNode, webPageNode } from "@
 
 const TITLE = "Digital Marketing Packages & Prices in Pakistan (PKR)";
 const DESCRIPTION =
-  "Transparent PKR pricing: Starter Rs 30,000/month, Growth Campaign Rs 70,000/month, or a custom package. Tax-inclusive; ad spend billed to your own account.";
+  "PKR packages from Rs 30,000/month (Starter) and Rs 70,000/month (Growth), adjustable to your needs. Tax-inclusive; ad spend billed to your own account.";
 
 export const metadata = buildMetadata({ title: TITLE, description: DESCRIPTION, path: "/pricing", absoluteTitle: true });
 
@@ -26,13 +26,14 @@ const crumbs = [
 const PRICING_FAQS = [
   { id: "pricing-ad-spend", q: "Is ad spend included in the package price?", a: `No. ${AD_SPEND_NOTE}` },
   { id: "pricing-tax", q: "Do your prices include tax?", a: `Yes. ${PRICING_NOTES.taxInclusive}` },
+  { id: "pricing-flexible", q: "Are these prices fixed?", a: `No. ${PRICING_NOTES.flexible} Tell us what you need and we'll quote a package that fits.` },
   { id: "pricing-payment", q: "How can I pay?", a: `${PRICING_NOTES.payment} We'll confirm the details when you sign up.` },
   { id: "pricing-international", q: "Do you work with clients outside Pakistan?", a: `Yes. ${PRICING_NOTES.international} Contact us with your market and goals and we'll send a quote.` },
   { id: "pricing-addons", q: "How much do add-ons and network ads cost?", a: `${PRICING_NOTES.addOns} ${PRICING_NOTES.network}` },
   {
     id: "pricing-which",
     q: "Which package should I choose?",
-    a: "Choose Starter if you already have creatives and need your ads and accounts managed. Choose Growth Campaign if you want us to build your website, create content, run Meta Ads and set up lead generation in one place. Choose Custom for multi-channel, high-volume or enterprise needs. The free growth audit includes a recommendation.",
+    a: "Choose Starter if you already have creatives and need your Meta, Google and YouTube ads, lead generation and social accounts managed. Choose Growth Campaign if you want everything in one place, including your website, SEO and content. Choose Custom for high-volume or enterprise needs. Every package can be adjusted to your requirements, and the free growth audit includes a recommendation.",
   },
 ];
 
@@ -47,7 +48,7 @@ export default function PricingPage() {
       <main className="flex-1 w-full bg-transparent pt-24">
         <PageHeader crumbs={crumbs} eyebrow="Pricing in PKR" title="Packages and prices, published." lead={PRICING_ANSWER} />
 
-        <Packages eyebrow="Monthly packages" intro="Pick a package, or start with a free audit and we'll recommend one." showCompareLink={false} />
+        <Packages eyebrow="Monthly packages" intro="Pick a starting package, or take the free audit and we'll recommend one tailored to you." showCompareLink={false} />
 
         {/* Comparison: which services each package covers (from src/data/services.ts includedIn) */}
         <section className="py-10 md:py-14 border-t border-stone-100">
@@ -62,7 +63,7 @@ export default function PricingPage() {
                     {columns.map((p) => (
                       <th key={p.id} scope="col" className="text-left py-3 px-4">
                         <span className="block font-black text-[#09090b]">{p.name}</span>
-                        <span className="block text-xs font-bold text-[#E8000E]">{p.price ? `${p.priceLabel}/mo` : p.priceLabel}</span>
+                        <span className="block text-xs font-bold text-[#E8000E]">{p.price ? `From ${p.priceLabel}/mo` : p.priceLabel}</span>
                       </th>
                     ))}
                   </tr>
@@ -94,7 +95,7 @@ export default function PricingPage() {
               </table>
             </div>
             <p className="mt-4 text-xs text-stone-500 font-medium">
-              Website development is part of Growth; Starter covers maintenance of an existing site. On-page SEO is included in Growth; wider SEO is scoped as custom work.
+              Website development and on-page SEO are part of Growth; wider SEO is scoped as custom work. {PRICING_NOTES.flexible}
             </p>
           </div>
         </section>

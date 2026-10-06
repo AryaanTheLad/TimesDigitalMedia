@@ -65,7 +65,7 @@ export const FAQS: FAQ[] = [
   {
     id: "business-size",
     q: "What size businesses do you take on?",
-    a: "We work with businesses starting from our Starter package at Rs 30,000 per month up to large organisations with custom requirements. If you're serious about growth, there's a package that fits.",
+    a: "We work with businesses starting from our Starter package, which begins at Rs 30,000 per month, up to large organisations with custom requirements. Every package can be adjusted to your requirements, so if you're serious about growth, there's a package that fits.",
   },
   {
     id: "media-network",

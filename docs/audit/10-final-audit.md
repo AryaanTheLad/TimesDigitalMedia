@@ -32,7 +32,7 @@
 | Internal linking | ✅ hub-and-spoke, breadcrumbs, no orphans |
 | Legal | ✅ rewritten. 🟡 legal review, entity name, governing law |
 | Metadata | ✅ consistent titles/OG/Twitter, real OG images, no keywords tag |
-| Pricing | ✅ PKR, tax-inclusive, ad spend excluded everywhere, add-ons/network on request, international note |
+| Pricing | ✅ PKR starting prices (adjustable per client, stated wherever prices appear), tax-inclusive, ad spend excluded everywhere, add-ons/network on request, international note. Starter now includes YouTube Ads and lead generation; Growth includes every service |
 | Redirects | ✅ host + aliases; all old URLs preserved |
 | Schema | ✅ see doc 09 |
 | Stats | ✅ central file, 1M+, "verified from platform insights", accurate captions |
@@ -60,7 +60,7 @@ Visible only in `npm run dev` (amber boxes and outlines); `Placeholder` and `Rev
 |---|---|
 | `src/data/site.ts` | TDM's LinkedIn and Google Business Profile URLs (for `sameAs`). Facebook is done. |
 | `src/data/tracking.ts` | Google Ads lead conversion label; Meta Pixel ID (via env vars) |
-| `src/data/caseStudies.ts` | Results + publishing permission: Stitch, Marshall Ahmad, Asma Tariq Studio, Ibadat International University, Zoro Broast |
+| `src/data/caseStudies.ts` | Results + publishing permission: Stitch, Marshall Ahmad, Asma Tariq Studio, Ibadat International University, Zoro Broast. Until supplied, these pages show "What we delivered" (reel/creative/service counts) instead of a results list. |
 | `src/components/About.tsx` | Founder story (2–3 sentences); team names, roles, photos, bios, LinkedIn |
 | `src/content/blog/index.ts`, `src/lib/schema.ts`, `src/app/blog/author/[slug]/page.tsx` | Named authors; switch BlogPosting author to Person |
 | `src/app/terms/page.tsx` | Registered legal entity name / registration details |

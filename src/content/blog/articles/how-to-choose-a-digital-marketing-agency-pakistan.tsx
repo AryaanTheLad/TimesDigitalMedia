@@ -91,7 +91,8 @@ export default function Article() {
       <p>
         Pricing varies widely across Pakistan, from small freelancer retainers to large agency contracts, so compare what&apos;s
         included rather than headline prices. We publish ours: Times Digital Media&apos;s packages start at Rs 30,000 a month and the
-        Growth Campaign is Rs 70,000 a month, tax-inclusive, with ad spend billed to your own account. See{" "}
+        Growth Campaign starts at Rs 70,000 a month, tax-inclusive, with ad spend billed to your own account. Both are starting
+        prices that we adjust to each client&apos;s requirements. See{" "}
         <Link href="/pricing">full pricing</Link>.
       </p>
 

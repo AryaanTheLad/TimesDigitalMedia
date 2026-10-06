@@ -23,7 +23,7 @@ export function GET() {
     "## Key facts",
     `- Location: ${SITE.location.city}, ${SITE.location.country} (serves clients across Pakistan and internationally)`,
     `- Services: ${SERVICES.map((x) => x.shortName).join(", ")}`,
-    `- Pricing (PKR, tax-inclusive, ad spend excluded): ${PACKAGES.map((p) => `${p.name} ${p.price ? `${p.priceLabel}/month` : "custom terms"}`).join("; ")}`,
+    `- Pricing (PKR, tax-inclusive, ad spend excluded): ${PACKAGES.map((p) => `${p.name} ${p.price ? `from ${p.priceLabel}/month` : "custom terms"}`).join("; ")}. ${PRICING_NOTES.flexible}`,
     `- ${PRICING_NOTES.international}`,
     `- Media network: ${s.followers.display} followers, ${s.monthlyReach.display} monthly reach, ${s.views28d.display} views per 28 days, ${s.dailyImpressions.display} daily impressions; audience ${s.ageCore.display} aged 18–35, ${s.genderSplit.display}; Karachi + Lahore ${s.topCities.display} of reach. ${STATS_SOURCE.label}.`,
     `- Relationship to Times of Islamabad: ${ENTITY.networkRelationship}`,

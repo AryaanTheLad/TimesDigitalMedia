@@ -143,7 +143,7 @@ export function offerCatalogNode(): JsonLdNode {
     itemListElement: PACKAGES.filter((p) => p.price !== null).map((p) => ({
       "@type": "Offer",
       name: p.name,
-      description: `${p.summary} Ad spend not included.`,
+      description: `${p.summary} Starting price; adjustable to requirements. Ad spend not included.`,
       url: `${SITE_URL}/pricing#${p.id}`,
       priceCurrency: "PKR",
       price: p.price,
@@ -151,6 +151,7 @@ export function offerCatalogNode(): JsonLdNode {
         "@type": "UnitPriceSpecification",
         price: p.price,
         priceCurrency: "PKR",
+        minPrice: p.price,
         unitText: "MONTH",
         valueAddedTaxIncluded: true,
       },
