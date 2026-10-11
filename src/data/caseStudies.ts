@@ -49,7 +49,11 @@ export interface ReelItem {
   id: string;
   title: string;
   category: "bts" | "qa" | "singing" | "promo";
-  platform?: "youtube" | "instagram";
+  platform?: "youtube" | "instagram" | "facebook";
+  /** Facebook only: the public video URL used for the embed and the external link. */
+  url?: string;
+  /** Facebook only: the page that published it, shown on the card. */
+  page?: string;
 }
 
 export interface CaseStudy {
@@ -82,6 +86,8 @@ export interface CaseStudy {
   proofShots?: ProofShot[];
   /** Reporting window the proof shots cover, e.g. "6 Sep – 5 Oct 2026". */
   proofPeriod?: string;
+  /** Paid promotion on the TDM media network (shown as a "Media Network" tag). */
+  mediaNetwork?: boolean;
 }
 
 const RED_THEME = {
@@ -92,6 +98,53 @@ const RED_THEME = {
 };
 
 export const CASE_STUDIES: CaseStudy[] = [
+  {
+    // [[REVIEW]] Add results (reach, views) if the client clears them.
+    id: "etihadtown",
+    name: "Etihad Town",
+    subtitle: "Phase IV Launch Promotion",
+    description:
+      "Paid promotion of the Etihad Town Phase IV launch across the TDM media network: the launch reel with Tabish Ahmed Hashmi, published on Times Digital Media and Times of Islamabad.",
+    category: "Real Estate Developer",
+    industry: "real-estate",
+    services: [],
+    mediaNetwork: true,
+    challenge:
+      "Spread awareness of the Etihad Town Phase IV launch among property buyers and investors, quickly and at national scale.",
+    approach: [
+      "Ran a paid promotion of the Phase IV launch reel, fronted by Tabish Ahmed Hashmi and built around the line 'Faida Isi Mein Hai'.",
+      "Published the reel on the Times Digital Media Facebook page.",
+      "Published it again on the Times of Islamabad Facebook page to put the launch in front of a national news audience.",
+    ],
+    results: [],
+    resultsTodo: "[[TODO: confirm Etihad Town campaign results and permission to publish]]",
+    stats: [
+      { label: "Launch", value: "Phase IV" },
+      { label: "Campaign Type", value: "Paid Promotion" },
+      { label: "Published On", value: "TDM + Times of Islamabad" },
+      { label: "Format", value: "Facebook Reels" },
+    ],
+    logoPath: "/logo_etihad.jpg",
+    ...RED_THEME,
+    reels: [
+      {
+        id: "3295689333951871",
+        title: "Etihad Town Phase IV launch with Tabish Ahmed Hashmi",
+        category: "promo",
+        platform: "facebook",
+        page: "Times Digital Media",
+        url: "https://www.facebook.com/timesofislamabadurdu/videos/3295689333951871/",
+      },
+      {
+        id: "1014058637700670",
+        title: "Etihad Town Phase IV launch on Times of Islamabad",
+        category: "promo",
+        platform: "facebook",
+        page: "Times of Islamabad",
+        url: "https://www.facebook.com/TimesofIslamabad/videos/1014058637700670/",
+      },
+    ],
+  },
   {
     id: "zameen",
     name: "Zameen.com",
@@ -550,6 +603,16 @@ export const CASE_STUDIES: CaseStudy[] = [
 
 export const getCaseStudy = (id: string) => CASE_STUDIES.find((c) => c.id === id);
 
+/**
+ * /portfolio order: case studies with confirmed numbers first (strongest
+ * evidence leading), then the rest in data order.
+ */
+const EVIDENCE_ORDER = ["afsana", "flight", "starshah"];
+export const caseStudiesByEvidence = (): CaseStudy[] => [
+  ...EVIDENCE_ORDER.map((id) => getCaseStudy(id)).filter((c): c is CaseStudy => Boolean(c)),
+  ...CASE_STUDIES.filter((c) => !EVIDENCE_ORDER.includes(c.id)),
+];
+
 /** Card preview images for the portfolio grid. */
 export const cardCreatives = (c: CaseStudy): CreativeAsset[] =>
   c.creatives && c.creatives.length > 0
@@ -562,6 +625,7 @@ export const cardCreatives = (c: CaseStudy): CreativeAsset[] =>
  */
 export const CLIENT_LOGOS = [
   { name: "WWF Pakistan", path: "/logo_wwf.jpg", role: "Digital Advocacy", desc: "Digital awareness and engagement campaigns for conservation initiatives." },
+  { name: "Etihad Town", path: "/logo_etihad.jpg", role: "Launch Promotion", desc: "Paid promotion of the Phase IV launch across Times Digital Media and Times of Islamabad.", caseStudy: "etihadtown" },
   { name: "Zameen.com", path: "/logo_zameen.jpg", role: "Lead Acquisition", desc: "Campaigns for property launches and investor lead capture.", caseStudy: "zameen" },
   { name: "Ibadat University", path: "/logo_ibadat.jpg", role: "Student Acquisition", desc: "Admissions campaigns for the Spring 2026 intake.", imgClass: "scale-[2.0]", caseStudy: "ibadat" },
   { name: "CIMS School of Law", path: "/logo_cims.jpg", role: "Institutional Positioning", desc: "Local awareness and lead capture for legal studies admissions." },

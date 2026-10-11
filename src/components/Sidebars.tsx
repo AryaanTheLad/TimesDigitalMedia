@@ -17,12 +17,13 @@ export default function Sidebars() {
 
   const sections: SectionItem[] = [
     { id: "hero", label: "Home" },
-    { id: "metrics", label: "Metrics" },
+    { id: "proof", label: "Results" },
+    { id: "featured-case-study", label: "Case Study" },
     { id: "services", label: "Services" },
-    { id: "showcase", label: "Spotlight" },
+    { id: "how-we-work", label: "Process" },
+    { id: "industries", label: "Industries" },
     { id: "clients", label: "Clients" },
-    { id: "proof", label: "Proof" },
-    { id: "packages", label: "Packages" },
+    { id: "packages", label: "Pricing" },
   ];
 
   useEffect(() => {

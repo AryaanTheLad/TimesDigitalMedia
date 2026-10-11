@@ -54,7 +54,7 @@ interface PackagesProps {
 }
 
 export default function Packages({
-  eyebrow = "07 / Pricing & Retainers",
+  eyebrow = "08 / Pricing & Retainers",
   intro = "Transparent monthly packages in PKR. You see the price before you talk to us.",
   showCompareLink = true,
 }: PackagesProps) {

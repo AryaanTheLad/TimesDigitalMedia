@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import Image from "next/image";
 import Link from "next/link";
-import { CASE_STUDIES, cardCreatives } from "@/data/caseStudies";
+import { caseStudiesByEvidence, cardCreatives } from "@/data/caseStudies";
 
 export default function Portfolio() {
   return (
@@ -23,16 +23,16 @@ export default function Portfolio() {
               <span>Case Studies</span>
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-zinc-900 leading-tight tracking-tight">
-              Case studies &amp; campaign portfolio
+              Client results &amp; case studies
             </h1>
             <p className="text-sm sm:text-base text-zinc-700 max-w-xl leading-relaxed font-bold mt-1">
-              Real campaigns for real estate, education, e-commerce, music and food brands in Pakistan: what each client needed, what we did, and the creative we ran.
+              Real campaigns for beauty, education, e-commerce, real estate, music and food brands in Pakistan: what each client needed, what we did, and the results where the client has cleared them for publishing.
             </p>
           </div>
 
           {/* Client Selection Boxes */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {CASE_STUDIES.map((client) => (
+            {caseStudiesByEvidence().map((client) => (
               <Link
                 key={client.id}
                 href={`/portfolio/${client.id}`}
@@ -72,6 +72,11 @@ export default function Portfolio() {
                   <p className="text-zinc-500 font-bold text-xs uppercase tracking-wider mb-4">
                     {client.subtitle}
                   </p>
+                  {client.results.length > 0 && /\d/.test(client.results[0]) ? (
+                    <p className="mb-3 text-sm font-black text-zinc-950 leading-snug border-l-2 border-[#E8000E] pl-3">
+                      {client.results[0]}
+                    </p>
+                  ) : null}
                   <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-medium line-clamp-3">
                     {client.description}
                   </p>

@@ -1,11 +1,12 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import WhyTimes from "@/components/WhyTimes";
-import Stats from "@/components/Stats";
-import ShowcaseBanner from "@/components/ShowcaseBanner";
-import Services from "@/components/Services";
-import Clients from "@/components/Clients";
 import SocialProof from "@/components/SocialProof";
+import FeaturedCaseStudy from "@/components/FeaturedCaseStudy";
+import ServicePillars from "@/components/ServicePillars";
+import HowWeWork from "@/components/HowWeWork";
+import IndustriesStrip from "@/components/IndustriesStrip";
+import Clients from "@/components/Clients";
+import WhyTimes from "@/components/WhyTimes";
 import Packages from "@/components/Packages";
 import AuditForm from "@/components/AuditForm";
 import CommitmentFAQ from "@/components/CommitmentFAQ";
@@ -16,11 +17,10 @@ import { buildMetadata } from "@/lib/seo";
 import { graph, webPageNode } from "@/lib/schema";
 import { HOME_FAQS } from "@/data/faqs";
 import { SITE } from "@/data/site";
-import { NETWORK_STATS } from "@/data/stats";
 import { PACKAGES } from "@/data/pricing";
 
 const TITLE = `Performance Marketing Agency in Lahore | ${SITE.name}`;
-const DESCRIPTION = `Meta, Google & YouTube ads, lead generation and reels from a Lahore agency, plus reach on our own ${NETWORK_STATS.followers.display} follower media network. From ${PACKAGES[0].priceLabel}/month.`;
+const DESCRIPTION = `Lahore performance marketing agency running Meta, Google & YouTube ads judged on cost per lead and ROAS, with real Ads Manager results. From ${PACKAGES[0].priceLabel}/month.`;
 
 export const metadata = buildMetadata({ title: TITLE, description: DESCRIPTION, path: "/", absoluteTitle: true });
 
@@ -33,35 +33,39 @@ export default function Home() {
 
       {/* Main Structural Container */}
       <main className="flex-1 w-full flex flex-col relative z-10">
-        {/* Hero Banner Section */}
+        {/* Results first: the order follows what a performance buyer needs to see */}
         <Hero />
         <div className="w-full border-t border-zinc-200" />
 
-        {/* Why Times - Owned Network Moat (CRO Change 4) */}
-        <WhyTimes />
-        <div className="w-full border-t border-zinc-200" />
-
-        {/* Oversized Animated Metrics Banner */}
-        <Stats />
-        <div className="w-full border-t border-zinc-200" />
-
-        {/* Bento Grid Solutions / Services */}
-        <Services />
-        <div className="w-full border-t border-zinc-200" />
-
-        {/* Live Campaign Showcase Spotlight */}
-        <ShowcaseBanner />
-        <div className="w-full border-t border-zinc-200" />
-
-        {/* Client Logomark Marquees */}
-        <Clients />
-        <div className="w-full border-t border-zinc-200" />
-
-        {/* Dynamic SVG Charts & Case Studies */}
+        {/* 01: Ads Manager proof (id="proof", cited by blog articles) */}
         <SocialProof />
         <div className="w-full border-t border-zinc-200" />
 
-        {/* Pricing Retainers & Growth Packages */}
+        {/* 02: One case study told end to end */}
+        <FeaturedCaseStudy />
+        <div className="w-full border-t border-zinc-200" />
+
+        {/* 03: Services grouped by funnel stage */}
+        <ServicePillars />
+        <div className="w-full border-t border-zinc-200" />
+
+        {/* 04: First 30 days and the metrics we report */}
+        <HowWeWork />
+        <div className="w-full border-t border-zinc-200" />
+
+        {/* 05: Industry pages */}
+        <IndustriesStrip />
+        <div className="w-full border-t border-zinc-200" />
+
+        {/* 06: Client list */}
+        <Clients />
+        <div className="w-full border-t border-zinc-200" />
+
+        {/* 07: Media network as the add-on advantage */}
+        <WhyTimes />
+        <div className="w-full border-t border-zinc-200" />
+
+        {/* 08: Pricing */}
         <Packages />
         <div className="w-full border-t border-zinc-200" />
 

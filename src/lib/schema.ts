@@ -40,7 +40,7 @@ export function organizationNode(): JsonLdNode {
     },
     image: `${SITE_URL}${SITE.logo}`,
     description: ENTITY.description,
-    slogan: "More qualified leads in 30 days.",
+    slogan: "Marketing you can measure.",
     email: SITE.email,
     telephone: SITE.phone.e164,
     address: {

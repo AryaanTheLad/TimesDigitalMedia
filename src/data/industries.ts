@@ -58,7 +58,7 @@ export const INDUSTRIES: Industry[] = [
       "Property launch, expo and open-house campaigns that generate buyer and investor leads in Pakistan. Meta Ads, lead forms and media-network amplification.",
     primaryKeyword: "real estate lead generation pakistan",
     intro:
-      "Property buyers research for weeks before they call. Real estate campaigns have to create awareness for a project, then capture the buyers and investors who are serious. TDM has run campaigns for Zameen.com covering property expos, project launches and open houses.",
+      "Property buyers research for weeks before they call. Real estate campaigns have to create awareness for a project, then capture the buyers and investors who are serious. TDM has run campaigns for Zameen.com covering property expos, project launches and open houses, and promoted the Etihad Town Phase IV launch across the TDM media network.",
     challenges: [
       "High-value decisions with long research cycles",
       "Lead forms attract browsers unless they ask the right questions",
@@ -70,7 +70,7 @@ export const INDUSTRIES: Industry[] = [
       "Retarget engaged viewers with project details and open-house invitations",
       "Amplify major launches across the TDM media network",
     ],
-    caseStudies: ["zameen"],
+    caseStudies: ["etihadtown", "zameen"],
     services: ["meta-ads", "performance-marketing-lead-generation"],
     articles: ["facebook-ads-cost-pakistan", "what-is-a-good-roas"],
   },
