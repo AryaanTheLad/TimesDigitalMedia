@@ -5,9 +5,10 @@ import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
 import JsonLd from "@/components/JsonLd";
 import MediaNetworkForm from "@/components/MediaNetworkForm";
+import SocialProof from "@/components/SocialProof";
 import { FAQList } from "@/components/CommitmentFAQ";
 import { ENTITY, NETWORK_PROPERTIES, SOCIALS } from "@/data/site";
-import { NETWORK_STATS, STATS_SOURCE, INSIGHT_SCREENSHOTS } from "@/data/stats";
+import { NETWORK_STATS, STATS_SOURCE } from "@/data/stats";
 import { PRICING_NOTES } from "@/data/pricing";
 import { FAQS } from "@/data/faqs";
 import { buildMetadata } from "@/lib/seo";
@@ -87,15 +88,12 @@ export default function MediaNetworkPage() {
             </dl>
             <p className="mt-8 text-xs text-stone-500 font-medium max-w-3xl">
               <strong className="text-stone-600">{STATS_SOURCE.label}.</strong> {STATS_SOURCE.long} Gender split: {NETWORK_STATS.genderSplit.display}.{" "}
-              <Link href="/#proof" className="font-bold underline">See the insights screenshots</Link>.
+              <a href="#insights" className="font-bold underline">See the insights screenshots</a>.
             </p>
-            <ul className="sr-only">
-              {INSIGHT_SCREENSHOTS.map((shot) => (
-                <li key={shot.src}>{shot.title}: {shot.keyNumbers.join(", ")}</li>
-              ))}
-            </ul>
           </div>
         </section>
+
+        <SocialProof variant="insights" />
 
         {/* Properties + relationship */}
         <section className="py-10 md:py-14 border-t border-stone-100">
@@ -134,6 +132,13 @@ export default function MediaNetworkPage() {
                 ))}
               </dl>
               <p className="mt-6 text-sm text-[#57534E] font-medium">{PRICING_NOTES.network}</p>
+              <p className="mt-3 text-sm text-[#57534E] font-medium">
+                Recent example:{" "}
+                <Link href="/portfolio/etihadtown" className="font-bold text-[#09090b] underline decoration-[#E8000E] underline-offset-4 hover:text-[#E8000E]">
+                  Etihad Town Phase IV launch promotion
+                </Link>
+                .
+              </p>
             </div>
             <div>
               <h2 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-[#09090b]">How it works</h2>

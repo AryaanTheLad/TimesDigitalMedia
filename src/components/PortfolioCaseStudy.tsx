@@ -161,15 +161,25 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                     {client.creatives.length} campaign {client.creatives.length === 1 ? "creative" : "creatives"}
                   </li>
                 )}
-                <li>
-                  {client.services.length} {client.services.length === 1 ? "service" : "services"} working together
-                </li>
+                {client.mediaNetwork && <li>Paid promotion across the TDM media network</li>}
+                {client.services.length > 0 && (
+                  <li>
+                    {client.services.length} {client.services.length === 1 ? "service" : "services"} working together
+                  </li>
+                )}
               </ul>
             </>
           )}
           <div className="mt-6 pt-4 border-t border-zinc-800">
             <span className="block text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500 mb-2">Services used</span>
             <ul className="flex flex-wrap gap-2">
+              {client.mediaNetwork && (
+                <li>
+                  <Link href="/media-network" className="inline-flex px-2.5 py-1 rounded-lg border border-zinc-700 text-[11px] font-bold hover:border-white transition-colors">
+                    Media Network
+                  </Link>
+                </li>
+              )}
               {client.services.map((slug) => {
                 const svc = getService(slug);
                 return svc ? (
@@ -269,7 +279,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                     setActiveReelId(reel.id);
                     setIframeLoading(true);
                   }}
-                  className={`group relative text-left w-full ${reel.platform === 'youtube' ? 'aspect-video col-span-2 sm:col-span-2 md:col-span-2' : 'aspect-[9/16]'} rounded-3xl overflow-hidden bg-black border border-zinc-200 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5`}
+                  className={`group relative text-left w-full ${reel.platform === 'youtube' || reel.platform === 'facebook' ? 'aspect-video col-span-2 sm:col-span-2 md:col-span-2' : 'aspect-[9/16]'} rounded-3xl overflow-hidden bg-black border border-zinc-200 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5`}
                 >
                   {/* Reel Thumbnail Backdrop */}
                   <ReelImage
@@ -293,6 +303,8 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                     <span className="text-[9px] font-extrabold uppercase tracking-widest bg-white/10 px-2 py-0.5 rounded-lg border border-white/10 w-fit">
                       {reel.platform === "youtube" 
                         ? "YouTube Campaign" 
+                        : reel.platform === "facebook"
+                        ? `Facebook · ${reel.page ?? "Reel"}`
                         : reel.category === "bts"
                         ? "BTS"
                         : reel.category === "qa"
@@ -308,7 +320,11 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
 
                   {/* Platform Logo overlay top right */}
                   <div className="absolute top-4 right-4 w-6 h-6 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center border border-white/10">
-                    {reel.platform === "youtube" ? (
+                    {reel.platform === "facebook" ? (
+                      <svg className="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07" />
+                      </svg>
+                    ) : reel.platform === "youtube" ? (
                       <svg className="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                       </svg>
@@ -636,11 +652,16 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
             {(() => {
               const activeReel = client.reels?.find((r) => r.id === activeReelId);
               const isYouTube = activeReel?.platform === "youtube";
-              const embedUrl = isYouTube 
-                ? `https://www.youtube.com/embed/${activeReelId}?autoplay=1` 
+              const isFacebook = activeReel?.platform === "facebook" && Boolean(activeReel.url);
+              const embedUrl = isYouTube
+                ? `https://www.youtube.com/embed/${activeReelId}?autoplay=1`
+                : isFacebook
+                ? `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(activeReel!.url!)}&show_text=false&width=800`
                 : `https://www.instagram.com/reel/${activeReelId}/embed/`;
               const externalUrl = isYouTube
                 ? `https://www.youtube.com/watch?v=${activeReelId}`
+                : isFacebook
+                ? activeReel!.url!
                 : `https://www.instagram.com/reel/${activeReelId}/`;
 
               return (
@@ -650,7 +671,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                   exit={{ scale: 0.95, opacity: 0 }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                   className={`relative w-full ${
-                    isYouTube ? "max-w-[800px] aspect-video" : "max-w-[380px] aspect-[9/16]"
+                    isYouTube || isFacebook ? "max-w-[800px] aspect-video" : "max-w-[380px] aspect-[9/16]"
                   } rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-zinc-950 flex flex-col justify-center items-center`}
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -676,7 +697,7 @@ export default function PortfolioCaseStudy({ clientId }: PortfolioCaseStudyProps
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 px-3 py-1.5 bg-black/60 hover:bg-black/80 text-white rounded-xl text-[10px] font-black uppercase tracking-wider border border-white/10 transition-colors"
                     >
-                      <span>{isYouTube ? "Open YouTube" : "Open Instagram"}</span>
+                      <span>{isYouTube ? "Open YouTube" : isFacebook ? "Open Facebook" : "Open Instagram"}</span>
                       <span>↗</span>
                     </a>
                   </div>

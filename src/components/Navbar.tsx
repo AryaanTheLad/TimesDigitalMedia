@@ -9,9 +9,9 @@ import { trackCta } from "@/lib/analytics";
 
 const NAV_LINKS = [
   { label: "Services", href: "/services" },
+  { label: "Results", href: "/portfolio" },
+  { label: "Industries", href: "/industries" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Case Studies", href: "/portfolio" },
-  { label: "Media Network", href: "/media-network" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },

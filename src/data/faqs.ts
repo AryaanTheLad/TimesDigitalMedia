@@ -44,7 +44,7 @@ export const FAQS: FAQ[] = [
   {
     id: "results-speed",
     q: "How fast will I see results?",
-    a: "Most clients see measurable lead flow within the first 14–21 days of campaign launch. Full optimisation and scaling typically happen by day 30–45 as we accumulate data and refine targeting. 'More qualified leads in 30 days' is a commitment we work toward, not a promise of a specific number of leads.",
+    a: "Most clients see measurable lead flow within the first 14–21 days of campaign launch. Full optimisation and scaling typically happen by day 30–45 as we accumulate data and refine targeting. 'Growth you can see in 30 days' is a commitment we work toward, not a promise of a specific number of leads or sales.",
     home: true,
     review: "[[REVIEW]] '14–21 days' and 'day 30–45' timings carried over from the previous site; confirm they still reflect typical client results.",
   },

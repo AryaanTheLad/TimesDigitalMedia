@@ -1,130 +1,51 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { TrendingUp, Users, Globe } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { NETWORK_STATS } from "@/data/stats";
 
-const pillars = [
-  {
-    icon: TrendingUp,
-    title: "Performance",
-    description:
-      "Paid ads on Meta, Google & YouTube, optimised for leads and ROAS.",
-  },
-  {
-    icon: Users,
-    title: "Owned Reach",
-    description:
-      `${NETWORK_STATS.followers.display} followers and ${NETWORK_STATS.monthlyReach.display} monthly reach on our own media channels.`,
-  },
-  {
-    icon: Globe,
-    title: "Authority",
-    description:
-      "Brand placement on the Times of Islamabad news portal.",
-  },
-] as const;
-
-const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease },
-  },
-};
+/**
+ * The media network as a differentiator on top of paid ads, shown once on the
+ * homepage. Full audience data and insights screenshots live on /media-network.
+ */
+const FACTS = [
+  { value: NETWORK_STATS.followers.display, label: "Followers on Facebook & Instagram" },
+  { value: NETWORK_STATS.monthlyReach.display, label: "Accounts reached each month" },
+  { value: "ToI", label: "Placement on the Times of Islamabad news portal" },
+];
 
 export default function WhyTimes() {
   return (
-    <section
-      id="why-times"
-      className="relative py-8 md:py-12 bg-transparent border-t border-stone-100"
-    >
+    <section id="why-times" className="relative py-10 md:py-16 bg-transparent border-t border-stone-100">
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        {/* Header */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          className="max-w-3xl mb-10 md:mb-14"
-        >
-          <motion.span
-            variants={itemVariants}
-            className="text-[9px] font-mono tracking-widest uppercase text-stone-500"
-          >
-            WHY TIMES
-          </motion.span>
-
-          <motion.h2
-            variants={itemVariants}
-            className="text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-[#09090b] leading-[1.05] mt-4"
-          >
-            Every agency can buy you impressions.
-            <br className="hidden sm:block" /> We own them.
-          </motion.h2>
-
-          <motion.p
-            variants={itemVariants}
-            className="text-sm sm:text-base text-[#57534E] leading-relaxed font-body font-medium mt-5 max-w-2xl"
-          >
-            Most agencies rent attention on Meta and Google. We do that too,
-            then amplify your brand across the TDM media network:{" "}
-            {NETWORK_STATS.followers.display} followers, {NETWORK_STATS.monthlyReach.display} monthly reach and{" "}
-            {NETWORK_STATS.views28d.display} views every 28 days, plus placement on the Times of Islamabad
-            news portal. It&apos;s distribution most agencies can&apos;t offer.{" "}
-            <Link href="/media-network" className="font-bold text-[#09090b] underline decoration-[#E8000E] underline-offset-4 hover:text-[#E8000E]">
-              How the media network works
+        <div className="rounded-[32px] bg-[#09090b] text-white p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="lg:col-span-6">
+            <span className="text-[9px] font-mono tracking-widest uppercase text-zinc-500">07 / The extra advantage</span>
+            <h2 className="text-3xl sm:text-4xl font-black font-display tracking-tight leading-[1.05] mt-4">
+              Any agency can run your ads. <span className="text-[#E8000E]">We can also launch you to our own audience.</span>
+            </h2>
+            <p className="mt-5 text-sm sm:text-base text-zinc-400 font-medium leading-relaxed max-w-xl">
+              Times Digital Media is part of the same group as Times of Islamabad. Growth Campaign clients get weekly posts
+              across our media network on top of their paid campaigns: extra organic reach for launches, offers and
+              announcements.
+            </p>
+            <Link
+              href="/media-network"
+              className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white hover:text-[#E8000E] transition-colors min-h-[44px]"
+            >
+              How the media network works <ArrowUpRight className="w-4 h-4" />
             </Link>
-          </motion.p>
-        </motion.div>
-
-        {/* Pillar Cards */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-6"
-        >
-          {pillars.map((pillar) => {
-            const Icon = pillar.icon;
-            return (
-              <motion.div
-                key={pillar.title}
-                variants={itemVariants}
-                className="rounded-[32px] bg-white border border-stone-200 p-8 shadow-sm flex flex-col gap-5"
-              >
-                {/* Icon box */}
-                <div className="w-11 h-11 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-[#E8000E]" aria-hidden="true" />
-                </div>
-
-                {/* Title */}
-                <h3 className="text-lg font-black font-display tracking-tight text-[#09090b]">
-                  {pillar.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm sm:text-base text-[#57534E] leading-relaxed font-body font-medium">
-                  {pillar.description}
-                </p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+          </div>
+          <dl className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {FACTS.map((f) => (
+              <div key={f.label} className="border-t border-zinc-800 pt-4">
+                <dt className="sr-only">{f.label}</dt>
+                <dd>
+                  <span className="block text-4xl font-serif lining-nums font-bold text-white leading-none">{f.value}</span>
+                  <span className="mt-3 block text-xs text-zinc-400 font-medium leading-relaxed">{f.label}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </div>
     </section>
   );

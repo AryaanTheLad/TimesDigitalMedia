@@ -256,3 +256,22 @@ export const ADS_PROOF: AdsProof[] = [
     ],
   },
 ];
+
+/**
+ * Headline client results for the homepage hero. Every figure here is taken
+ * from ADS_PROOF above (same screenshots); change both together.
+ */
+export const HERO_PROOF = {
+  roas: {
+    title: "E-commerce · 4 days",
+    spend: { label: "Ad spend", value: "Rs 30.7K", amount: 30719.61 },
+    revenue: { label: "Conversion value", value: "Rs 288.6K", amount: 288607.26 },
+    roas: "9.39x",
+  },
+  bookings: {
+    title: "Nail Art by Afsana · 30 days",
+    label: "WhatsApp bookings",
+    value: "44",
+    note: "Rs 213.63 each",
+  },
+} as const;

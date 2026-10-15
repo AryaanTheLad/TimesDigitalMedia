@@ -52,7 +52,7 @@ function MetricCard({ item, index, itemVariants }: { item: MetricCardItem; index
   return (
     <motion.div
       variants={itemVariants}
-      className={`group relative rounded-[32px] border border-stone-200 p-8 flex flex-col justify-between overflow-hidden bg-white shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.03)] transition-all duration-500 ease-out ${borderHoverClass} ${bgHoverClass}`}
+      className={`group relative h-full rounded-[32px] border border-stone-200 p-8 flex flex-col overflow-hidden bg-white shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.03)] transition-all duration-500 ease-out ${borderHoverClass} ${bgHoverClass}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -68,15 +68,15 @@ function MetricCard({ item, index, itemVariants }: { item: MetricCardItem; index
         />
       )}
 
-      <div className="relative z-10 flex flex-col h-full justify-between gap-6 w-full">
+      <div className="relative z-10 flex flex-col h-full gap-6 w-full">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4 w-full">
-          <h3 className="text-xl sm:text-2xl font-black font-display text-[#09090b] tracking-tight">
-            {item.title}
-          </h3>
+        <div className="flex flex-col items-start gap-3 w-full">
           <span className={`text-[9px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg border ${item.badgeClass}`}>
             {item.badge}
           </span>
+          <h3 className="text-xl sm:text-2xl font-black font-display text-[#09090b] tracking-tight leading-tight min-h-[2lh]">
+            {item.title}
+          </h3>
         </div>
 
         {/* Screenshot Container Card */}
@@ -112,7 +112,7 @@ function MetricCard({ item, index, itemVariants }: { item: MetricCardItem; index
         </div>
 
         {/* Narrative Description */}
-        <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed font-body font-medium">
+        <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed font-body font-medium flex-1">
           {item.description}
         </p>
         <KeyNumbers items={item.keyNumbers} />
@@ -247,7 +247,11 @@ function HeroMetricCard({ item, itemVariants }: { item: MetricCardItem; itemVari
   );
 }
 
-export default function SocialProof() {
+/**
+ * variant="ads": client Ads Manager results (homepage, id="proof").
+ * variant="insights": media-network audience screenshots (/media-network).
+ */
+export default function SocialProof({ variant = "ads" }: { variant?: "ads" | "insights" }) {
   const demographics: MetricCardItem[] = INSIGHT_SCREENSHOTS.map((shot) => ({
     title: shot.title,
     badge: shot.badge,
@@ -312,66 +316,44 @@ export default function SocialProof() {
     },
   };
 
-  return (
-    <section id="proof" className="relative py-8 md:py-16 bg-transparent border-t border-stone-100">
-      {/* Decorative concentric outline circle */}
-      <div className="absolute right-[-10%] bottom-[-10%] w-[350px] h-[350px] pointer-events-none z-0">
-        <svg className="w-full h-full text-zinc-900/[0.02] stroke-[1] stroke-current" viewBox="0 0 100 100" fill="none">
-          <circle cx="50" cy="50" r="45" />
-          <circle cx="50" cy="50" r="35" strokeDasharray="2 2" />
-          <circle cx="50" cy="50" r="25" />
-        </svg>
-      </div>
+  const header = (eyebrow: string, title: React.ReactNode, lead: string) => (
+    <div className="mb-12 flex flex-col items-start">
+      <span className="text-[9px] font-mono tracking-widest uppercase text-stone-500">{eyebrow}</span>
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-[#09090b] leading-[1.05] mt-4">
+        {title}
+      </h2>
+      <p className="mt-5 text-sm sm:text-base text-[#57534E] font-medium font-body leading-relaxed max-w-2xl">{lead}</p>
+    </div>
+  );
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        {/* Section eyebrow */}
-        <div className="mb-12 flex flex-col items-start">
-          <span className="text-[9px] font-mono tracking-widest uppercase text-stone-500">
-            06 / Verified from platform insights
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight text-[#09090b] leading-[1.05] mt-4">
-            Audience Demographics & <br />
-            Reach Profile
-          </h2>
-        </div>
-
-        {/* ── SUBSECTION 1: OUR SOCIAL METRICS ── */}
-        <div className="mb-16">
-          <div className="flex flex-col gap-2 mb-8">
-            <span className="inline-block self-start text-[9px] font-mono font-bold tracking-wider uppercase text-stone-500 border border-stone-200 rounded-full px-3 py-1">
-              Our Social Metrics
-            </span>
-            <p className="text-xs text-[#57534E] font-medium font-body leading-relaxed max-w-xl">
-              Screenshots from Meta platform insights for our media network accounts, showing how people find the content, where they are and how many views it gets. {STATS_SOURCE.label}; not a third-party audit.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
+  if (variant === "insights") {
+    return (
+      <section id="insights" className="relative py-10 md:py-14 bg-transparent border-t border-stone-100 scroll-mt-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+          {header(
+            STATS_SOURCE.label,
+            <>Audience insights</>,
+            `Screenshots from Meta platform insights for our media network accounts, showing how people find the content, where they are and how many views it gets. ${STATS_SOURCE.label}; not a third-party audit.`,
+          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {demographics.map((item, index) => (
               <div
                 key={index}
                 className="group relative rounded-[32px] border border-stone-200 p-8 flex flex-col justify-between overflow-hidden bg-white shadow-sm hover:border-[#E8000E]/20 hover:shadow-[0_20px_40px_rgba(232,0,14,0.02)] transition-all duration-300"
               >
                 <div className="relative z-10 flex flex-col h-full justify-between gap-6 w-full">
-                  {/* Header */}
                   <div className="flex items-center justify-between mb-4 w-full">
-                    <h3 className="text-xl sm:text-2xl font-black font-display text-[#09090b]">
-                      {item.title}
-                    </h3>
+                    <h3 className="text-xl sm:text-2xl font-black font-display text-[#09090b]">{item.title}</h3>
                     <span className={`text-[9px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg border ${item.badgeClass}`}>
                       {item.badge}
                     </span>
                   </div>
-
-                  {/* Screenshot Container Card */}
                   <div className="relative w-full h-[280px] sm:h-[320px] rounded-2xl overflow-hidden border border-stone-200/60 bg-[#F6F4EF]/30 flex flex-col shadow-inner">
-                    {/* Mock Window Top Bar */}
                     <div className="flex items-center gap-1.5 px-4 py-2 border-b border-stone-200/40 bg-stone-100/50">
                       <div className="w-1.5 h-1.5 rounded-full bg-stone-300" />
                       <div className="w-1.5 h-1.5 rounded-full bg-stone-300" />
                       <div className="w-1.5 h-1.5 rounded-full bg-stone-300" />
                     </div>
-                    {/* Screenshot Content */}
                     <div className="flex-1 w-full h-full flex items-center justify-center p-4 relative">
                       <Image
                         src={item.imagePath}
@@ -384,57 +366,51 @@ export default function SocialProof() {
                       />
                     </div>
                   </div>
-
-                  {/* Narrative Description */}
-                  <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed font-body font-medium">
-                    {item.description}
-                  </p>
+                  <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed font-body font-medium">{item.description}</p>
                   <KeyNumbers items={item.keyNumbers} />
                 </div>
               </div>
             ))}
           </div>
         </div>
+      </section>
+    );
+  }
 
-        {/* Separator */}
-        <div className="relative my-24 flex items-center justify-center">
-          <div className="absolute inset-0 flex items-center" aria-hidden="true">
-            <div className="w-full border-t border-stone-200/70" />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-[#ffffff] px-6 font-mono text-[9px] tracking-widest text-stone-500 font-bold">
-              Marketing Performance
-            </span>
-          </div>
-        </div>
+  return (
+    <section id="proof" className="relative py-10 md:py-16 bg-transparent border-t border-stone-100 scroll-mt-24">
+      <div className="absolute right-[-10%] bottom-[-10%] w-[350px] h-[350px] pointer-events-none z-0">
+        <svg className="w-full h-full text-zinc-900/[0.02] stroke-[1] stroke-current" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="45" />
+          <circle cx="50" cy="50" r="35" strokeDasharray="2 2" />
+          <circle cx="50" cy="50" r="25" />
+        </svg>
+      </div>
 
-        {/* ── SUBSECTION 2: META ADS & GROWTH METRICS ── */}
-        <div>
-          <div className="flex flex-col gap-2 mb-12">
-            <span className="inline-block self-start text-[9px] font-mono font-bold tracking-wider uppercase text-stone-500 border border-stone-200 rounded-full px-3 py-1">
-              Meta Ads & Growth Metrics
-            </span>
-            <p className="text-xs text-[#57534E] font-medium font-body leading-relaxed max-w-xl">
-              Meta Ads Manager screenshots from client campaigns we manage. Client names are hidden unless the client agreed to be named; each card lists the key numbers shown in the screenshot.
-            </p>
-          </div>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        {header(
+          "01 / Client results",
+          <>Real numbers from <br className="hidden sm:block" />Meta Ads Manager</>,
+          "Screenshots from client campaigns we manage, not mockups. Client names are hidden unless the client agreed to be named; each card lists the key numbers shown in the screenshot.",
+        )}
 
-          {/* Symmetrical Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 max-w-7xl mx-auto">
-            {/* Hero Meta Ads Card (Spans all columns on md and lg) */}
-            <div className="md:col-span-3">
-              <HeroMetricCard item={adsMetrics[0]} itemVariants={itemVariants} />
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "0px 0px -80px 0px" }}
+          className="grid grid-cols-1 md:grid-cols-6 gap-8 lg:gap-10"
+        >
+          <div className="md:col-span-6">
+            <HeroMetricCard item={adsMetrics[0]} itemVariants={itemVariants} />
+          </div>
+          {adsMetrics.slice(1).map((item, index, rest) => (
+            // Rows of three; a final row of two splits the width in half.
+            <div key={index} className={index >= 3 && rest.length - 3 === 2 ? "md:col-span-3" : "md:col-span-2"}>
+              <MetricCard item={item} index={index + 1} itemVariants={itemVariants} />
             </div>
-
-            {/* Symmetrical 3-Column secondary cards below it */}
-            {adsMetrics.slice(1).map((item, index) => (
-              <div key={index} className="md:col-span-1">
-                <MetricCard item={item} index={index + 1} itemVariants={itemVariants} />
-              </div>
-            ))}
-          </div>
-        </div>
-
+          ))}
+        </motion.div>
       </div>
     </section>
   );

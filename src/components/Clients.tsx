@@ -19,7 +19,7 @@ export default function Clients() {
         {/* Section eyebrow */}
         <div className="mb-8 flex flex-col items-start">
           <span className="text-[9px] font-mono tracking-widest uppercase text-stone-500">
-            05 / Clients
+            06 / Clients
           </span>
           <h2 className="text-xl md:text-2xl font-black font-display tracking-tight text-[#09090b] mt-3">
             Brands we&apos;ve worked with
